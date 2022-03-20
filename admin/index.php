@@ -5,37 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Portal</title>
-    <link rel="stylesheet" href="admin.scss">
+    <title>GCA Portal</title>
+    
     <link rel="stylesheet" href="../style.scss">
+    <link rel="stylesheet" href="../includes/styles.scss">
+    <link rel="stylesheet" href="admin.scss">
     <script src="https://kit.fontawesome.com/57c0ab8bd6.js" crossorigin="anonymous"></script>
    
 </head>
 <body>
-  
-        <nav class="navbar">
-            <div class="systemName">
-                GCA Portal
-            </div>
-            <div class="userName">
-                <div class="user-details">
-                    <i class="fa-solid fa-circle-user"></i>
-                    <?= $_SESSION['name'] ?>
-                    <i class="fa-solid fa-caret-down"></i>
-                </div>
-          
-                <div class="dropdown__content">
-                <p class="dropdown--item"> 
-                    <a href=""><i class="fa-solid fa-key"></i> Change Password</a>
-                 </p>
-                <p class="dropdown--item">
-                     <a href="../logout.php"><i class="fa-solid fa-power-off"></i> Logout</a>
-                    </p>
-                </div>
-            </div>
-        </nav>
-    <aside class="sidebar">
-        testing
-    </aside>
+    <?php include('../includes/header.php'); ?>
+    <?php include('../includes/sidebar.php'); ?>
+     <div class="create--course">
+         <button class="create--btn"><i class="fa-solid fa-plus"></i> Create Course</button>
+     </div>
+     <div class="admin--welcome">
+         <h2>
+         Welcome Admin
+         </h2>
+         
+         As an admin you can add new courses by simple clicking the button above, you can also edit existing courses adding or removing instructors by clicking on view courses on your sidebar
+     </div>
+     <div class="createCourse--modal">
+   
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+        </div>
+
+ 
+     </div>
+    <!-- sidebar and content, last two div end -->
+    </div>
+</div>
 </body>
 </html>
