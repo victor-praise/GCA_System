@@ -18,5 +18,7 @@ INSERT INTO users (username,name,role, password) VALUES ( 'yogesh','victor prais
 INSERT INTO users (username,name,role, password) VALUES ( 'vlad','victor praise','student','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii');
 INSERT INTO users (username,name,role, password) VALUES ('paul','victor praise','student','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii');
 INSERT INTO users (username,name,role, password) VALUES ( 'messi','victor praise','student','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii');
+INSERT INTO users (username,name,role, password) VALUES ( 'Stuart','victor praise','instructor','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii');
+INSERT INTO users (username,name,role, password) VALUES ( 'Probst','victor praise','instructor','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii');
 
-select * from users;
+select username from users where role = 'instructor';

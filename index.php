@@ -5,7 +5,18 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    if($_SESSION["role"] == 'student'){
+        header("location: ../student/student.php");
+    }
+    elseif($_SESSION["role"]  == 'admin'){
+        header("location: ../admin/index.php");
+    }
+    elseif($_SESSION["role"]  == 'instructor'){
+        header("location: ../student/student.php");
+    }
+    elseif($_SESSION["role"]  == 'ta'){
+        header("location: ../ta/index.php");
+    }
     exit;
 }
  
@@ -36,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username,name,role, password FROM users WHERE username = ?";
+        $sql = "SELECT user_id, user_name,user_email,user_password FROM Users_tbl WHERE user_name = ?";
         
         if($stmt = mysqli_prepare($con, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -53,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $name,$role,$hashed_password);
+                    mysqli_stmt_bind_result($stmt, $user_id, $user_name, $user_email,$hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
@@ -61,25 +72,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                            
-                            $_SESSION["name"] = $name;                            
-                            $_SESSION["role"] = $role;                            
-                            
-                            // Redirect user to welcome page
-                            if($_SESSION["role"] == 'student'){
-                                header("location: ../student/student.php");
-                            }
-                            elseif($_SESSION["role"] == 'admin'){
-                                header("location: ../admin/index.php");
-                            }
-                            elseif($_SESSION["role"] == 'instructor'){
-                                header("location: ../student/student.php");
-                            }
-                            elseif($_SESSION["role"] == 'ta'){
-                                header("location: ../ta/index.php");
-                            }
-                           
+                            $_SESSION["id"] = $user_id;
+                            $_SESSION["username"] = $user_name;                            
+                            $_SESSION["useremail"] = $user_email;                            
+                                                                               
                         } else{
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
@@ -89,7 +85,57 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // Username doesn't exist, display a generic error message
                     $login_err = "Invalid username or password.";
                 }
-            } else{
+            } 
+            
+            else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+        // gets users role and redirects to appropriate page
+        $sql_role = "SELECT user_role FROM Role_tbl WHERE user_id = ?";
+
+        if($stmt = mysqli_prepare($con, $sql_role)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            
+            // Set parameters
+            $param_username = $_SESSION["id"];
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Store result
+                mysqli_stmt_store_result($stmt);
+                
+                if(mysqli_stmt_num_rows($stmt) == 1){                    
+                    // Bind result variables
+                    mysqli_stmt_bind_result($stmt, $user_role);
+                    if(mysqli_stmt_fetch($stmt)){  
+                        $_SESSION["role"] = $user_role;
+                            //Redirect user to welcome page
+                            if($user_role == 'student'){
+                                header("location: ../student/student.php");
+                            }
+                            elseif($user_role == 'admin'){
+                                header("location: ../admin/index.php");
+                            }
+                            elseif($user_role == 'instructor'){
+                                header("location: ../student/student.php");
+                            }
+                            elseif($user_role == 'ta'){
+                                header("location: ../ta/index.php");
+                            }
+                           
+                    }
+                } else{
+                    // Username doesn't exist, display a generic error message
+                    $login_err = "Invalid username or password.";
+                }
+            } 
+            
+            else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
@@ -116,7 +162,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="wrapper">
-        <h2>Login</h2>
+        <h2>GCA PORTAL</h2>
+        <h3>Login</h3>
         <p>Please fill in your credentials to login.</p>
 
         <?php 

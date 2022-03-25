@@ -4,9 +4,12 @@
         <!-- <div class="sidebar--links">  
             <a href="../admin/new_course.php">Set up Course</a>
         </div> -->
+        <a href="../admin/courses.php">
         <div class="sidebar--links">  
-            <a href="../admin/courses.php">View Courses</a>
+            View Courses
         </div>
+        </a>
+       
         <?php elseif($_SESSION['role'] == 'ta') : ?>
         <div class="sidebar--links">
             ta Course
