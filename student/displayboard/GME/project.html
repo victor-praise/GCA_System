@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <link rel="stylesheet" href="GMEstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="GME-type">
+            <h1>Project</h1>
+        </div>
+    </header>
+    <div class="GME-instruction">
+        <p>Any new file will replace any existing file. You can also delete any existing file.</p>
+    </div>
+    <div class="GME-upload">
+        <div class="GME-uploadbar">
+            <form action="/action_page.php">
+
+                
+                <input type="file" id="myFile" name="filename">
+
+                <br>
+                <span>Assign permission to your group members:</span>
+                <br>
+                <label for="member1">Member 1</label>
+                <select id="member1" name="member1">
+                    <option value="view only">View Only</option>
+                    <option value="download">Download</option>
+                    <option value="update">Update</option>
+                    <option value="delete">Delete</option>
+                </select>
+                <br>
+                <label for="member2">Member 2</label>
+                <select id="member2" name="member2">
+                    <option value="view only">View Only</option>
+                    <option value="download">Download</option>
+                    <option value="update">Update</option>
+                    <option value="delete">Delete</option>
+                </select>
+                <br>
+                <label for="member3">Member 3</label>
+                <select id="member3" name="member3">
+                    <option value="view only">View Only</option>
+                    <option value="download">Download</option>
+                    <option value="update">Update</option>
+                    <option value="delete">Delete</option>
+                </select>
+                <br>
+                <label for="members">Member 4</label>
+                <select id="member4" name="member4">
+                    <option value="view only">View Only</option>
+                    <option value="download">Download</option>
+                    <option value="update">Update</option>
+                    <option value="delete">Delete</option>
+                </select>
+            <br>
+            <input type="submit">
+            </form>
+        </div>
+    </div>
+   
+
+</body>
+
+</html>
