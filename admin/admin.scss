@@ -2,7 +2,7 @@
     display: flex;
     justify-content: flex-end;
 }
-.create--btn,.submit--btn,.edit--btn,.cancel--btn{
+.create--btn,.submit--btn,.edit--btn,.cancel--link{
     background: #2C74DA;
     border: none;
     color: #fff;
@@ -10,6 +10,10 @@
     border-radius: 4px;
     padding: 10px;
     cursor: pointer;
+}
+.add--student{
+    padding-right: 17px;
+    margin-bottom: 25px;
 }
 .btn__container{
     display: flex;
@@ -40,7 +44,7 @@
     width: 47%;
 }
 .form--input select{
-    width: 100%;
+    width: 96%;
     border-radius: 5px;
 }
 .form--input input{
@@ -58,13 +62,7 @@ input,select{
     margin-bottom: 5px;
     text-transform: capitalize;
   }
-//   .instructor--names{
-//       padding: 15px !important;
-//       margin-bottom: 7px !important;
-//   }
-//   .select--instructor{
-//       text-transform: capitalize;
-//   }
+
 .alert-danger,.success{
     color: red;
     text-align: center;
@@ -169,7 +167,7 @@ i{
 .course__edit{
     border: 2px solid #ebeef3;
     background-color: #fff;
-    margin: 30px 0 0 45px;
+    margin: 3px 0 0 45px;
     width: 80%;
    
 }
@@ -205,7 +203,69 @@ i{
 .edit--btn,.cancel--btn{
     width: 10%;
 }
-.cancel--btn{
-    background-color: red;
-    margin-left: 10px;
+.cancel--link{
+   margin-left: 10px;
+}
+.cancel--link{
+    border: 1px solid red;
+    background-color: #fff;
+    color: red;
+   
+}
+.successfully-updated{
+    background-color: green;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0 5px 45px;
+    
+    width: 75%;
+   
+}
+.successfully-updated > a{
+    text-decoration: underline;
+}
+.delete--btn{
+    border: none;
+    background-color: #fff;
+}
+.ta__students > a {
+    text-decoration: underline;
+    color: #2C74DA;
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+// student styles
+.information--student{
+   
+    min-height: 600px;
+}
+.information--student:first-of-type{
+    margin-top: 25px;
+}
+.information--student{
+   
+    width: 90%;
+    padding: 15px;
+    background-color: #fff;
+    //min-height: 300px;
+     color: #102A43;
+    font-weight: 550;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+  
+}
+.student__header{
+    margin-bottom: 10px;
+}
+.student{
+    margin-bottom: 5px;
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+   
+}
+.student:hover{
+    background: #F0F4F8;
+    border-radius: 6px;
 }

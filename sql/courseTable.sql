@@ -4,32 +4,20 @@ CREATE TABLE Users_tbl(
     user_name VARCHAR(255) Not Null,
     user_email VARCHAR(255) Not Null,
     user_password VARCHAR(255) Not Null,
+    user_role VARCHAR(20) NOT NULL,
    PRIMARY KEY ( user_id )
    );
-   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password) VALUES (4023, 'victor praise','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii');
-   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password) VALUES (4024, 'david igwe','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii');
-   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password) VALUES (4025, 'Bipin Desai','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii');
-   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password) VALUES (4026, 'Yogesh Yadav','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii');
-   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password) VALUES (4027, 'Stuart Atwell','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii');
+   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4023, 'victor praise','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','admin');
+   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4024, 'david igwe','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
+   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4025, 'Bipin Desai','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','instructor');
+   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4026, 'Yogesh Yadav','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','ta');
+   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4027, 'Stuart Atwell','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','instructor');
+     INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4028, 'Cristiano Ronaldo','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','instructor');
 
 select * from users_tbl;
 select * from role_tbl;
-SELECT u.*,r.* from Users_tbl u JOIN role_tbl r ON u.user_id = r.user_id AND r.user_role = 'instructor';
-CREATE TABLE Role_tbl(
-Role_id int auto_increment,
-   user_id char(8),
-   course_id char(12),
-   user_role varchar(255),
-   primary key(Role_id),
-   foreign key (user_id) references Users_tbl(user_id),
-   foreign key (course_id) references CourseSection_tbl(course_id)
-   );
-   
-INSERT INTO Role_tbl (user_id,course_id,user_role) VALUES (4027, NULL,'instructor');
-INSERT INTO Role_tbl (user_id,course_id,user_role) VALUES (4023, NULL,'admin');
-INSERT INTO Role_tbl (user_id,course_id,user_role) VALUES (4024, NULL,'student');
-INSERT INTO Role_tbl (user_id,course_id,user_role) VALUES (4025, NULL,'instructor');
-INSERT INTO Role_tbl (user_id,course_id,user_role) VALUES (4026, NULL,'ta');
+select * from Instructor_tbl;
+
 
 CREATE TABLE CourseSection_tbl(
    course_id char(12),
@@ -41,8 +29,33 @@ course_term varchar(255),
 course_year char(4),
 PRIMARY KEY ( course_id )
    );
-   select * from courseSection_tbl;
+  select * from CourseSection_tbl;
 
+
+ CREATE TABLE Instructor_tbl(
+	Role_id int auto_increment,
+	user_id char(8),
+	course_id char(12),
+	primary key(Role_id),
+	foreign key (user_id) references Users_tbl(user_id) on delete cascade,
+	foreign key (course_id) references CourseSection_tbl(course_id) on delete cascade
+   );
+ CREATE TABLE Student_tbl(
+	Role_id int auto_increment,
+	user_id char(8),
+	course_id char(12),
+	primary key(Role_id),
+	foreign key (user_id) references Users_tbl(user_id) on delete cascade,
+	foreign key (course_id) references CourseSection_tbl(course_id) on delete cascade
+   );
+    CREATE TABLE Ta_tbl(
+	Role_id int auto_increment,
+	user_id char(8),
+	course_id char(12),
+	primary key(Role_id),
+	foreign key (user_id) references Users_tbl(user_id) on delete cascade,
+	foreign key (course_id) references CourseSection_tbl(course_id) on delete cascade
+   );
 
    
 
@@ -145,7 +158,7 @@ CREATE TABLE PrivateMessage_tbl(
    msg_text varchar(255),
    group_id char(12),
    user_id char(8),
-   msg_date date,
+   msg_date date,groupmarked_tbl_ibfk_1
    msg_time time,
    FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id),
    FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id)

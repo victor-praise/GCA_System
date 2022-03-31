@@ -59,6 +59,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Prepare an insert statement for course table
             $sql = "INSERT INTO CourseSection_tbl (course_id,course_name,course_subject,course_number,course_section,course_term,course_year) VALUES (?,?,?,?,?,?,?)";
 
+            $sql_instructor = "INSERT INTO Instructor_tbl (user_id,course_id) VALUES (?,?)";
+
             if($stmt = mysqli_prepare($con, $sql)){
                 // Bind variables to the prepared statement as parameters
                 mysqli_stmt_bind_param($stmt, "sssssss",$param_cid, $param_coursename,$param_coursesubject,$param_coursenumber,$param_coursesection,$param_term,$param_year);
@@ -86,68 +88,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Close statement
                 mysqli_stmt_close($stmt);
             }
-
-            // test query
-            $sql_test = "SELECT course_id FROM Role_tbl WHERE user_id = '$course_instructor'";
-             $query_run = mysqli_query($con,$sql_test);
-             if($query_run){
-                    $row = mysqli_fetch_assoc($query_run);
-                    if(is_null($row['course_id'])){
-                        echo "works as should";
-                        $sql_update = "UPDATE Role_tbl
-                        SET 
-                            course_id = '$course_id'
-                        WHERE
-                            user_id = '$course_instructor' ";
-                            $query_run = mysqli_query($con,$sql_update);
-                            if($query_run){
-                              
-                            }
-                            else{
-                                echo "not updated";
-                            }
-
-                    }
-                    else{
-                        $sql_insertinstructor = "INSERT INTO Role_tbl (user_id, course_id,user_role) VALUES('$course_instructor','$course_id', '$role')";
-                        echo "partly working";
-                        $query_run = mysqli_query($con,$sql_insertinstructor);
-                        if($query_run){
-                           
-                        }
-                        else{
-                            echo "not added";
-                        }
-                    }
-                    echo $row['course_id'];
-             }
-             else{
-                echo 'error';
-             }
       
-            // insert into instructor table
-            // if($stmt = mysqli_prepare($con, $sql_instructor)){
-            //     // Bind variables to the prepared statement as parameters
-            //     mysqli_stmt_bind_param($stmt, "ss",$param_course_id,$param_userid);
+            //insert into instructor table
+            if($stmt = mysqli_prepare($con, $sql_instructor)){
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "ss",$param_userid,$param_courseid);
                 
-            //     // Set parameters
-            //     $param_course_id = $course_id;
-            //     $param_userid = trim($_POST["instructor"]);
+                // Set parameters
+                $param_courseid = $course_id;
+                $param_userid = trim($_POST["instructor"]);
              
                 
-            //     // Attempt to execute the prepared statement
-            //     if(mysqli_stmt_execute($stmt)){
-            //         // Redirect to login page
-            //         // $course_success = "Course Added";
-            //         // $course_error = "";
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    // Redirect to login page
+                  
                    
-            //     } else{
-            //         echo "Oops! Something went wrong. Please try again later.";
-            //     }
+                } else{
+                    echo "Oops! Something went wrong. Please try again later.";
+                }
     
-            //     // Close statement
-            //     mysqli_stmt_close($stmt);
-            // }
+                // Close statement
+                mysqli_stmt_close($stmt);
+            }
             
         }
 
@@ -208,7 +171,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form--input">
                 <label>Enter course number</label>
-                <input type="text" name="coursenumber" class="form-control" value="<?php echo $course_number; ?>" required>
+                <input type="number" name="coursenumber" class="form-control" value="<?php echo $course_number; ?>" required>
             </div>
                 
                 
@@ -225,7 +188,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
                 <div class="form--input">
                     <label>Course Year</label>
-                    <input type="text" name="courseyear" value="<?php echo $course_year ?>" required>
+                    <input type="number" name="courseyear" value="<?php echo $course_year ?>" required>
                 </div>
             </div>
         <div class="form-group form--term">
@@ -239,7 +202,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <!-- gets instructors from user table -->   
                 <?php
                 // query statement to get course information and instructor
-                $query = "SELECT u.*,r.* from Users_tbl u JOIN role_tbl r ON u.user_id = r.user_id AND r.user_role = 'instructor'";
+                $query = "SELECT * from Users_tbl WHERE user_role = 'instructor'";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
                 {
