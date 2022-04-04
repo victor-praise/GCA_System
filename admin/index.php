@@ -77,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 
                 // Attempt to execute the prepared statement
                 if(mysqli_stmt_execute($stmt)){
-                    // Redirect to login page
+                   
                     $course_success = "Course Added";
                     $course_error = "";
                    
@@ -197,7 +197,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <input type="text" name="coursesection" value="<?php echo $course_section ?>" required>
                 </div>
                 <div class="form--input">
-                <label>Select Professor</label>
+                <label>Select Instructor</label>
                 <select name="instructor" value="<?php echo $course_instructor; ?>" class="select--instructor" required>
                 <!-- gets instructors from user table -->   
                 <?php
@@ -222,7 +222,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <button class="submit--btn">Create</button>
             </div>
            
-        </form>
+    </form>
         </div>
 
  

@@ -7,18 +7,23 @@ CREATE TABLE Users_tbl(
     user_role VARCHAR(20) NOT NULL,
    PRIMARY KEY ( user_id )
    );
-   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4023, 'victor praise','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','admin');
+    
    INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4024, 'david igwe','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
    INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4025, 'Bipin Desai','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','instructor');
    INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4026, 'Yogesh Yadav','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','ta');
    INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4027, 'Stuart Atwell','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','instructor');
-     INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4028, 'Cristiano Ronaldo','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','instructor');
-
+   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4028, 'Cristiano Ronaldo','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','instructor');
+   INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4029, 'Lionel Messi','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
+	INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4030, 'Federico Chiesa','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
+	INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4031, 'Romelu Lukaku','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
+	 INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4032, 'Phil Foden','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','ta');
+	 INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4033, 'Reece James','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','ta');
 select * from users_tbl;
 select * from role_tbl;
 select * from Instructor_tbl;
+select * from Student_tbl;
 
-
+  INSERT INTO Student_tbl (user_id,course_id) VALUES (4031,163708);
 CREATE TABLE CourseSection_tbl(
    course_id char(12),
     course_name varchar(255),
@@ -48,6 +53,7 @@ PRIMARY KEY ( course_id )
 	foreign key (user_id) references Users_tbl(user_id) on delete cascade,
 	foreign key (course_id) references CourseSection_tbl(course_id) on delete cascade
    );
+ 
     CREATE TABLE Ta_tbl(
 	Role_id int auto_increment,
 	user_id char(8),

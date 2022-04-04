@@ -225,9 +225,12 @@ i{
 .successfully-updated > a{
     text-decoration: underline;
 }
-.delete--btn{
+.delete--btn,.delete--student-btn{
     border: none;
     background-color: #fff;
+}
+.delete--student-btn:hover{
+    background: #F0F4F8;
 }
 .ta__students > a {
     text-decoration: underline;
@@ -255,6 +258,9 @@ i{
     border-radius: 8px;
   
 }
+.student--select{
+    width: 100%;
+}
 .student__header{
     margin-bottom: 10px;
 }
@@ -265,7 +271,24 @@ i{
     justify-content: space-between;
    
 }
+.name,.email,.delete{
+  
+    flex: 0.3;
+}
+.delete{
+    flex:0.1
+}
 .student:hover{
     background: #F0F4F8;
     border-radius: 6px;
+}
+.back--button{
+    margin-bottom: 15px;
+    //text-decoration: underline;
+}
+.back--link{
+    display: flex;
+    align-items: center;
+    color: #2C74DA;
+    font-size: 1rem;
 }
