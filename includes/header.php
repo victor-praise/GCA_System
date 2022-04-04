@@ -5,7 +5,7 @@
             <div class="userName">
                 <div class="user-details">
                     <i class="fa-solid fa-circle-user"></i>
-                    <?= $_SESSION['name'] ?>
+                    <?= $_SESSION['username'] ?>
                     <i class="fa-solid fa-caret-down"></i>
                 </div>
           

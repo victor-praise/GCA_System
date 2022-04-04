@@ -2,7 +2,7 @@
     display: flex;
     justify-content: flex-end;
 }
-.create--btn,.submit--btn{
+.create--btn,.submit--btn,.edit--btn,.cancel--link{
     background: #2C74DA;
     border: none;
     color: #fff;
@@ -10,6 +10,10 @@
     border-radius: 4px;
     padding: 10px;
     cursor: pointer;
+}
+.add--student{
+    padding-right: 17px;
+    margin-bottom: 25px;
 }
 .btn__container{
     display: flex;
@@ -30,19 +34,40 @@
 .courseForm{
     margin-top: 35px;
 }
-input{
+.form--term{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form--input{
+    width: 47%;
+}
+.form--input select{
+    width: 96%;
+    border-radius: 5px;
+}
+.form--input input{
+    border-radius: 5px;
+    width: 90%;
+}
+// label{
+//     display: block;
+// }
+input,select{
     padding: 10px;
     border: none;
     border: 1px solid #ced4da;
     margin-top: 5px;
     margin-bottom: 5px;
+    text-transform: capitalize;
   }
+
 .alert-danger,.success{
     color: red;
     text-align: center;
     margin-top: 20px;
     font-size: 1rem;
- 
 }
 .success{
     color: green;
@@ -85,3 +110,185 @@ input{
     text-decoration: none;
     cursor: pointer;
   }
+
+//   course display style
+// .courses__list{
+//     background-color: #fff;
+// }
+.courses__list{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    
+}
+.courses{
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(98, 125, 152, 0.1), 0px 4px 6px rgba(98, 125, 152, 0.14);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin-right: 25px;
+    margin-bottom: 15px;
+}
+.courseName{
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 7px;
+    text-transform: capitalize;
+}
+p{
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.courseInstructors{
+    margin-bottom: 10px;
+    margin-top: 20px;
+    text-transform: capitalize;
+}
+.options{
+   
+    display: flex;
+    align-items: center;
+}
+i{
+    font-size: 1.1rem;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.fa-pencil:hover,.fa-trash-can:hover{
+    background-color: grey;
+    padding: 7px;
+    border-radius: 50%;
+}
+
+
+.course__edit{
+    border: 2px solid #ebeef3;
+    background-color: #fff;
+    margin: 3px 0 0 45px;
+    width: 80%;
+   
+}
+.edit__header{
+    background-color: rgb(211, 211, 211);
+    padding: 20px;
+    border-bottom: 1px solid #D9E2EC;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.edit__form{
+    padding: 15px;
+    margin-top: 15px;
+}
+.formGroup{
+    margin-bottom: 15px;
+}
+ label{
+        display: block;
+        margin-bottom: 5px; 
+        font-weight: 600 !important; 
+}
+.formGroup > input{
+    width: 95%;
+    border-radius: 5px;
+}
+.submit__button{
+    display: flex;
+    justify-content: flex-end;
+    width: 99%;
+}
+.edit--btn,.cancel--btn{
+    width: 10%;
+}
+.cancel--link{
+   margin-left: 10px;
+}
+.cancel--link{
+    border: 1px solid red;
+    background-color: #fff;
+    color: red;
+   
+}
+.successfully-updated{
+    background-color: green;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0 5px 45px;
+    
+    width: 75%;
+   
+}
+.successfully-updated > a{
+    text-decoration: underline;
+}
+.delete--btn,.delete--student-btn{
+    border: none;
+    background-color: #fff;
+}
+.delete--student-btn:hover{
+    background: #F0F4F8;
+}
+.ta__students > a {
+    text-decoration: underline;
+    color: #2C74DA;
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+// student styles
+.information--student{
+   
+    min-height: 600px;
+}
+.information--student:first-of-type{
+    margin-top: 25px;
+}
+.information--student{
+   
+    width: 90%;
+    padding: 15px;
+    background-color: #fff;
+    //min-height: 300px;
+     color: #102A43;
+    font-weight: 550;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+  
+}
+.student--select{
+    width: 100%;
+}
+.student__header{
+    margin-bottom: 10px;
+}
+.student{
+    margin-bottom: 5px;
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+   
+}
+.name,.email,.delete{
+  
+    flex: 0.3;
+}
+.delete{
+    flex:0.1
+}
+.student:hover{
+    background: #F0F4F8;
+    border-radius: 6px;
+}
+.back--button{
+    margin-bottom: 15px;
+    //text-decoration: underline;
+}
+.back--link{
+    display: flex;
+    align-items: center;
+    color: #2C74DA;
+    font-size: 1rem;
+}
