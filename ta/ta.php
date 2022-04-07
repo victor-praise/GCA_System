@@ -64,7 +64,7 @@
    
         <?php
                 // query statement to get ta's for course
-                $query = "SELECT c.*,r.*,u.* FROM CourseSection_tbl c JOIN Ta_tbl r ON c.course_id = r.course_id JOIN users_tbl u ON r.user_id = u.user_id;
+                $query = "SELECT * from ta_tbl t, users_tbl c where t.course_id = '$course_id' and t.user_id = c.user_id;
                 ";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        

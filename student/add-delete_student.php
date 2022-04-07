@@ -33,7 +33,7 @@ session_start();
                         if(mysqli_stmt_num_rows($stmt) == 1){
                             $_SESSION["error"] = "add error";
                             $course_error = "This Student is already in the course.";
-                            header("location: ../admin/students.php?id=".$course_id);
+                            header("location: ../student/students.php?id=".$course_id);
                         } else{
                           $course_student = trim($_POST["student"]);  
                         }
@@ -65,11 +65,11 @@ session_start();
                     if(mysqli_stmt_execute($stmt)){
                       $course_error = "";
                       unset($_SESSION['error']);
-                      header("location: ../admin/students.php?id=".$course_id);
+                      header("location: ../student/students.php?id=".$course_id);
                          
                     } else{
                         $_SESSION["error"] = "Unable to delete.";
-                        header("location: ../admin/students.php?id=".$course_id);
+                        header("location: ../student/students.php?id=".$course_id);
                     }
         
                     // Close statement
@@ -86,7 +86,7 @@ session_start();
         $query_run = mysqli_query($con,$query);
         if($query_run){
             unset($_SESSION['error']);
-            header("location: ../admin/students.php?id=".$studentCourse_id);
+            header("location: ../student/students.php?id=".$studentCourse_id);
             exit(0);
         }
         else{

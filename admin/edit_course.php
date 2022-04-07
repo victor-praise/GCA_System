@@ -106,7 +106,7 @@
                         
                     </div>
                     <div class="ta__students">
-                        <a href="students.php?id=<?=$course_id?>">View Students</a>
+                        <a href="../student/students.php?id=<?=$course_id?>">View Students</a>
                         <a href="../ta/ta.php?id=<?=$course_id?>">View Ta's</a>
                     </div>
                     <div class="submit__button">

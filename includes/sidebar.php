@@ -26,7 +26,7 @@
             Home
         </div>
         </a>
-        <a href="../instructor/">
+        <a href="../student/students.php?id=<?= $_SESSION['courseid'] ?>">
         <div class="sidebar--links">  
             Students
         </div>
@@ -36,7 +36,7 @@
             Ta's
         </div>
         </a>
-        <a href="">
+        <a href="../instructor/groups.php">
         <div class="sidebar--links">  
             Groups
         </div>
