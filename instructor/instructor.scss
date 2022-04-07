@@ -1,0 +1,24 @@
+// select course style
+// .course__container{
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+// }
+.course__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px; 
+}
+.course__message{
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+.mycourses{
+    margin-top: 20px;
+    font-size: 1rem;
+    text-decoration: underline;
+    color: #2C74DA;
+}

@@ -19,7 +19,7 @@
     <title>TA</title>
     <link rel="stylesheet" href="../style.scss">
     <link rel="stylesheet" href="../includes/styles.scss">
-    <link rel="stylesheet" href="admin.scss">
+    <link rel="stylesheet" href="../admin/admin.scss">
     <script src="https://kit.fontawesome.com/57c0ab8bd6.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -29,7 +29,16 @@
          <button class="create--btn add--student" id="btn"><i class="fa-solid fa-plus"></i> Add TA</button>
      </div>
      <div class="back--button">
-       <a href="edit_course.php?id=<?=$course_id?>" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> Back</a>
+       <?php 
+          if($_SESSION["role"] == 'admin'){
+            echo '<a href="../admin/edit_course.php?id='. $course_id .'" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> Back</a>';
+        }
+        elseif($_SESSION["role"] == 'instructor'){
+          echo '<a href="../instructor/instructor_course.php?id='. $course_id .'" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> Back</a>';
+        }
+       
+       ?>
+       
       </div>
     <h2 class="student__header">TA</h2>
        
@@ -54,7 +63,7 @@
     <div class="information--student">
    
         <?php
-                // query statement to get course information and instructor
+                // query statement to get ta's for course
                 $query = "SELECT c.*,r.*,u.* FROM CourseSection_tbl c JOIN Ta_tbl r ON c.course_id = r.course_id JOIN users_tbl u ON r.user_id = u.user_id;
                 ";
                 $query_run = mysqli_query($con, $query);

@@ -18,10 +18,10 @@ CREATE TABLE Users_tbl(
 	INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4031, 'Romelu Lukaku','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
 	 INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4032, 'Phil Foden','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','ta');
 	 INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4033, 'Reece James','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','ta');
-select * from users_tbl;
-select * from role_tbl;
-select * from Instructor_tbl;
-select * from Student_tbl;
+-- select * from users_tbl;
+-- select * from role_tbl;
+-- select * from Instructor_tbl;
+-- select * from Student_tbl;
 
   INSERT INTO Student_tbl (user_id,course_id) VALUES (4031,163708);
 CREATE TABLE CourseSection_tbl(

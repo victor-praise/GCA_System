@@ -21,12 +21,37 @@
             ta Course
         </div>
         <?php elseif($_SESSION['role'] == 'instructor') : ?>
-        <div class="sidebar--links">
-         View Courses
+            <a href="../instructor/instructor_course.php?id=<?= $_SESSION['courseid'] ?>">
+        <div class="sidebar--links">  
+            Home
         </div>
-        <div class="sidebar--links">
+        </a>
+        <a href="../instructor/">
+        <div class="sidebar--links">  
+            Students
+        </div>
+        </a>
+        <a href="../ta/ta.php?id=<?= $_SESSION['courseid'] ?>">
+        <div class="sidebar--links">  
+            Ta's
+        </div>
+        </a>
+        <a href="">
+        <div class="sidebar--links">  
+            Groups
+        </div>
+        </a>
+        <a href="../instructor/">
+        <div class="sidebar--links">  
+        Assignment
+        </div>
+        </a>
+        <!-- <div class="sidebar--links">
          Discussions
         </div>
+        <div class="sidebar--links">
+         Assignments
+        </div> -->
         <?php else : ?>
         <div class="sidebar--links">
         Student Course

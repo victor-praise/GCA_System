@@ -84,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     header("location: ../admin/index.php");
                                 }
                                 elseif($_SESSION["role"] == 'instructor'){
-                                    header("location: ../student/student.php");
+                                    header("location: ../instructor/instructor.php");
                                 }
                                 elseif($_SESSION["role"] == 'ta'){
                                     header("location: ../ta/index.php");

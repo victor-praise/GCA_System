@@ -10,7 +10,7 @@ session_start();
              
             // Checks if fields are empty
             if(empty(trim($_POST["ta"]))){
-                $course_error = "Student name cannot be empty.";
+                $course_error = "Ta name cannot be empty.";
             } 
             else{
                 // Prepare a select statement
@@ -33,7 +33,7 @@ session_start();
                         if(mysqli_stmt_num_rows($stmt) == 1){
                             $_SESSION["error"] = "add error";
                             $course_error = "This TA is already in the course.";
-                            header("location: ../admin/ta.php?id=".$course_id);
+                            header("location: ../ta/ta.php?id=".$course_id);
                         } else{
                           $course_student = trim($_POST["ta"]);  
                         }
@@ -51,7 +51,7 @@ session_start();
           
                 $sql_student = "INSERT INTO Ta_tbl (user_id,course_id) VALUES (?,?)";
           
-                //insert into student table
+                //insert into ta table
                 if($stmt = mysqli_prepare($con, $sql_student)){
                     // Bind variables to the prepared statement as parameters
                     mysqli_stmt_bind_param($stmt, "ss",$param_userid,$param_courseid);
@@ -65,11 +65,11 @@ session_start();
                     if(mysqli_stmt_execute($stmt)){
                       $course_error = "";
                       unset($_SESSION['error']);
-                      header("location: ../admin/ta.php?id=".$course_id);
+                      header("location: ../ta/ta.php?id=".$course_id);
                          
                     } else{
                         $_SESSION["error"] = "Unable to delete.";
-                        header("location: ../admin/ta.php?id=".$course_id);
+                        header("location: ../ta/ta.php?id=".$course_id);
                     }
         
                     // Close statement
@@ -85,14 +85,15 @@ session_start();
         $query = "DELETE FROM Ta_tbl WHERE user_id='$ta_id' AND course_id='$taCourse_id'";
         $query_run = mysqli_query($con,$query);
         if($query_run){
-            unset($_SESSION['error']);
-            header("location: ../admin/ta.php?id=".$taCourse_id);
-            exit(0);
+            unset($_SESSION['error']); 
+                header("location: ../ta/ta.php?id=".$taCourse_id);
+                exit(0);
+           
         }
         else{
             $_SESSION["error"] = "delete error";
             $delete_err = "Unable to delete";
-            header("location: ../admin/ta.php?id=".$taCourse_id);
+            header("location: ../ta/ta.php?id=".$taCourse_id);
             exit(0);
         }
        }
