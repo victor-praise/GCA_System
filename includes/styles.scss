@@ -1,90 +1,161 @@
+/*global*/
 *{
+    box-sizing: border-box;
     margin: 0;
 
   }
-  body{
-    overflow: hidden;
-  }
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    height: 6vh;
-    background: #102A43;
-    color: #fff;
-    box-shadow: 0px 2px 6px rgba(98, 125, 152, 0.1), 0px 4px 10px rgba(98, 125, 152, 0.13);
-    font-size: 0.9rem;
+/*font of the text on the page*/
+html{
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FAF9F6;
 }
 
-.systemName{
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-.userName{
-    font-size: 1rem;
-    cursor: pointer;
-    
-}
-.dropdown__content {
-    display: none;
-     position: absolute;
-    background-color: #f9f9f9;
-    color: black;
-   
-    // min-width: 160px;
-    width: fit-content;
-    //top: 45px;
-    right: 5px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding:15px;
-    z-index: 1;
-  }
-.userName:hover .dropdown__content {
-    display: block;
-  }
-  .dropdown--item{
-    margin-bottom: 20px;
-  }
-  .dropdown--item:last-child{
-      margin-bottom: 0;
-  }
-  .dropdown--item:hover{
-    text-decoration: underline;
-  }
-  a{
-    text-decoration: none;
-    color: inherit;
-}
-
-.side__container{
-  display: flex;
-}
-.content{
-  width: 90%;
-  padding: 20px;
-  overflow-y: scroll;
-  height: 85vh !important;
-}
-.sidebar{
-    background-color: #fff;
-    color: #102A43;
-    width: 17%;
-    height: 85vh;
-    padding-top: 25px;
-}
-.sidebar--links{
-    padding: 15px;
-    margin-bottom: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-.sidebar--links:hover{
-    background-color: #f0f2f6;
-}
-
+/*the linked text*/
 a{
   text-decoration: none;
   color: inherit;
+  font-weight: bolder;
+}
+/* the name of the course in the forum*/
+h1{
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+/*the postings under each course */
+.container{
+  margin: 20px;
+  padding: 20px;
+  margin-left: 15px;
+}
+
+.subforum{
+  margin-top: 20px;
+
+}
+.subforum-title{
+  background-color: #cdcdcd;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 4px;
+}
+
+/*divide the contens into 3 sections vertically*/
+.subforum-row{
+  display: grid;
+  grid-template-columns: 68% 12% 20%;
+}
+
+.subforum-column{
+  padding: 10px;
+  margin: 4px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+.subforum-description *{
+  margin-block: 0px;
+}
+
+/*center the text in the grid*/
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/*navbar*/
+.header{
+  margin-inline: 10px;
+}
+.navbar{
+  display:flex;
+  align-items: center;
+  background-color: #102A43;
+  color: #f0f0f0;
+  padding: 15px;
+  height: 80px;
+  box-shadow: 0px 2px 6px rgba(98, 125, 152, 0.1), 0px 4px 10px rgba(98, 125, 152, 0.13);
+  font-size: 0.9rem;
+  justify-content: space-between;
+}
+
+body{
+  overflow: hidden;
+}
+
+.systemName{
+  /*font-size: 1.2rem;*/
+  font-weight: 600;
+  font-size: 30px;
+  display: inline-block;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.userName{
+  font-size: 1rem;
+  cursor: pointer;
+  
+}
+.dropdown__content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  color: black;
+ 
+  // min-width: 160px;
+  width: fit-content;
+  //top: 45px;
+  right: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding:15px;
+  z-index: 1;
+}
+.userName:hover .dropdown__content {
+  display: block;
+}
+.dropdown--item{
+  margin-bottom: 20px;
+}
+.dropdown--item:last-child{
+    margin-bottom: 0;
+}
+.dropdown--item:hover{
+  text-decoration: underline;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.side__container{
+display: flex;
+}
+.content{
+width: 90%;
+padding: 20px;
+overflow-y: scroll;
+height: 85vh !important;
+}
+.sidebar{
+  background-color: #fff;
+  color: #102A43;
+  width: 17%;
+  height: 85vh;
+  padding-top: 25px;
+}
+.sidebar--links{
+  padding: 15px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.sidebar--links:hover{
+  background-color: #f0f2f6;
+}
+
+a{
+text-decoration: none;
+color: inherit;
 }
