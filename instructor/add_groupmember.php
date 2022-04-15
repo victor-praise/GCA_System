@@ -166,8 +166,26 @@
                       <div class="student" >
                         <div class="name"> <?=$row["user_name"]; ?> </div>
                         <div class="email"><?=$row["user_email"]; ?></div>
+                        <!-- group leader -->
+                        <?php     
+                            // get the particular student that is the group leader
+                            $query_getleader = "SELECT * FROM group_tbl g, GroupMember_tbl gm where g.leader_user_id = gm.user_id";
+                            $query_runLeader = mysqli_query($con, $query_getleader);
+                            if(mysqli_num_rows($query_runLeader) > 0) {
+                                while($leaderrow = mysqli_fetch_assoc($query_runLeader))
+                                {
+                                    if($leaderrow['user_id'] == $row['user_id']){
+                                        echo 'Group leader';
+                                    } 
+                                    else {
+                                        // used to make styling consistent
+                                        echo "<div class='hide--text'>group leader</div>";
+                                    }
+                                }
+                            }
+                        ?>
                         <div class="delete">
-                          <form action="add-delete_student.php" method="post">
+                          <form action="" method="post">
                           <input type="hidden" name="course_studentid" value="<?=$course_id;?>">  
                           <button class="delete--student-btn" value="<?=$row["user_id"]?>" name="student_delete">
                             <i class='fa-solid fa-trash-can'></i>

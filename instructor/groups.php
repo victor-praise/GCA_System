@@ -6,6 +6,7 @@
             $group_error = "";
             $group_success = "";
             $group_name = "";
+            unset($_SESSION['success']);
         
         
         // Processing form data when form is submitted
@@ -143,15 +144,15 @@
                              $query_rungroup = mysqli_query($con, $query_groupmember);
                         ?>
                          <div class="email">
-                        <?=mysqli_num_rows($query_rungroup); ?> students
+                        <?=mysqli_num_rows($query_rungroup); ?> student(s)
                         </div> 
                         <div class="delete">
                         <a href="add_groupmember.php?id=<?=$row['group_id']?>">
                                 <i class='fa-solid fa-pencil'></i>
                             </a>
-                          <form action="deletegroup_member.php" method="post">
-                      
-                          <button class="delete--group-btn" value="<?=$group_id;?>" name="student_delete">
+                          <form action="updategroup_groupmember.php" method="post"> 
+                          <button class="delete--group-btn" value="<?=$row["group_id"];?>" name="group_delete">
+                          
                             <i class='fa-solid fa-trash-can'></i>
                             </button>
                           </form>  

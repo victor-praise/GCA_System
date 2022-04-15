@@ -24,4 +24,21 @@ require_once "../connection.php";
                 exit(0);
             }
         }
+
+        // deletes group
+        if(isset($_POST['group_delete'])){
+            $group_id = trim($_POST["group_delete"]);
+            $query = "DELETE FROM Group_tbl WHERE group_id='$group_id'";
+            $query_run = mysqli_query($con,$query);
+            if($query_run){
+                header("location: ../instructor/groups.php");
+                exit(0);
+            }
+            else{
+                // header("location: ../instructor/groups.php");
+                echo 'unable to delete';
+                exit(0);
+            }
+
+        }
 ?>

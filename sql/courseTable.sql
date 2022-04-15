@@ -75,7 +75,6 @@ CREATE TABLE Group_tbl(
    );
    
    select * from group_tbl;
- 
 CREATE TABLE GroupMember_tbl(
 groupMember_id int auto_increment primary key,
    group_id char(12),
