@@ -22,3 +22,26 @@
     text-decoration: underline;
     color: #2C74DA;
 }
+.header--text{
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+.delete{
+    display: flex;
+}
+.delete--group-btn{
+    background-color: #FFF;
+    border: none;
+}
+.fa-pencil:hover,.fa-trash-can:hover{
+    background-color: grey;
+    padding: 3px;
+    border-radius: 50%;
+}
+.student:hover .delete--group-btn{
+    background: #F0F4F8;
+  
+}
+.add--student{
+    margin-left: 15px;
+}

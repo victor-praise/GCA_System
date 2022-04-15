@@ -18,7 +18,7 @@ session_start();
                 // ensures course does not exists before creating
                 if($stmt = mysqli_prepare($con, $sql)){
                     // Bind variables to the prepared statement as parameters
-                    // Link - https://www.php.net/manual/en/mysqli-stmt.bind-param.php
+                   
                     mysqli_stmt_bind_param($stmt, "ss", $param_courseid,$param_userid);
                     
                     // Set parameters

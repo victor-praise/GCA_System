@@ -36,7 +36,7 @@ PRIMARY KEY ( course_id )
    );
   select * from CourseSection_tbl;
 
-
+SELECT * from student_tbl t, users_tbl c where t.course_id = 572701 and t.user_id = c.user_id;
  CREATE TABLE Instructor_tbl(
 	Role_id int auto_increment,
 	user_id char(8),
@@ -63,28 +63,30 @@ PRIMARY KEY ( course_id )
 	foreign key (course_id) references CourseSection_tbl(course_id) on delete cascade
    );
 
-   
+   select * from ta_tbl;
 
 CREATE TABLE Group_tbl(
    group_id char(12) Primary Key,
    course_id char(12),
+    group_name char(12),
    group_order int,
    leader_user_id char(8),
-   FOREIGN Key (course_id) REFERENCES CourseSection_tbl(course_id)
+   FOREIGN Key (course_id) REFERENCES CourseSection_tbl(course_id) on delete cascade
    );
    
-
+   select * from group_tbl;
+ 
 CREATE TABLE GroupMember_tbl(
 groupMember_id int auto_increment primary key,
    group_id char(12),
    user_id char(8),
-   dateJoined Date,
-   dateLeft Date,
-   FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id),
-   FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id)
+   dateJoined datetime,
+   dateLeft datetime,
+   FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete set null,
+   FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade
    );
    
-
+select * from groupmember_tbl;
 CREATE TABLE GroupMarked_tbl(
    GME_id char(12) primary key,
    group_id char(12),
