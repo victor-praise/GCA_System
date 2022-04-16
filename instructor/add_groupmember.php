@@ -57,7 +57,7 @@
             if(empty($add_error)){
                 $sql_group = "INSERT INTO GroupMember_tbl (group_id,user_id,dateJoined) VALUES (?,?,CURRENT_TIMESTAMP)";
           
-                //insert into student table
+                //insert into group member table
                 if($stmt = mysqli_prepare($con, $sql_group)){
                     // Bind variables to the prepared statement as parameters
                     mysqli_stmt_bind_param($stmt, "ss",$param_groupid,$param_userid);

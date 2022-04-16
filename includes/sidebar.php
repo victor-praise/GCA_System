@@ -41,9 +41,9 @@
             Groups
         </div>
         </a>
-        <a href="../instructor/">
+        <a href="../instructor/markedentity.php">
         <div class="sidebar--links">  
-        Assignment
+        Marked entities
         </div>
         </a>
         <!-- <div class="sidebar--links">

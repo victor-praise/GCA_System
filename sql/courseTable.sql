@@ -75,6 +75,7 @@ CREATE TABLE Group_tbl(
    );
    
    select * from group_tbl;
+   DELETE FROM Group_tbl WHERE group_id=3477789;
 CREATE TABLE GroupMember_tbl(
 groupMember_id int auto_increment primary key,
    group_id char(12),
@@ -85,16 +86,18 @@ groupMember_id int auto_increment primary key,
    FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade
    );
    
-select * from groupmember_tbl;
+
 CREATE TABLE GroupMarked_tbl(
    GME_id char(12) primary key,
-   group_id char(12),
-   type varchar(255),
-   task_id varchar(20),
-   deadline date,
-   score float,
-   FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id)
+   course_id char(12),
+   file_name varchar(255) NOT NULL,
+   entity_name char(20),
+   file_type varchar(255),
+   deadline date NOT NULL,
+   start_date datetime,
+   foreign key (course_id) references CourseSection_tbl(course_id) on delete cascade
    );
+   select * from groupMarked_tbl;
    
   
 CREATE TABLE DiscussionPagesPost_tbl(

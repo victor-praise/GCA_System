@@ -41,4 +41,21 @@ require_once "../connection.php";
             }
 
         }
+        // deletes entity
+        if(isset($_POST['entity_delete'])){
+            $gme_id = trim($_POST["entity_delete"]);
+            $query = "DELETE FROM GroupMarked_tbl WHERE GME_id='$gme_id'";
+            $query_run = mysqli_query($con,$query);
+            if($query_run){
+                header("location: ../instructor/markedentity.php");
+                exit(0);
+            }
+            else{
+                // header("location: ../instructor/groups.php");
+                echo 'unable to delete';
+                exit(0);
+            }
+
+        }
+
 ?>
