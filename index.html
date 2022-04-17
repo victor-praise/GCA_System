@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrsMgr Groupwork Assistant</title>
+    <link rel="stylesheet" href="styles.scss">
+
+</head>
+    <body>
+        <header>
+            <!--Navbar Section-->
+            <nav class="navbar">
+                <div class="systemName">
+                    GCA Portal
+                </div>
+                <div class="userName">
+                    <div class="user-details">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <?= $_SESSION['username'] ?>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+              
+                    <div class="dropdown__content">
+                    <p class="dropdown--item"> 
+                        <a href=""><i class="fa-solid fa-key"></i> Change Password</a>
+                     </p>
+                    <p class="dropdown--item">
+                         <a href="../logout.php"><i class="fa-solid fa-power-off"></i> Logout</a>
+                        </p>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!--Side Bar Section-->
+        <div class="side__container">
+            <aside class="sidebar">
+                <?php if($_SESSION['role'] == 'admin') : ?>
+
+                <!-- <div class="sidebar--links">  
+                    <a href="../admin/new_course.php">Set up Course</a>
+                </div> -->
+
+                <a href="../admin/index.php">
+                    <div class="sidebar--links">  
+                        Home
+                    </div>
+                </a>
+                <a href="../admin/courses.php">
+                    <div class="sidebar--links">  
+                        View Courses
+                    </div>
+                </a>
+            
+            
+                <?php elseif($_SESSION['role'] == 'ta') : ?>
+                <div class="sidebar--links">
+                    ta Course
+                </div>
+
+                <?php elseif($_SESSION['role'] == 'instructor') : ?>
+                <a href="../instructor/instructor_course.php?id=<?= $_SESSION['courseid'] ?>">
+                    <div class="sidebar--links">  
+                        Home
+                    </div>
+                </a>
+                <a href="../student/students.php?id=<?= $_SESSION['courseid'] ?>">
+                    <div class="sidebar--links">  
+                        Students
+                    </div>
+                </a>
+                <a href="../ta/ta.php?id=<?= $_SESSION['courseid'] ?>">
+                    <div class="sidebar--links">  
+                        Ta's
+                    </div>
+                </a>
+                <a href="../instructor/groups.php">
+                    <div class="sidebar--links">  
+                        Groups
+                    </div>
+                </a>
+                <a href="../instructor/">
+                    <div class="sidebar--links">  
+                    Assignment
+                    </div>
+                </a>
+
+                <!-- <div class="sidebar--links">
+                Discussions
+                </div>
+                <div class="sidebar--links">
+                Assignments
+                </div> -->
+
+                <?php else : ?>
+                <div class="sidebar--links">
+                    Student Course
+                </div>
+                <?php endif; ?>
+            </aside>
+
+            <!--Discussions Section-->
+            <div class="container">
+                <div class="subforum">
+                    <div class="subforum-title">
+                        <h1>General Information</h1>
+                    </div>
+                    <div class="subforum-row">
+                        <div class="subforum-description  subforum-column">
+                            <h4><a href="#">Description Title</a></h4>
+                            <p>Description Content: let's try to be cool, otherwise,w at 'sthe point in libing together with people youdont' live.</p>
+                        </div>
+                        <div class="subforum-stats  subforum-column center">
+                            <span>24 Posts | 12 Topics</span>
+                        </div>
+                        <div class="subforum-info  subforum-column">
+                            <b><a href="">Last post</a></b> by <a href="">JustAUser</a> 
+                            <br>on <small>12 Dec 2020</small>
+                        </div>
+                    </div>
+                </div>
+                            
+                <div class="subforum">
+                    <div class="subforum-title">
+                        <h1>General Information</h1>
+                    </div>
+                    <div class="subforum-row">
+                        <div class="subforum-description  subforum-column">
+                            <h4><a href="#">Description Title</a></h4>
+                            <p>Description Content: let's try to be cool, otherwise,w at 'sthe point in libing together with people youdont' live.</p>
+                        </div>
+                        <div class="subforum-stats  subforum-column center">
+                            <span>24 Posts | 12 Topics</span>
+                        </div>
+                        <div class="subforum-info  subforum-column">
+                            <b><a href="">Last post</a></b> by <a href="">JustAUser</a> 
+                            <br>on <small>12 Dec 2020</small>
+                        </div>
+                    </div>
+                    <hr class="subforum-divider">
+                    <div class="subforum-row">
+                        <div class="subforum-description  subforum-column">
+                            <h4><a href="#">Description Title</a></h4>
+                            <p>Description Content: let's try to be cool, otherwise,w at 'sthe point in libing together with people youdont' live.</p>
+                        </div>
+                        <div class="subforum-stats  subforum-column center">
+                            <span>24 Posts | 12 Topics</span>
+                        </div>
+                        <div class="subforum-info  subforum-column">
+                            <b><a href="">Last post</a></b> by <a href="">JustAUser</a> 
+                            <br>on <small>12 Dec 2020</small>
+                        </div>
+                    </div>
+                    <hr class="subforum-divider">
+                
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
