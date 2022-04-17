@@ -33,7 +33,7 @@
          
            
             // queries database
-            $query = "SELECT u.*,r.*,c.* from Users_tbl u, Instructor_tbl r,coursesection_tbl c where c.course_id = '$course_id' AND c.course_id = r.course_id AND u.user_id = r.user_id;
+            $query = "SELECT u.*,r.*,c.* from Users_tbl u, Instructor_tbl r,CourseSection_tbl c where c.course_id = '$course_id' AND c.course_id = r.course_id AND u.user_id = r.user_id;
             ";
              $query_run = mysqli_query($con, $query);
 

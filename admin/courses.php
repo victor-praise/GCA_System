@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         ?>
     <?php
                 // query statement to get course information and instructor
-                $query = "SELECT c.*,r.*,u.* FROM CourseSection_tbl c JOIN Instructor_tbl r ON c.course_id = r.course_id JOIN users_tbl u ON r.user_id = u.user_id;
+                $query = "SELECT c.*,r.*,u.* FROM CourseSection_tbl c JOIN Instructor_tbl r ON c.course_id = r.course_id JOIN Users_tbl u ON r.user_id = u.user_id;
                 ";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        

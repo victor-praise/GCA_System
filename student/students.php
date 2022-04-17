@@ -61,7 +61,7 @@
    
         <?php
                 // query statement to get course information and instructor
-                $query = "SELECT * from student_tbl t, users_tbl c where t.course_id = '$course_id' and t.user_id = c.user_id;
+                $query = "SELECT * from Student_tbl t, Users_tbl c where t.course_id = '$course_id' and t.user_id = c.user_id;
                 ";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
