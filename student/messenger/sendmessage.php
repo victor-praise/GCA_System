@@ -30,7 +30,7 @@ $user_id = $_SESSION['id'];
   date_default_timezone_set('America/Toronto');
   $msg_date = date('Y-m-d', time());
   $msg_time = date('H:i:s', time());
-  mysqli_query($con, "INSERT INTO PrivateMessage_tbl (msg_id, to_user, msg_text, from_user, user_id, msg_date, msg_time) VALUES ('$msg_id', '$to_user', '$msg_text', '$user_id', '$user_id', '$msg_date', '$msg_time')")or die(mysqli_error($con));
+  mysqli_query($con, "INSERT INTO PrivateMessage_tbl (msg_id, to_user, msg_text, from_user, msg_date, msg_time) VALUES ('$msg_id', '$to_user', '$msg_text', '$user_id', '$msg_date', '$msg_time')")or die(mysqli_error($con));
   echo "Your messenage is succesfully sent!"; 
 }
 
@@ -96,7 +96,7 @@ $user_id = $_SESSION['id'];
                     <?php // <input type="text" name="to_user" maxlength="32" value = ""> ?>
 
                     <tr><td>Message: </td><td>
-                    <TEXTAREA NAME="msg_text" COLS=50 ROWS=10 WRAP=SOFT></TEXTAREA>
+                    <TEXTAREA NAME="msg_text" COLS=50 ROWS=10 WRAP=SOFT maxlength=2000></TEXTAREA>
                     </td></tr>
                     <tr><td colspan="2" align="right">
                     <input type="submit" name="submit" value="Send Message">
