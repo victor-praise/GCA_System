@@ -118,7 +118,7 @@ require_once "../connection.php";
                 }  
             }
              
-             echo 'fuck';
+        
          }
 
         }

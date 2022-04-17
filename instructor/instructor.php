@@ -22,7 +22,7 @@
         </div>
         <?php
                 // query statement to get course information based on instructor
-                $query = "SELECT * from instructor_tbl t, coursesection_tbl c where t.user_id = '$user_id' and t.course_id = c.course_id;
+                $query = "SELECT * from Instructor_tbl t, CourseSection_tbl c where t.user_id = '$user_id' and t.course_id = c.course_id;
                 ";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
