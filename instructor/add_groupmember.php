@@ -22,15 +22,15 @@
             } 
             else{
                 // Prepare a select statement
-                $sql = "SELECT group_id FROM GroupMember_tbl g WHERE g.group_id = ? AND g.user_id = ?";
+                $sql = "SELECT group_id FROM GroupMember_tbl g WHERE g.user_id = ?";
                 // ensures course does not exists before creating
                 if($stmt = mysqli_prepare($con, $sql)){
                     // Bind variables to the prepared statement as parameters
                    
-                    mysqli_stmt_bind_param($stmt, "ss", $param_groupid,$param_userid);
+                    mysqli_stmt_bind_param($stmt, "s",$param_userid);
                     
                     // Set parameters
-                    $param_groupid = $group_id;
+                    // $param_groupid = $group_id;
                     $param_userid = trim($_POST["student"]);
                   
                     // Attempt to execute the prepared statement
