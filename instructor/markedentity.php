@@ -142,7 +142,7 @@
         ?>
          <div class="information--student"> 
      <?php
-                // query statement to get course information based on instructor
+                // query statement to get marked entities in a course
                 $query = "SELECT * from GroupMarked_tbl g where g.course_id = '$course_id';
                 ";
                 $query_run = mysqli_query($con, $query);
@@ -163,10 +163,11 @@
                          <a href="/entity_submissions.php?id=<?=$row["GME_id"]; ?>">View submissions</a>
                         </div> 
                         <div class="delete">
-                        <a href="add_groupmember.php?id">
+                        <a href="edit_markedEntity.php?id=<?=$row["GME_id"]; ?>">
                                 <i class='fa-solid fa-pencil'></i>
                             </a>
                           <form action="updategroup_groupmember.php" method="post"> 
+                             
                           <button class="delete--group-btn" name="entity_delete" value="<?=$row["GME_id"];?>" >
                             <i class='fa-solid fa-trash-can'></i>
                             </button>
