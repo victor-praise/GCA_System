@@ -1,6 +1,6 @@
 <?php    
 session_start();
-require("config.php");
+require_once "../../connection.php";
 
 
 $user_id = $_SESSION['id'];

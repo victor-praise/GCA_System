@@ -1,6 +1,6 @@
 <?php  
 session_start();
-require("config.php");
+require_once "../../connection.php";
 
 $user_id = $_SESSION['id'];
 $user_name = $_SESSION['username'];
@@ -63,15 +63,15 @@ else {
 
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
-<table border="0">
-<tr><td colspan=2></td></tr>
-<tr><td></td><td>
-<input type="hidden" name="id" maxlength="5" value = "<?php echo $row["msg_id"]; ?>">
-</td></tr>
+    <table border="0">
+          <tr><td colspan=2></td></tr>
+          <tr><td></td><td>
+          <input type="hidden" name="id" maxlength="5" value = "<?php echo $row["msg_id"]; ?>">
+          </td></tr>
 
-</td></tr>
+          </td></tr>
 
-</table>
+    </table>
 </form>
 
 </html>
