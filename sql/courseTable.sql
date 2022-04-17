@@ -98,6 +98,17 @@ CREATE TABLE GroupMarked_tbl(
    foreign key (course_id) references CourseSection_tbl(course_id) on delete cascade
    );
    select * from groupMarked_tbl;
+
+CREATE TABLE FinalSubmission_tbl(
+   submission_id char(20) primary key,
+   group_id char(12),
+   GME_id char(12),
+   user_id char(8),
+   submission_date datetime NOT NULL,
+   FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade,
+   FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade,
+   FOREIGN KEY (GME_id) REFERENCES GroupMarked_tbl(GME_id) on delete cascade
+   );
    
   
 CREATE TABLE DiscussionPagesPost_tbl(
