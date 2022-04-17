@@ -22,7 +22,7 @@
             } 
             else{
                 // Prepare a select statement
-                $sql = "SELECT group_id FROM groupmember_tbl g WHERE g.group_id = ? OR g.user_id = ?";
+                $sql = "SELECT group_id FROM GroupMember_tbl g WHERE g.group_id = ? AND g.user_id = ?";
                 // ensures course does not exists before creating
                 if($stmt = mysqli_prepare($con, $sql)){
                     // Bind variables to the prepared statement as parameters
@@ -32,7 +32,7 @@
                     // Set parameters
                     $param_groupid = $group_id;
                     $param_userid = trim($_POST["student"]);
-                    
+                  
                     // Attempt to execute the prepared statement
                     if(mysqli_stmt_execute($stmt)){
                         /* store result */
@@ -153,7 +153,7 @@
    
         <?php
                 // query statement to get course information and instructor
-                $query = "SELECT * from GroupMember_tbl g, users_tbl c where g.group_id = '$group_id' and g.user_id = c.user_id;
+                $query = "SELECT * from GroupMember_tbl g, Users_tbl c where g.group_id = '$group_id' and g.user_id = c.user_id;
                 ";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
@@ -169,7 +169,7 @@
                         <!-- group leader -->
                         <?php     
                             // get the particular student that is the group leader
-                            $query_getleader = "SELECT * FROM group_tbl g, GroupMember_tbl gm where g.leader_user_id = gm.user_id";
+                            $query_getleader = "SELECT * FROM Group_tbl g, GroupMember_tbl gm where g.leader_user_id = gm.user_id";
                             $query_runLeader = mysqli_query($con, $query_getleader);
                             if(mysqli_num_rows($query_runLeader) > 0) {
                                 while($leaderrow = mysqli_fetch_assoc($query_runLeader))
@@ -257,7 +257,7 @@
                 <label>Select Group Leader</label>
                 <input type="hidden" name="groupid" value="<?=$group_id;?>">
                 <select name="student" value="<?php echo $course_student; ?>" class="student--select" required>
-                <!-- gets instructors from user table -->   
+                <!-- gets group members in particular group -->   
                 <?php
                 // query statement to get course information and instructor
                 $query = "SELECT * from Users_tbl u,GroupMember_tbl g WHERE u.user_id = g.user_id AND g.group_id='$group_id'";
