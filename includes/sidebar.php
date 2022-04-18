@@ -17,9 +17,16 @@
        
        
         <?php elseif($_SESSION['role'] == 'ta') : ?>
-        <div class="sidebar--links">
-            ta Course
+            <a href="../ta/ta_course.php?id=<?= $_SESSION['courseid'] ?>">
+        <div class="sidebar--links">  
+            Home
         </div>
+        </a>   
+         <a href="../ta/ta_course.php?id=<?= $_SESSION['courseid'] ?>">
+        <div class="sidebar--links">  
+            Entity submissions
+        </div>
+        </a>
         <?php elseif($_SESSION['role'] == 'instructor') : ?>
             <a href="../instructor/instructor_course.php?id=<?= $_SESSION['courseid'] ?>">
         <div class="sidebar--links">  
@@ -53,9 +60,16 @@
          Assignments
         </div> -->
         <?php else : ?>
-        <div class="sidebar--links">
-        Student Course
+            <a href="../student/student_course.php?id=<?= $_SESSION['courseid'] ?>">
+        <div class="sidebar--links">  
+            Home
         </div>
+        </a>
+            <a href="../student/student_course.php?id=<?= $_SESSION['courseid'] ?>">
+        <div class="sidebar--links">  
+            Marked entities
+        </div>
+        </a>
         <?php endif; ?>
     </aside>
     <div class="content">  

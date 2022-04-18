@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["role"] = $user_role;                           
                                 //Redirect user to welcome page
                                 if($_SESSION["role"] == 'student'){
-                                    header("location: ../student/student.php");
+                                    header("location: ../student/course-select.php");
                                 }
                                 elseif($_SESSION["role"] == 'admin'){
                                     header("location: ../admin/index.php");
@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     header("location: ../instructor/instructor.php");
                                 }
                                 elseif($_SESSION["role"] == 'ta'){
-                                    header("location: ../ta/index.php");
+                                    header("location: ../ta/course_select.php");
                                 }                                                   
                         } else{
                             // Password is not valid, display a generic error message
