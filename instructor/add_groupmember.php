@@ -185,9 +185,9 @@
                             }
                         ?>
                         <div class="delete">
-                          <form action="" method="post">
-                          <input type="hidden" name="course_studentid" value="<?=$course_id;?>">  
-                          <button class="delete--student-btn" value="<?=$row["user_id"]?>" name="student_delete">
+                          <form action="updategroup_groupmember.php" method="post">
+                          <input type="hidden" name="course_groupid" value="<?=$group_id;?>">  
+                          <button class="delete--student-btn" value="<?=$row["user_id"]?>" name="groupmember_delete">
                             <i class='fa-solid fa-trash-can'></i>
                             </button>
                           </form>  

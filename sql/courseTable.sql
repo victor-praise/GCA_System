@@ -22,7 +22,7 @@ CREATE TABLE Users_tbl(
 -- select * from users_tbl;
 -- select * from role_tbl;
 -- select * from Instructor_tbl;
--- select * from Student_tbl;
+ select * from Ta_tbl;
 
   INSERT INTO Student_tbl (user_id,course_id) VALUES (4031,163708);
 CREATE TABLE CourseSection_tbl(
@@ -82,11 +82,29 @@ groupMember_id int auto_increment primary key,
    group_id char(12),
    user_id char(8),
    dateJoined datetime,
-   dateLeft datetime,
-   FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete set null,
+  
+   FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade,
    FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade
    );
    
+   use itc55314;
+CREATE TABLE RemovedGroupMember_tbl(
+	removedMember_id int auto_increment primary key,
+    group_id char(12),
+	user_id char(8),
+    dateLeft datetime,
+	FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade,
+	FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade
+);
+DELIMITER //
+CREATE TRIGGER insert_removed_member
+AFTER DELETE
+ON GroupMember_tbl FOR EACH ROW
+BEGIN
+INSERT INTO RemovedGroupMember_tbl (group_id,user_id,dateLeft) VALUES (old.group_id,old.user_id,current_timestamp());
+END; //
+DELIMITER ;
+select * from RemovedGroupMember_tbl;
 
 CREATE TABLE GroupMarked_tbl(
    GME_id char(12) primary key,
