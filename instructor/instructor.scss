@@ -68,3 +68,14 @@
     cursor: pointer;
   
 }
+.form-group > textarea{
+    resize: none;
+}
+.extra--text{
+    flex: 0.5  !important;
+    font-size: 0.8rem;
+    font-weight: 550;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; 
+  
+}

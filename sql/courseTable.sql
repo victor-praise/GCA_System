@@ -137,6 +137,30 @@ CREATE TABLE FinalSubmission_tbl(
 INSERT INTO FinalSubmission_tbl (submission_id,group_id,GME_id,user_id,file_name,submission_date) VALUES (123456,9210249, 9814182,4024,'entity-submission1.pdf',current_timestamp());
 INSERT INTO FinalSubmission_tbl (submission_id,group_id,GME_id,user_id,file_name,submission_date) VALUES (1234567,4924555, 9814182,4026,'another-submission1.pdf',current_timestamp());
 
+CREATE TABLE Poll_tbl(
+	id char(12) NOT NULL,
+	title text NOT NULL,
+	description text,
+	course_id char(12),
+	PRIMARY KEY (`id`),
+	FOREIGN Key (course_id) REFERENCES CourseSection_tbl(course_id) on delete cascade
+   );
+   select * from Poll_tbl;
+   CREATE TABLE PollAnswers_tbl(
+	id int NOT NULL AUTO_INCREMENT primary key,
+    poll_id char(12) NOT NULL,
+	title text NOT NULL,
+    votes int NOT NULL DEFAULT '0',
+    FOREIGN Key (poll_id) REFERENCES Poll_tbl(id) on delete cascade
+   );
+CREATE TABLE StudentVote_tbl(
+	id int NOT NULL AUTO_INCREMENT primary key,
+    poll_id char(12) NOT NULL,
+	user_id char(8),
+    FOREIGN Key (poll_id) REFERENCES Poll_tbl(id) on delete cascade,
+    FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade
+   );
+   select * from PollAnswers_tbl;
 CREATE TABLE DiscussionPagesPost_tbl(
    post_id char(20) primary key,
    post_text varchar(255),

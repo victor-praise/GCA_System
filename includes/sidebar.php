@@ -75,6 +75,11 @@
             Submissions
         </div>
         </a>
+        <a href="../student/polls/student_poll.php">
+        <div class="sidebar--links">
+            Polls
+        </div>
+        </a>
         <?php endif; ?>
     </aside>
     <div class="content">  
