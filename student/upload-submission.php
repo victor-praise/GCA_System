@@ -5,6 +5,7 @@
              $submit_error = "";
              $submit_success = "";
              $deadlinepassed = false;
+             $alreadysubmitted = 0;
             if(isset($_GET['gme_id'])){
                 $gme_id = $_GET['gme_id'];
                 $group_id = $_SESSION["group_id"];
@@ -17,6 +18,15 @@
                 }
                 else{
                     $deadlinepassed = false;
+                }
+                // checks if file has been submitted
+                $query_submission = "SELECT * from FinalSubmission_tbl where GME_id = '$gme_id' AND group_id = '$group_id'";
+                $query_runSubmission = mysqli_query($con,$query_submission);
+                if(mysqli_num_rows($query_runSubmission) > 0){
+                    $alreadysubmitted = 1;
+                }
+                else{
+                    $alreadysubmitted = 0;
                 }
                
             }
@@ -167,6 +177,7 @@
         
         <div class="form-group">
             <input type="hidden" name="gme_id" value="<?=$gme_id;?>">
+            <input type="hidden" name="alreadysubmitted" value="<?=$alreadysubmitted;?>">
             <label>Upload file</label>
             <input type="file" name="gmefile" class="form-control" value="<?php echo $gme_file; ?>" required>    
         </div> 
