@@ -139,7 +139,23 @@ require_once "../connection.php";
          }
 
         }
-    
+          // deletes poll
+          if(isset($_POST['poll_delete'])){
+            $poll_id = trim($_POST["poll_delete"]);
+            $course_id = trim($_POST["course_id"]); 
+            $query = "DELETE FROM Poll_tbl WHERE id='$poll_id' AND course_id = '$course_id'";
+            $query_run = mysqli_query($con,$query);
+            if($query_run){
+                header("location: ../instructor/polls.php");
+                exit(0);
+            }
+            else{
+                // header("location: ../instructor/groups.php");
+                echo 'unable to delete';
+                exit(0);
+            }
+
+        }
      
 
 ?>

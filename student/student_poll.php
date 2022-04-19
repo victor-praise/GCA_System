@@ -82,7 +82,7 @@
                     
                 }
                 else {
-                    echo "No polls have been created, please click button above to add poll";
+                    echo "No polls have been created, check back later";
                 }
             ?>
         </div>

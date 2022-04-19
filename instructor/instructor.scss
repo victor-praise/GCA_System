@@ -79,3 +79,29 @@
     text-overflow: ellipsis !important; 
   
 }
+.view__poll{
+    width: 80%;
+}
+.poll__results{
+    margin-left: 20px;
+    font-weight: 400;
+}
+.poll__results:first-child{
+    margin-top: 20px;
+    
+}
+.poll-title{
+    margin-bottom: 5px;
+}
+.result-bar {
+    display: flex;
+    height: 35px;
+    min-width: 5%;
+    background-color: #2C74DA;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}

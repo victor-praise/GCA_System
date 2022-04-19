@@ -137,8 +137,8 @@
                         <i class="fa-solid fa-eye"></i>
                             </a>
                           <form action="updategroup_groupmember.php" method="post"> 
-                             
-                          <button class="delete--group-btn" name="entity_delete" >
+                             <input type="hidden" name="course_id" value="<?=$course_id; ?>">
+                          <button class="delete--group-btn" name="poll_delete" value="<?=$row["id"]; ?>">
                             <i class='fa-solid fa-trash-can'></i>
                             </button>
                           </form>  
