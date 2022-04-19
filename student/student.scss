@@ -49,3 +49,20 @@
 .fa-download{
     margin-right: 3px !important;
 }
+.fa-download:hover{
+    background-color: grey;
+    padding: 4px;
+    border-radius: 50%;
+}
+.entitycontainer{
+    flex-direction: column;
+}
+.assignment-title,
+.assignment-filename,
+.assignment-deadline{
+    margin-bottom: 17px;
+}
+.deadline--passed{
+    color: red;
+    font-size: 1rem;
+}

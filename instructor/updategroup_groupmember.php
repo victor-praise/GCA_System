@@ -75,6 +75,8 @@ require_once "../connection.php";
 
         }
 
+        // updates entity
+
         if(isset($_POST['update_entity'])){
             $gme_id = trim($_POST["entity_id"]);
             $course_id = $_SESSION["courseid"];

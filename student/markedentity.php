@@ -3,12 +3,11 @@
         
              $course_id =  $_SESSION["courseid"];
              $user_id = $_SESSION["id"];
+             unset($_SESSION['success']);
+             unset($_SESSION['error']);
              $inagroup = false;
              $gme_error = "";
-             $gme_success = "";
-             $gme_file = "";
-            $gme_name = "";
-            
+             $gme_success = "";   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,6 +53,7 @@
                while($row = mysqli_fetch_assoc($query_run))
                {    
                    $group_id = $row["group_id"];
+                   $_SESSION['group_id'] = $row["group_id"];
                    $inagroup = true;          
            ?>
                     <h2 class="student__header">Group <?=$row["group_name"]; ?></h2> 
@@ -131,7 +131,25 @@
                         ?>
                        
                         <div class="delete">
-                        <a href="../downloadfile.php?file_id=<?=$row['GME_id'];?>"><i class="fa-solid fa-download"></i> Download</a>                      
+                        <!-- submit button only available for group leader -->
+                        <?php 
+                            $query_groupLeader = "SELECT * FROM Group_tbl g, GroupMember_tbl gm where g.leader_user_id = gm.user_id AND g.group_id = gm.group_id";
+                            $query_runLeader = mysqli_query($con, $query_groupLeader);
+                            if(mysqli_num_rows($query_runLeader) > 0) {
+                                while($leaderrow = mysqli_fetch_assoc($query_runLeader))
+                                {
+                                    if($leaderrow['user_id'] == $user_id){
+                                        echo '<a href="upload-submission.php?gme_id='.$row['GME_id'].'"> <i class="fa-solid fa-pencil"></i></a>';
+                                    } 
+                                    else {
+                                        // used to make styling consistent
+                                        echo "";
+                                    }
+                                }
+                            }
+                        ?>
+                        <a href="../downloadfile.php?file_id=<?=$row['GME_id'];?>"><i class="fa-solid fa-download"></i></a> 
+                                             
                       </div>
                       </div>
                     <?php  
@@ -145,64 +163,10 @@
            
             ?>
         </div>
-        
-        <div id="myModal" class="modal" >
-           <!-- Modal content -->
-   <div class="modal-content">
-   <span class="close">&times;</span>
-   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"  enctype="multipart/form-data" class="courseForm">     
-        <div class="form-group">
-            <label>Enter Entity name</label>
-            <input type="text" name="gmename" class="form-control" value="<?php echo $gme_name; ?>" required>    
-        </div> 
-        <div class="form-group">
-            <label>Enter Deadline</label>
-            <input type="date" name="gmedeadline" class="form-control" value="<?php echo $gme_dealine; ?>" required>    
-        </div> 
-        <div class="form-group">
-            <label>upload file</label>
-            <input type="file" name="gmefile" class="form-control" value="<?php echo $gme_file; ?>" required>    
-        </div> 
-            <div class="btn__container">
-            <button class="submit--btn">Add Entity</button>
-            </div>
-           
-    </form>
-   </div>
-            </div>
       <!-- last two divs are for the sidebar and content -->
       </div>
 </div>
 
-<!-- modal script -->
-<script>
-   
-// Get the modal
-var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("btn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
- 
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
 </body>
 </html>

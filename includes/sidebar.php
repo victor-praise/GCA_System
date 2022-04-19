@@ -70,11 +70,11 @@
             Home
         </div>
         </a>
-            <a href="../student/student_course.php?id=<?= $_SESSION['courseid'] ?>">
+            <!-- <a href="../student/student_course.php?id=<?= $_SESSION['courseid'] ?>">
         <div class="sidebar--links">  
             Submissions
         </div>
-        </a>
+        </a> -->
         <a href="../student/markedentity.php">
         <div class="sidebar--links">  
             Marked entities
