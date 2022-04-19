@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+}
+html{
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    overflow: hidden;
+}
+header{
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    height: 6vh;
+    background: #102A43;
+    color: #fff;
+    box-shadow: 0px 2px 6px rgba(98, 125, 152, 0.1), 0px 4px 10px rgba(98, 125, 152, 0.13);
+    font-size: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+input[type = submit]{
+    background-color: #1a3e61;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 25px;
+    margin: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+}
