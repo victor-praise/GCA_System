@@ -75,6 +75,11 @@
             Submissions
         </div>
         </a>
+        <a href="../student/markedentity.php">
+        <div class="sidebar--links">  
+            Marked entities
+        </div>
+        </a>
         <a href="../student/student_poll.php">
         <div class="sidebar--links">  
             Polls

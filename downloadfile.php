@@ -1,5 +1,5 @@
 <?php
- require_once "../connection.php";
+ require_once "connection.php";
 // Downloads files
 if (isset($_GET['file_id'])) {
     $id = $_GET['file_id'];
@@ -9,7 +9,7 @@ if (isset($_GET['file_id'])) {
     $result = mysqli_query($con, $sql);
 
     $file = mysqli_fetch_assoc($result);
-    $filepath = '../entityupload/' . $file['file_name'];
+    $filepath = 'entityupload/' . $file['file_name'];
 
     if (file_exists($filepath)) {
         header('Content-Description: File Transfer');

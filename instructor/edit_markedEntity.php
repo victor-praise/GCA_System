@@ -82,7 +82,7 @@
                     </div>                      
                    
                       <div class="ta__students">
-                        <a href="downloadfile.php?file_id=<?=$entity['GME_id'];?>"><i class="fa-solid fa-download"></i> Download file</a>
+                        <a href="../downloadfile.php?file_id=<?=$entity['GME_id'];?>"><i class="fa-solid fa-download"></i> Download file</a>
                         
                     </div> 
                      <div class="submit__button">

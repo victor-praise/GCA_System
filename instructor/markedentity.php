@@ -190,7 +190,7 @@
                     
                 }
                 else {
-                    echo "There are no groups added, please click button above to add groups";
+                    echo "There are no entites added, please click button above to add entites";
                 }
             ?>
         </div>

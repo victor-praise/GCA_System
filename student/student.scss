@@ -32,3 +32,20 @@
 .success,.alert{
     margin-bottom: 10px;
 }
+.not-submitted{
+    color: red;
+    
+}
+.submitted{
+    color: green;
+}
+.name,.deadline,.submitted,.not-submitted{
+    flex: 0.2;
+}
+.delete{
+    flex: 0.15;
+}
+
+.fa-download{
+    margin-right: 3px !important;
+}
