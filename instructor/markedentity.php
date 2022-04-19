@@ -108,9 +108,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marked entities</title>
     <link rel="stylesheet" href="../style.scss">
-    <link rel="stylesheet" href="../includes/styles.scss">
+    <link rel="stylesheet" href="../includes/styles.scss">   
+  <link rel="stylesheet" href="../admin/admin.scss">
     <link rel="stylesheet" href="../instructor/instructor.scss">
-    <link rel="stylesheet" href="../admin/admin.scss">
     <script src="https://kit.fontawesome.com/57c0ab8bd6.js" crossorigin="anonymous"></script>
  
 </head>
@@ -154,13 +154,22 @@
                         
                 ?>
                         <div class="student" >
-                        <div class="name"> <?=$row["entity_name"]; ?> </div>
+                           
+                        <div class="name"> 
+                        <label class="entity-info">Entity name</label>
+                            <?=$row["entity_name"]; ?> 
+                        </div>
                     
                          <div class="email">
+                         <label class="entity-info">File name</label>
                          <?=$row["file_name"]; ?>
                         </div> 
+                         <div class="email deadline">
+                         <label class="entity-info">Dealine</label>
+                         <?=$row["deadline"]; ?>
+                        </div> 
                          <div class="email submissions">
-                         <a href="/entity_submissions.php?id=<?=$row["GME_id"]; ?>">View submissions</a>
+                         <a href="entity_submissions.php?id=<?=$row["GME_id"]; ?>">View submissions</a>
                         </div> 
                         <div class="delete">
                         <a href="edit_markedEntity.php?id=<?=$row["GME_id"]; ?>">

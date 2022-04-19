@@ -104,7 +104,6 @@ BEGIN
 INSERT INTO RemovedGroupMember_tbl (group_id,user_id,dateLeft) VALUES (old.group_id,old.user_id,current_timestamp());
 END; //
 DELIMITER ;
-select * from RemovedGroupMember_tbl;
 
 CREATE TABLE GroupMarked_tbl(
    GME_id char(12) primary key,
@@ -117,19 +116,27 @@ CREATE TABLE GroupMarked_tbl(
    foreign key (course_id) references CourseSection_tbl(course_id) on delete cascade
    );
    select * from groupMarked_tbl;
+select * from FinalSubmission_tbl;
 
 CREATE TABLE FinalSubmission_tbl(
    submission_id char(20) primary key,
    group_id char(12),
    GME_id char(12),
    user_id char(8),
+   file_name varchar(255) NOT NULL,
+	file_type varchar(255),
    submission_date datetime NOT NULL,
    FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade,
    FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade,
    FOREIGN KEY (GME_id) REFERENCES GroupMarked_tbl(GME_id) on delete cascade
    );
-   
-  
+   SELECT * FROM Group_tbl;
+   select * from GroupMarked_tbl;
+   select * from FinalSubmission_tbl;
+   SELECT c.*,r.* FROM FinalSubmission_tbl c JOIN Group_tbl r ON c.group_id = r.group_id AND c.GME_id = 9814182;
+INSERT INTO FinalSubmission_tbl (submission_id,group_id,GME_id,user_id,file_name,submission_date) VALUES (123456,9210249, 9814182,4024,'entity-submission1.pdf',current_timestamp());
+INSERT INTO FinalSubmission_tbl (submission_id,group_id,GME_id,user_id,file_name,submission_date) VALUES (1234567,4924555, 9814182,4026,'another-submission1.pdf',current_timestamp());
+
 CREATE TABLE DiscussionPagesPost_tbl(
    post_id char(20) primary key,
    post_text varchar(255),

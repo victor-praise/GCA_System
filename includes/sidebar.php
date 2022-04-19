@@ -67,7 +67,7 @@
         </a>
             <a href="../student/student_course.php?id=<?= $_SESSION['courseid'] ?>">
         <div class="sidebar--links">  
-            Marked entities
+            Submissions
         </div>
         </a>
         <?php endif; ?>
