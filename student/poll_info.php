@@ -1,12 +1,16 @@
 <?php session_start(); 
-        require_once "../../connection.php";
+        require_once "../connection.php";
         
              $course_id =  $_SESSION["courseid"];
          
              $gme_error = "";
-             $gme_success = "";
+          
              if(isset($_GET['id'])){ 
                  $poll_id = $_GET['id'];
+
+             }
+             else{
+                 $gme_error="There was a problem. please try again later";
              }
            
 ?>
@@ -17,30 +21,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polls</title>
-    <link rel="stylesheet" href="../../style.scss">
-    <link rel="stylesheet" href="../../includes/styles.scss">   
-  <link rel="stylesheet" href="../../admin/admin.scss">
-    <link rel="stylesheet" href="../../instructor/instructor.scss">
-    <link rel="stylesheet" href="../../student/student.scss">
+    <link rel="stylesheet" href="../style.scss">
+    <link rel="stylesheet" href="../includes/styles.scss">   
+  <link rel="stylesheet" href="../admin/admin.scss">
+    <link rel="stylesheet" href="../instructor/instructor.scss">
+    <link rel="stylesheet" href="../student/student.scss">
     <script src="https://kit.fontawesome.com/57c0ab8bd6.js" crossorigin="anonymous"></script>
  
 </head>
 <body>
-<?php include('../../includes/header.php'); ?>
-    <?php include('../../includes/sidebar.php'); ?>
+<?php include('../includes/header.php'); ?>
+    <?php include('../includes/sidebar.php'); ?>
 
 
      <?php 
-     
-        if(!empty($gme_error)){
-            echo '<div class="alert alert-danger">' . $gme_error . '</div>';
-        }  
-        elseif(!empty($gme_success)){
-            echo '<div class="success">' . $gme_success . '</div>';
-        }  
+      if(!empty($gme_error)){
+        echo '<div class="alert alert-danger">' . $gme_error . '</div>';
+    } 
+        if(isset($_SESSION["error"])){
+              echo '<div class="alert alert-danger">' .$_SESSION['error']. '</div>';
+      }  
+      if(isset($_SESSION["success"])){
+         echo '<div class="success">  Voting successful <a href="../student/student_poll.php" class="back">back to polls</a> </div>';
+      }  
+  
             
         ?>
-         <div class="information--student"> 
+         <div class="information--student poll__infocontainer"> 
      <?php
                 // query statement to get marked entities in a course
                 $query = "SELECT * from Poll_tbl p where p.id = '$poll_id';
@@ -90,7 +97,7 @@
                         ?>
                         <div class="submit__button">
                         <button class="edit--btn" name="poll_vote" value=<?=$poll_id;?>>Vote</button>
-                        <a href="../student/polls/student_poll.php" class="cancel--link">
+                        <a href="../student/student_poll.php" class="cancel--link">
                             Cancel
                         </a>
                         
@@ -102,24 +109,6 @@
                     </div>
                    
                 </div>
-                        <!-- <div class="student" >
-                           
-                        <div class="name"> 
-                        <label class="entity-info"> Poll title</label>
-                        <?=$row["title"]; ?>
-                        </div>
-                        <div class="name extra--text"> 
-                        <label class="entity-info">Poll description </label>
-                            <?=$row["description"]; ?>
-                        </div>
-                    
-                        <div class="delete">
-                        <a href="/polls/poll_info.php?id=<?=$row["id"]; ?>">
-                        Vote<i class="fa-solid fa-check-to-slot"></i>
-                            </a>
-                                          
-                      </div>
-                      </div> -->
                     <?php  
                     } 
                     

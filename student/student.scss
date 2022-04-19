@@ -23,3 +23,12 @@
 .poll-option > label >input{
     margin-right: 7px;
 }
+.poll__infocontainer,.success,.alert{
+    width: 70%;
+}
+.back{
+    text-decoration: underline;
+}
+.success,.alert{
+    margin-bottom: 10px;
+}

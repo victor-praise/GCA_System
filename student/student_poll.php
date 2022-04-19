@@ -1,8 +1,9 @@
 <?php session_start(); 
-        require_once "../../connection.php";
+        require_once "../connection.php";
         
              $course_id =  $_SESSION["courseid"];
-         
+             unset($_SESSION['error']);
+            unset($_SESSION['success']);
              $gme_error = "";
              $gme_success = "";
            
@@ -14,17 +15,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polls</title>
-    <link rel="stylesheet" href="../../style.scss">
-    <link rel="stylesheet" href="../../includes/styles.scss">   
-  <link rel="stylesheet" href="../../admin/admin.scss">
-    <link rel="stylesheet" href="../../instructor/instructor.scss">
-    <link rel="stylesheet" href="../../student/student.scss">
+    <link rel="stylesheet" href="../style.scss">
+    <link rel="stylesheet" href="../includes/styles.scss">   
+  <link rel="stylesheet" href="../admin/admin.scss">
+    <link rel="stylesheet" href="../instructor/instructor.scss">
+    <link rel="stylesheet" href="../student/student.scss">
     <script src="https://kit.fontawesome.com/57c0ab8bd6.js" crossorigin="anonymous"></script>
  
 </head>
 <body>
-<?php include('../../includes/header.php'); ?>
-    <?php include('../../includes/sidebar.php'); ?>
+<?php include('../includes/header.php'); ?>
+    <?php include('../includes/sidebar.php'); ?>
 
     <div class="admin--welcome">
          <h2>
