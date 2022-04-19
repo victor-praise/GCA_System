@@ -53,6 +53,11 @@
         Marked entities
         </div>
         </a>
+        <a href="../instructor/polls.php">
+        <div class="sidebar--links">  
+            Polls
+        </div>
+        </a>
         <!-- <div class="sidebar--links">
          Discussions
         </div>
