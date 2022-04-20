@@ -2,6 +2,7 @@
         require_once "../connection.php";
       $user_id = $_SESSION['id'];
       $outbox = 1;
+      $_SESSION["outbox"] = $outbox;
 ?>
 <!DOCTYPE html>
 <html lang="en">

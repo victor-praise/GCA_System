@@ -13,7 +13,9 @@
     <title>course</title>
     <link rel="stylesheet" href="../style.scss">
     <link rel="stylesheet" href="../includes/styles.scss">
+
     <link rel="stylesheet" href="../instructor/instructor.scss">
+    <link rel="stylesheet" href="../admin/admin.scss">
     <script src="https://kit.fontawesome.com/57c0ab8bd6.js" crossorigin="anonymous"></script>
  
 </head>

@@ -25,7 +25,16 @@
 <body>
 <?php include('../includes/header.php'); ?>
     <?php include('../includes/sidebar.php'); ?>
-    <a href="../student/messages.php" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> back</a>
+    <?php 
+          if(isset($_SESSION["outbox"])){
+            echo '<a href="../student/outbox.php" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> back</a>';
+        }
+        else{
+          echo ' <a href="../student/messages.php" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> back</a>';
+        }
+       
+       ?>
+   
     <div class="admin--welcome">
          <h2>
          Your conversation
@@ -83,7 +92,7 @@
                       
                   }
                   else {
-                      echo "you have no message(s) from this person";
+                      echo "";
                   }
             ?>
          </div>

@@ -1,6 +1,7 @@
 <?php session_start(); 
         require_once "../connection.php";
       $user_id = $_SESSION['id'];
+      unset($_SESSION['outbox']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +35,7 @@
    
    <?php
            // query statement to get message
-           $query = "SELECT DISTINCT from_user FROM PrivateMessage_tbl WHERE to_user = '$user_id' ORDER BY msg_date;
+           $query = "SELECT DISTINCT from_user FROM PrivateMessage_tbl WHERE to_user = '$user_id' ORDER BY msg_id;
            ;
            ";
            $query_run = mysqli_query($con, $query);
@@ -47,9 +48,7 @@
             
                   <?php 
                             $fromUser = $row['from_user'];
-                            
-
-                            $query_message = "SELECT DISTINCT * FROM PrivateMessage_tbl WHERE from_user = '$fromUser' ORDER BY msg_id DESC LIMIT 1";
+                            $query_message = "SELECT DISTINCT * FROM PrivateMessage_tbl WHERE from_user = '$fromUser' AND to_user = '$user_id' ORDER BY msg_id DESC LIMIT 1";
                             $query_runmessage = mysqli_query($con, $query_message);
                             
                             if(mysqli_num_rows($query_runmessage) > 0)        
@@ -61,8 +60,8 @@
                                     <div class="student" >
                                     <?php 
                             // gets message sender
-                                $user_id = $submittedrow["from_user"];
-                                $query_user = "SELECT * from Users_tbl where user_id = '$user_id'";
+                                $user_idnew = $submittedrow["from_user"];
+                                $query_user = "SELECT * from Users_tbl where user_id = '$user_idnew'";
 
                             $query_runSubmission = mysqli_query($con, $query_user);
                             if(mysqli_num_rows($query_runSubmission) > 0) {
@@ -112,15 +111,12 @@
                             else {
                                 echo "There are no entites added, please check back later";
                             }
+                            ?>
+
+                            <?php 
                         }
                        
                          
-                        ?>
-                 
-                   
-                
-               
-                   <?php  
                } 
                
            
