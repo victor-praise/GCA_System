@@ -44,7 +44,7 @@
          <div class="information--student"> 
      <?php
                 // query statement to get marked entities in a course
-                $query = "SELECT * from Announcement_tbl;
+                $query = "SELECT * from Announcement_tbl ORDER BY id DESC;
                 ";
                 $query_run = mysqli_query($con, $query);
                 

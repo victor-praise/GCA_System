@@ -5,7 +5,7 @@ if (isset($_GET['file_id'])) {
     $id = $_GET['file_id'];
 
     // fetch file to download from database
-    $sql = "SELECT * FROM FinalSubmission_tbl WHERE GME_id=$id";
+    $sql = "SELECT * FROM FinalSubmission_tbl WHERE submission_id=$id";
     $result = mysqli_query($con, $sql);
 
     $file = mysqli_fetch_assoc($result);

@@ -155,12 +155,12 @@
                 ?>
                         <div class="student" >
                            
-                        <div class="name"> 
+                        <div class="name entity--name"> 
                         <label class="entity-info">Entity name</label>
                             <?=$row["entity_name"]; ?> 
                         </div>
                     
-                         <div class="email">
+                         <div class="email entity--filename">
                          <label class="entity-info">File name</label>
                          <?=$row["file_name"]; ?>
                         </div> 

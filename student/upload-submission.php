@@ -135,7 +135,7 @@
                                         <div class="email submitted">
                                         <label class="entity-info">Submission</label>
                                         '.$submittedrow['file_name'].' 
-                                        <a href="download-solution.php?file_id='.$submittedrow['GME_id'].'"><i class="fa-solid fa-download"></i></a> 
+                                        <a href="download-solution.php?file_id='.$submittedrow['submission_id'].'"><i class="fa-solid fa-download"></i></a> 
                                         </div>            
                                         ';
                                     } 
