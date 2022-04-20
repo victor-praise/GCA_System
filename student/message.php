@@ -70,7 +70,7 @@
               
                 // another query
                  
-                 $query_sent = "SELECT * FROM PrivateMessage_tbl WHERE from_user = '$user_id' AND to_user = '$from_user' ORDER BY msg_date ASC, msg_time ASC;
+                 $query_sent = "SELECT * FROM PrivateMessage_tbl WHERE from_user = '$user_id' AND to_user = '$from_user' ORDER BY msg_id DESC;
                  ;
                  ";
                   $query_sentrun = mysqli_query($con, $query_sent);

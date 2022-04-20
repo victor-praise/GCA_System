@@ -56,7 +56,7 @@
                             $fromUser = $row['to_user'];
                             
 
-                            $query_message = "SELECT DISTINCT * FROM PrivateMessage_tbl WHERE to_user = '$fromUser' ORDER BY msg_id DESC LIMIT 1";
+                            $query_message = "SELECT DISTINCT * FROM PrivateMessage_tbl WHERE to_user = '$fromUser' ORDER BY msg_date ASC, msg_time ASC LIMIT 1";
                             $query_runmessage = mysqli_query($con, $query_message);
                             
                             if(mysqli_num_rows($query_runmessage) > 0)        
