@@ -88,7 +88,7 @@
                $userId=$_SESSION["id"];
                $courseId=$_SESSION["courseid"];
                $query = "SELECT p.post_id,p.post_text,p.user_id,(SELECT user_name from Users_tbl where user_id=p.user_id) as user_name,p.post_time,p.post_date from DiscussionPagesPost_tbl p
-               where p.course_id='$courseId' and p.gme_id IS NULL and p.group_id IS NULL order by p.post_date desc";
+               where p.course_id='$courseId' and p.group_id IS NULL order by p.post_date desc";
                $query_run = mysqli_query($con, $query);
                if(mysqli_num_rows($query_run) > 0)        
                {
@@ -135,6 +135,27 @@
             <div class="form-group">
                <label>Enter discussion text</label>
                <textarea type="text" rows="10" cols="110" class="form-control" name="discussionText" value="" required></textarea>
+            </div>
+            <div class="form-group form--term">
+                <div class="form--input">
+                    <label>Select Entity</label>
+                    <select name="DDLGMEId" value="<?php echo $course_instructor; ?>" class="select--instructor">
+                <!-- gets instructors from user table -->   
+                <?php
+                // query statement to get course information and instructor
+                $query = "SELECT * from GroupMarked_tbl";
+                $query_run = mysqli_query($con, $query);
+                if(mysqli_num_rows($query_run) > 0)        
+                {
+                    echo "<option class='instructor--names' value=''> None</option>";
+                    while($row = mysqli_fetch_assoc($query_run))
+                    {
+                        echo "<option class='instructor--names' value='{$row['GME_id']}'> {$row['entity_name']}</option>";
+                    }
+                }
+                ?>
+                </select>
+                </div>
             </div>
             <div class="btn__container">
                <button class="submit--btn" name="create_discussion">Create</button>
