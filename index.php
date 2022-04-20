@@ -6,7 +6,7 @@ session_start();
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     if($_SESSION["role"] == 'student'){
-        header("location: ../student/student.php");
+        header("location: ../student/course-select.php");
     }
     elseif($_SESSION["role"]  == 'admin'){
         header("location: ../admin/index.php");
@@ -15,7 +15,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
         header("location: ../instructor/instructor.php");
     }
     elseif($_SESSION["role"]  == 'ta'){
-        header("location: ../ta/index.php");
+        header("location: ../ta/course_select.php");
     }
     exit;
 }
