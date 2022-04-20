@@ -28,9 +28,9 @@
          <h2>
          Inbox
          </h2>
-         <!-- <div class="header--text">
-         Here you can view, and download entites assigned by instructors.
-    </div>    -->
+         <div class="header--text">
+         click the message icon to reply to message.
+    </div>   
 
      </div>
 
