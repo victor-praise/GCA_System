@@ -138,3 +138,11 @@ cursor: pointer;
   padding-right: 17px;
   margin-bottom: 25px;
 }
+.newPassword__container{
+  display: flex;
+  justify-content: center;
+}
+.newPassword__container > .loginForm{
+  width: 45%;
+  height: 275px;
+}

@@ -11,7 +11,7 @@
           
                 <div class="dropdown__content">
                 <p class="dropdown--item"> 
-                    <a href=""><i class="fa-solid fa-key"></i> Change Password</a>
+                    <a href="../change-password.php"><i class="fa-solid fa-key"></i> Change Password</a>
                  </p>
                  <?php if($_SESSION['role'] == 'student') : ?>
                         <p class="dropdown--item">
