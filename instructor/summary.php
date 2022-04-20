@@ -5,9 +5,24 @@
              $gme_error = "";
              $gme_success = "";
           
-            if(isset($_POST['viewsummary'])){
-                $gme_id = trim($_POST["viewsummary"]);
-                $group_id = trim($_POST["groupid"]);
+            if(isset($_GET['id'])){
+                $gme_id = $_GET["id"];
+                $group_id = $_GET["groupid"];
+                $submission_id = "";
+                $query = "SELECT * FROM FinalSubmission_tbl WHERE GME_id = '$gme_id' AND group_id = '$group_id'";
+                $query_run = mysqli_query($con, $query);      
+                if(mysqli_num_rows($query_run) > 0)        
+                {
+                    while($row = mysqli_fetch_assoc($query_run))
+                    { 
+                        $submission_id = $row['submission_id'];
+                    }
+                   
+                }
+                else{
+
+                }
+               
             }
             else{
                 $gme_error = "Unable to fetch data, contact admin";
@@ -33,7 +48,10 @@
     <?php include('../includes/sidebar.php'); ?>
 
     <div class="create--course">
-         <button class="create--btn" id="btn"><i class="fa-solid fa-plus"></i> Download file</button>
+    <a href="../student/download-solution.php?file_id=<?=$submission_id?>">
+    <button class="create--btn" id="btn"><i class="fa-solid fa-plus"></i> Download file</button>
+    </a>
+        
      </div>
     <div class="admin--welcome">
          <h2>
@@ -53,10 +71,10 @@
          <div class="information--student"> 
      <?php
                 // query statement to get marked entities in a course
-                $query = "SELECT * from GroupMarked_tbl g where g.course_id = '$course_id';
+                $query = "SELECT * from GroupMarked_tbl g where g.course_id = 163781;
                 ";
                 $query_run = mysqli_query($con, $query);
-                
+              
                 if(mysqli_num_rows($query_run) > 0)        
                 {
                     while($row = mysqli_fetch_assoc($query_run))

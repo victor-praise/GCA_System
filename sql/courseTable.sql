@@ -65,7 +65,12 @@ SELECT * from student_tbl t, users_tbl c where t.course_id = 572701 and t.user_i
    );
 
    select * from ta_tbl;
-
+CREATE TABLE Announcement_tbl(
+	id int auto_increment NOT NULL,
+	announcement text,
+	PRIMARY KEY (`id`)	
+   );
+   select * from Announcement_tbl;
 CREATE TABLE Group_tbl(
    group_id char(12) Primary Key,
    course_id char(12),
@@ -87,7 +92,8 @@ groupMember_id int auto_increment primary key,
    FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade
    );
    
-   use itc55314;
+   SELECT c.*,r.* FROM Group_tbl c JOIN GroupMember_tbl r ON c.group_id = r.group_id AND r.user_id = 4024;
+
 CREATE TABLE RemovedGroupMember_tbl(
 	removedMember_id int auto_increment primary key,
     group_id char(12),
@@ -115,9 +121,9 @@ CREATE TABLE GroupMarked_tbl(
    start_date datetime,
    foreign key (course_id) references CourseSection_tbl(course_id) on delete cascade
    );
-   select * from groupMarked_tbl;
+   select * from GroupMarked_tbl;
 select * from FinalSubmission_tbl;
-
+select * from GroupMarked_tbl where deadline < '2022-05-12';
 CREATE TABLE FinalSubmission_tbl(
    submission_id char(20) primary key,
    group_id char(12),
@@ -160,7 +166,8 @@ CREATE TABLE StudentVote_tbl(
     FOREIGN Key (poll_id) REFERENCES Poll_tbl(id) on delete cascade,
     FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade
    );
-   select * from PollAnswers_tbl;
+   select * from PollAnswers_tbl where poll_id = 5343269 ORDER BY votes DESC;
+   select * from StudentVote_tbl;
 CREATE TABLE DiscussionPagesPost_tbl(
    post_id char(20) primary key,
    post_text varchar(255),
