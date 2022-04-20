@@ -24,7 +24,7 @@
                         <p class="dropdown--item">
                      <a href="../instructor/instructor.php"><i class="fa-solid fa-repeat"></i>Change course</a>
                     </p>
-                    <?php else : ?>
+                    <?php elseif($_SESSION['role'] == 'ta') : ?>
                         <p class="dropdown--item">
                      <a href="../ta/course_select.php"><i class="fa-solid fa-repeat"></i>Change course</a>
                         <?php endif; ?>
