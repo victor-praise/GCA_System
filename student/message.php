@@ -45,7 +45,7 @@
          <div class="chats">
          <?php
                 // query statement to get marked entities in a course
-                $query = "SELECT * FROM PrivateMessage_tbl WHERE from_user = '$from_user' AND to_user = '$user_id' ORDER BY msg_id ASC;
+                $query = "SELECT * FROM PrivateMessage_tbl WHERE from_user = '$from_user' AND to_user = '$user_id' ORDER BY msg_date ASC, msg_time ASC;
                 ;
                 ";
                 $query_run = mysqli_query($con, $query);
@@ -60,7 +60,7 @@
                            
                         <div class="name received--text"> 
                         <label class="entity-info time--info"><?=$row["msg_date"]; ?> <?=$row["msg_time"]; ?></label>
-                            <?=$row["msg_text"]; ?> 
+                          <?=$row["msg_text"]; ?> 
                         </div>
                       </div>
                     <?php  
@@ -70,7 +70,7 @@
               
                 // another query
                  
-                 $query_sent = "SELECT * FROM PrivateMessage_tbl WHERE from_user = '$user_id' AND to_user = '$from_user' ORDER BY msg_id ASC;
+                 $query_sent = "SELECT * FROM PrivateMessage_tbl WHERE from_user = '$user_id' AND to_user = '$from_user' ORDER BY msg_date ASC, msg_time ASC;
                  ;
                  ";
                   $query_sentrun = mysqli_query($con, $query_sent);
