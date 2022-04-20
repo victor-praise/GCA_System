@@ -230,13 +230,13 @@ CREATE TABLE FileAuditHistory_tbl(
    );
    
    
-
+select * from PrivateMessage_tbl;
 CREATE TABLE PrivateMessage_tbl(
    msg_id char(20) primary key,
    msg_text varchar(255),
    group_id char(12),
    user_id char(8),
-   msg_date date,groupmarked_tbl_ibfk_1
+   msg_date date,
    msg_time time,
    FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id),
    FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id)
