@@ -18,7 +18,7 @@
 <?php include('../includes/header.php'); ?>
     <?php include('../includes/sidebar.php'); ?>
 
- 
+
     <div class="course__edit">
  
         <div class="edit__header">

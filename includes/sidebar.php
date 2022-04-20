@@ -14,6 +14,11 @@
             View Courses
         </div>
         </a>
+        <a href="../admin/announcement.php">
+        <div class="sidebar--links">  
+            Announcements
+        </div>
+        </a>
        
        
         <?php elseif($_SESSION['role'] == 'ta') : ?>
@@ -25,6 +30,11 @@
          <a href="../ta/ta_course.php?id=<?= $_SESSION['courseid'] ?>">
         <div class="sidebar--links">  
             Entity submissions
+        </div>
+        </a>
+        <a href="../announcement.php">
+        <div class="sidebar--links">  
+            Announcements
         </div>
         </a>
         <?php elseif($_SESSION['role'] == 'instructor') : ?>
@@ -58,6 +68,11 @@
             Polls
         </div>
         </a>
+        <a href="../announcement.php">
+        <div class="sidebar--links">  
+            Announcements
+        </div>
+        </a>
         <!-- <div class="sidebar--links">
          Discussions
         </div>
@@ -83,6 +98,11 @@
         <a href="../student/student_poll.php">
         <div class="sidebar--links">  
             Polls
+        </div>
+        </a>
+        <a href="../announcement.php">
+        <div class="sidebar--links">  
+            Announcements
         </div>
         </a>
         <?php endif; ?>

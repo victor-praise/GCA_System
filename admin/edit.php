@@ -59,4 +59,19 @@ session_start();
         }
     }
 
+    if(isset($_POST['announcement_delete'])){
+            $id = trim($_POST["announcement_delete"]);
+            $query = "DELETE FROM Announcement_tbl WHERE id='$id'";
+            $query_run = mysqli_query($con,$query);
+            if($query_run){
+                header("location: ../admin/announcement.php");
+                exit(0);
+            }
+            else{
+                header("location: ../admin/announcement.php");
+                echo 'unable to delete';
+                exit(0);
+            }
+    }
+
 ?>
