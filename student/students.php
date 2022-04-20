@@ -142,7 +142,7 @@
 
 <!-- modal script -->
 <script>
-    console.log("test");
+  
 // Get the modal
 var modal = document.getElementById("myModal");
 

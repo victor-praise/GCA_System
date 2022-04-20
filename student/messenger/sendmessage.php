@@ -51,33 +51,10 @@ $user_id = $_SESSION['id'];
                     <tr><td>To User: </td><td>
                     <?php
 
-                        $query = "SELECT G1.group_id FROM GroupMember_tbl AS G1 WHERE G1.user_id = '$user_id'";
-                        
-                        
-                        //$course_id_query = mysqli_query($con, "SELECT C1.course_id FROM Student_tbl AS C1 WHERE C1.user_id = '$user_id'")
-                        //or die(mysqli_error($con));
-                        // $gp_result = mysqli_fetch_assoc($group_id_query);
-                        // $group_id = $gp_result['group_id'];
-                        
-                       // echo "<select name = 'course_id'>";
-                       // while ($crs_result = mysqli_fetch_array($course_id_query)) {
-                       //   echo "<option value='" . $crs_result['course_id'] ."'>" . $crs_result['course_id'] ."</option>";
-                       // }
-                       // echo "</select>";
-
-                       
-                        
+                        $query = "SELECT G1.group_id FROM GroupMember_tbl AS G1 WHERE G1.user_id = '$user_id'";          
                         $group_id_query = mysqli_query($con, "SELECT G1.group_id FROM GroupMember_tbl AS G1 WHERE G1.user_id = '$user_id'")
                         or die(mysqli_error($con));
-                        // $gp_result = mysqli_fetch_assoc($group_id_query);
-                        // $group_id = $gp_result['group_id'];
-                        
-                        //echo "<select name = 'group_id' id = 'selected_group'>";
-                        //while ($gp_result = mysqli_fetch_array($group_id_query)) {
-                          //echo "<option value='" . $gp_result['group_id'] ."'>" . $gp_result['group_id'] ."</option>";
-                          //echo "var category = $('option').val()";
-                        //}
-                        //echo "</select>";
+                       
                         
                         $member_id = mysqli_query($con, "SELECT G2.user_id FROM GroupMember_tbl AS G2 WHERE (G2.user_id <> '$user_id' AND G2.group_id IN (SELECT G1.group_id FROM GroupMember_tbl AS G1 WHERE G1.user_id = '$user_id')) ")
                         or die(mysqli_error($con));

@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>course</title>
+    <title>Inbox</title>
     <link rel="stylesheet" href="../style.scss">
     <link rel="stylesheet" href="../includes/styles.scss">
     <link rel="stylesheet" href="../admin/admin.scss">
@@ -19,17 +19,13 @@
 </head>
 <body>
 <?php include('../includes/header.php'); ?>
-    <?php include('../includes/sidebar.php'); ?>
-    <div class="create--course">
-         <button class="create--btn add--student" id="btn"><i class="fa-solid fa-plus"></i> Start conversation</button>
-     </div>
-   
+    <?php include('../includes/sidebar.php'); ?> 
      <div class="admin--welcome">
          <h2>
          Inbox
          </h2>
-         <div class="header--text">
-         click the message icon to reply to message.
+         <div class="header--text message--header">
+         Click the message icon to reply to a message. <a href="../student/outbox.php" class="back--link">Go to Outbox</a>
     </div>   
 
      </div>
@@ -37,8 +33,8 @@
      <div class="information--student">
    
    <?php
-           // query statement to get course information and instructor
-           $query = "SELECT DISTINCT from_user FROM PrivateMessage_tbl WHERE to_user = 4024 ORDER BY msg_date;
+           // query statement to get message
+           $query = "SELECT DISTINCT from_user FROM PrivateMessage_tbl WHERE to_user = '$user_id' ORDER BY msg_date;
            ;
            ";
            $query_run = mysqli_query($con, $query);
@@ -101,7 +97,7 @@
                                         <label class="entity-info">On</label>
                                         <?=$submittedrow['msg_date'];?>
                                         </div> 
-                                        <a href="inbox.php?id=<?=$submittedrow["from_user"]?>">
+                                        <a href="message.php?id=<?=$submittedrow["from_user"]?>">
                                             <i class="fa-solid fa-message"></i>
                                          </a>
                                         
@@ -129,48 +125,13 @@
                
            
            else {
-               echo "No Message, you can click the button above to start a conversation";
+               echo "There are no messages in inbox, click outbox above to start a conversation";
            }
        ?>
 
 </div>
 
-<div id="myModal" class="modal" >
-   
-   <!-- Modal content -->
-   <div class="modal-content">
-   <span class="close">&times;</span>
-   <form action="add-delete_student.php" method="post"  class="courseForm">     
-        <div class="form-group">
-                <input type="hidden" name="course_id" value="<?=$course_id;?>">
-                <div class="form--input student--select">
-                <label>Select Student</label>
-                <select name="student" value="<?php echo $course_student; ?>" class="student--select" required>
-                <!-- gets instructors from user table -->   
-                <?php
-                // query statement to get course information and instructor
-                $query = "SELECT * from Users_tbl WHERE user_role = 'student'";
-                $query_run = mysqli_query($con, $query);
-                if(mysqli_num_rows($query_run) > 0)        
-                {
-                    while($row = mysqli_fetch_assoc($query_run))
-                    {
-                        echo "<option class='instructor--names' value='{$row['user_id']}'> {$row['user_name']}</option>";
-                    }
-                }
-                ?>
-                </select>
-                </div>
-            
-                
-            
-            </div> 
-            <div class="btn__container">
-            <button class="submit--btn" name="add__student">Add student</button>
-            </div>
-           
-    </form>
-   </div>
+
       <!-- last two divs are for the sidebar and content -->
       </div>
 </div>

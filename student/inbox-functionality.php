@@ -27,7 +27,14 @@
                         
                         // Attempt to execute the prepared statement
                         if(mysqli_stmt_execute($stmt)){
-                            header("location: ../student/inbox.php?id=".$from_user);
+                            if(isset($_POST['outbox'])){
+                              
+                                header("location: ../student/outbox.php");
+                            }
+                            else{
+                                header("location: ../student/message.php?id=".$from_user);
+                            }
+                           
                         //   $a_success = "Announcement created";
                           $reply_error = "";
                         } else{

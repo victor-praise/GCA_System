@@ -25,7 +25,7 @@
 <body>
 <?php include('../includes/header.php'); ?>
     <?php include('../includes/sidebar.php'); ?>
-    <a href="../student/messages.php" class="back">back</a>
+    <a href="../student/messages.php" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> back</a>
     <div class="admin--welcome">
          <h2>
          Your conversation
@@ -58,9 +58,7 @@
                     } 
                     
                 }
-                else {
-                    echo "you have no message(s) from this person";
-                }
+              
                 // another query
                  
                  $query_sent = "SELECT * FROM PrivateMessage_tbl WHERE from_user = '$user_id' AND to_user = '$from_user' ORDER BY msg_id ASC;
