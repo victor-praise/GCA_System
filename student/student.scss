@@ -66,3 +66,45 @@
     color: red;
     font-size: 1rem;
 }
+
+.user--name,.time--message{
+    flex: 0.13;
+}
+.message-text{
+    flex: 0.5;
+}
+.conversation--box{
+    border: 1px solid #2C74DA;
+    height: 400px;
+    border-radius: 7px;
+    position: relative;
+    overflow-y: scroll;
+}
+.chat--field{
+    
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+   
+}
+.chat--field > input{
+    width: 90%;
+    border-radius: 7px;
+    padding: 12px;
+    margin-top: 10px;
+}
+.received--message,.sent--message{
+    
+    width: 20%;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    box-shadow: 0px 2px 4px rgba(98, 125, 152, 0.1), 0px 4px 6px rgba(98, 125, 152, 0.14);
+
+}
+.time--info{
+    font-weight: 600 !important;
+}

@@ -16,6 +16,11 @@
                 <p class="dropdown--item">
                      <a href="../logout.php"><i class="fa-solid fa-power-off"></i> Logout</a>
                     </p>
+                    <?php if($_SESSION['role'] == 'student') : ?>
+                        <p class="dropdown--item">
+                     <a href="../student/messages.php"><i class="fa-solid fa-message"></i> Messages</a>
+                    </p>
+                        <?php endif; ?>
                 </div>
             </div>
         </nav>
