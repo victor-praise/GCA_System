@@ -19,6 +19,13 @@ CREATE TABLE Users_tbl(
 	INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4031, 'Romelu Lukaku','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
 	 INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4032, 'Phil Foden','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','ta');
 	 INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4033, 'Reece James','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','ta');
+     
+	INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4034, 'Bruno Fernandes','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
+		INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4035, 'Sadio Mane','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
+		INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4036, 'Van Dijk','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
+		INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4037, 'Jadon Sancho','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
+
+
 -- select * from users_tbl;
 -- select * from role_tbl;
 -- select * from Instructor_tbl;
@@ -65,7 +72,12 @@ SELECT * from student_tbl t, users_tbl c where t.course_id = 572701 and t.user_i
    );
 
    select * from ta_tbl;
-
+CREATE TABLE Announcement_tbl(
+	id int auto_increment NOT NULL,
+	announcement text,
+	PRIMARY KEY (`id`)	
+   );
+   select * from Announcement_tbl;
 CREATE TABLE Group_tbl(
    group_id char(12) Primary Key,
    course_id char(12),
@@ -225,13 +237,16 @@ CREATE TABLE FileAuditHistory_tbl(
    );
    
    
+select * from PrivateMessage_tbl;
+SELECT DISTINCT from_user FROM PrivateMessage_tbl WHERE to_user = 4024 ORDER BY msg_date;
+SELECT DISTINCT msg_text,msg_time,msg_date FROM PrivateMessage_tbl WHERE from_user = 4035 ORDER BY msg_id DESC LIMIT 1;
 
 CREATE TABLE PrivateMessage_tbl(
    msg_id char(20) primary key,
    msg_text varchar(255),
    group_id char(12),
    user_id char(8),
-   msg_date date,groupmarked_tbl_ibfk_1
+   msg_date date,
    msg_time time,
    FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id),
    FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id)
