@@ -6,7 +6,7 @@ html{
     font-family: Arial, Helvetica, sans-serif;
 }
 body{
-    overflow: hidden;
+    overflow: scroll;
 }
 header{
     display: flex;
@@ -21,7 +21,7 @@ header{
 }
 table{
     border-color:black;
-    overflow: hidden;
+    overflow: scroll;
     background-color: aliceblue;
     border-radius: 5px;
 }

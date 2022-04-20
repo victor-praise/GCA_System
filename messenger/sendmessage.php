@@ -1,6 +1,9 @@
+<style><?php include 'styles_send.scss'; ?></style>
+
 <?php    
 session_start();
-require_once "../../connection.php";
+require_once "../connection.php";
+
 
 
 $user_id = $_SESSION['id'];
@@ -15,22 +18,13 @@ $user_id = $_SESSION['id'];
   $to_user = $_POST['to_user'];
   $msg_text = $_POST['msg_text'];
   $group_id = $_POST['to_user'];
+  $msg_subject = $_POST['msg_subject'];
   $sql = mysqli_query($con, "SELECT * FROM PrivateMessage_tbl");
-  if(mysqli_num_rows($sql) > 0)        
-    {
-      $new_msg_id = mysqli_query($con, "SELECT (MAX(msg_id)+1) AS NEWMSGID FROM PrivateMessage_tbl")
-      or die(mysqli_error($con));
-      $result = mysqli_fetch_assoc($new_msg_id);
-      $msg_id = $result['NEWMSGID'];
-    }
-  else {
-      $msg_id = "1";
-    }
 
   date_default_timezone_set('America/Toronto');
   $msg_date = date('Y-m-d', time());
   $msg_time = date('H:i:s', time());
-  mysqli_query($con, "INSERT INTO PrivateMessage_tbl (msg_id, to_user, msg_text, from_user, msg_date, msg_time) VALUES ('$msg_id', '$to_user', '$msg_text', '$user_id', '$msg_date', '$msg_time')")or die(mysqli_error($con));
+  mysqli_query($con, "INSERT INTO PrivateMessage_tbl (to_user, msg_subject, msg_text, from_user, msg_date, msg_time) VALUES ('$to_user', '$msg_subject', '$msg_text', '$user_id', '$msg_date', '$msg_time')")or die(mysqli_error($con));
   echo "Your messenage is succesfully sent!"; 
 }
 
@@ -98,14 +92,22 @@ $user_id = $_SESSION['id'];
             echo "<option value='" . $row2['user_id'] ."'>" . $row['user_name'] . " (" . $row2['user_id'] . ")</option>";
             }
             echo "</select>";
+        
+        
         ?> 
+
 
         <?php // <input type="text" name="to_user" maxlength="32" value = ""> ?>
 
         <hr class="divider">
+        
+        <tr><td>Subject: </td><td>
+        <TEXTAREA NAME="msg_subject" MAXLENGTH=200 COLS=100 ROWS=1 WRAP=SOFT></TEXTAREA>
+        </td></tr>
+
 
         <tr><td>Message: </td><td>
-        <TEXTAREA NAME="msg_text" COLS=50 ROWS=10 WRAP=SOFT></TEXTAREA>
+        <TEXTAREA NAME="msg_text" MAXLENGTH=2000 COLS=100 ROWS=10 WRAP=SOFT required="required"></TEXTAREA>
         </td></tr>
         <tr><td colspan="2" align="right">
         <input type="submit" name="submit" value="Send Message">
