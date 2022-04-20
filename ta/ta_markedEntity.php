@@ -118,15 +118,13 @@
 <?php include('../includes/header.php'); ?>
     <?php include('../includes/sidebar.php'); ?>
 
-    <div class="create--course">
-         <button class="create--btn" id="btn"><i class="fa-solid fa-plus"></i> Add marked entity</button>
-     </div>
+ 
     <div class="admin--welcome">
          <h2>
          Marked entites
          </h2>
          <div class="header--text">
-         Here you can add,delete, edit already existing entities as well as view submissions made by groups.
+         Here you can view submissions made by groups.
     </div>   
 
      </div>
@@ -171,19 +169,7 @@
                          <div class="email submissions">
                          <a href="../entity_submissions.php?id=<?=$row["GME_id"]; ?>">View submissions</a>
                         </div> 
-                        <div class="delete">
-                        <a href="edit_markedEntity.php?id=<?=$row["GME_id"]; ?>">
-                                <i class='fa-solid fa-pencil'></i>
-                            </a>
-                          <form action="updategroup_groupmember.php" method="post"> 
-                             
-                          <button class="delete--group-btn" name="entity_delete" value="<?=$row["GME_id"];?>" >
-                            <i class='fa-solid fa-trash-can'></i>
-                            </button>
-                          </form>  
-                       
-                      
-                      </div>
+                   
                       </div>
                     <?php  
                     } 

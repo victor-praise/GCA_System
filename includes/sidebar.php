@@ -32,7 +32,7 @@
             Home
         </div>
         </a>   
-         <a href="../ta/ta_course.php?id=<?= $_SESSION['courseid'] ?>">
+         <a href="../ta/ta_markedEntity.php">
         <div class="sidebar--links">  
             Entity submissions
         </div>

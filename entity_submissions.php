@@ -1,5 +1,5 @@
 <?php session_start(); 
-        require_once "../connection.php";
+        require_once "./connection.php";
         
              if(isset($_GET["id"])){
                  $gmeid = $_GET["id"];
@@ -16,7 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submissions</title>
-    <link rel="stylesheet" href="../style.scss">
+    <link rel="stylesheet" href="./style.scss">
     <link rel="stylesheet" href="../includes/styles.scss">
     <link rel="stylesheet" href="../instructor/instructor.scss">
     <link rel="stylesheet" href="../admin/admin.scss">
@@ -24,9 +24,17 @@
  
 </head>
 <body>
-<?php include('../includes/header.php'); ?>
-    <?php include('../includes/sidebar.php'); ?>
-
+<?php include('./includes/header.php'); ?>
+    <?php include('./includes/sidebar.php'); ?>
+    <?php 
+          if($_SESSION["role"] == 'ta'){
+            echo '<a href="../ta/ta_markedEntity.php" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> Back</a>';
+        }
+        elseif($_SESSION["role"] == 'instructor'){
+          echo '<a href="../instructor/markedentity.php" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> Back</a>';
+        }
+       
+       ?>
          <div class="information--student"> 
      <?php
                 // query statement to get course information based on instructor
@@ -59,7 +67,7 @@
                            
                                 <!-- <input type="hidden" name="groupid" value="<?=$row["group_id"]; ?>">
                                 <button name="viewsummary" value="<?=$row["GME_id"]; ?>" class="view--btn">y</button> -->
-                                <a href="summary.php?id=<?=$row["GME_id"]; ?>&groupid=<?=$row["group_id"]; ?>">View summary</a>
+                                <a href="./summary.php?id=<?=$row["GME_id"]; ?>&groupid=<?=$row["group_id"]; ?>">View summary</a>
                                
                         <!-- <a href="downloadfile.php?file_id=<?=$entity['GME_id'];?>"><i class="fa-solid fa-download"></i> Download file</a
                         > -->

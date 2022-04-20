@@ -1,5 +1,5 @@
 <?php session_start(); 
-        require_once "../connection.php";
+        require_once "./connection.php";
         
           
              $gme_error = "";
@@ -36,7 +36,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary</title>
-    <link rel="stylesheet" href="../style.scss">
+    <link rel="stylesheet" href="./style.scss">
     <link rel="stylesheet" href="../includes/styles.scss">   
   <link rel="stylesheet" href="../admin/admin.scss">
     <link rel="stylesheet" href="../instructor/instructor.scss">
@@ -44,8 +44,8 @@
  
 </head>
 <body>
-<?php include('../includes/header.php'); ?>
-    <?php include('../includes/sidebar.php'); ?>
+<?php include('./includes/header.php'); ?>
+    <?php include('./includes/sidebar.php'); ?>
 
     <div class="create--course">
     <a href="../student/download-solution.php?file_id=<?=$submission_id?>">
@@ -53,6 +53,9 @@
     </a>
         
      </div>
+     
+        <a href="./entity_submissions.php?id=<?=$gme_id; ?>" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> Back</a>';
+       
     <div class="admin--welcome">
          <h2>
          Summary
