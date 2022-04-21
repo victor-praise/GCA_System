@@ -4,6 +4,23 @@
         if(isset($_GET['id'])){
            $from_user = $_GET['id'];
            $user_id = $_SESSION['id'];
+            $userName = "";
+           $queryuser = "SELECT * FROM Users_tbl WHERE user_id='$from_user'";
+           $query_runuser = mysqli_query($con,$queryuser);
+          
+            if(mysqli_num_rows($query_runuser) > 0)        
+            {
+                while($row = mysqli_fetch_assoc($query_runuser))
+                {
+                    $userName = $row['user_name'];
+                 }
+           }
+           else{
+               // header("location: ../instructor/groups.php");
+               echo 'user does not exist';
+               
+               
+           }
         }
      
 ?>
@@ -37,7 +54,7 @@
    
     <div class="admin--welcome">
          <h2>
-         Your conversation
+         Your conversation with <?= $userName?>
          </h2>
      </div>
 
