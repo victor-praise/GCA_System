@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>course</title>
+    <title>Messages</title>
     <link rel="stylesheet" href="../style.scss">
     <link rel="stylesheet" href="../includes/styles.scss">
     <link rel="stylesheet" href="../admin/admin.scss">
@@ -42,59 +42,64 @@
      </div>
 
      <div class="conversation--box">
-         <div class="chats">
+         <div class="chats" id="messages">
          <?php
-                // query statement to get marked entities in a course
-                $query = "SELECT * FROM PrivateMessage_tbl WHERE from_user = '$from_user' AND to_user = '$user_id' ORDER BY msg_date ASC, msg_time ASC;
+                // query statement to get user's messages in a course
+                $query = "SELECT * FROM PrivateMessage_tbl WHERE (from_user = '$from_user' AND to_user = '$user_id') OR (from_user = '$user_id' AND to_user = '$from_user') ORDER BY msg_date ASC, msg_time ASC;
                 ;
                 ";
                 $query_run = mysqli_query($con, $query);
-                
+
+                // start and end of the limit parameter
+                $i=0;
+                $j=1;
                 if(mysqli_num_rows($query_run) > 0)        
                 {
                     while($row = mysqli_fetch_assoc($query_run))
                     {  
-                        
-                ?>
-                        <div class="received--message" >
-                           
-                        <div class="name received--text"> 
-                        <label class="entity-info time--info"><?=$row["msg_date"]; ?> <?=$row["msg_time"]; ?></label>
-                          <?=$row["msg_text"]; ?> 
-                        </div>
-                      </div>
-                    <?php  
-                    } 
-                    
-                }
-              
-                // another query
-                 
-                 $query_sent = "SELECT * FROM PrivateMessage_tbl WHERE from_user = '$user_id' AND to_user = '$from_user' ORDER BY msg_id DESC;
-                 ;
-                 ";
-                  $query_sentrun = mysqli_query($con, $query_sent);
-                  if(mysqli_num_rows($query_sentrun) > 0)        
-                  {
-                      while($row = mysqli_fetch_assoc($query_sentrun))
-                      {  
+                        $query_top = "SELECT msg_id, msg_text, from_user, to_user, msg_date, msg_time FROM PrivateMessage_tbl WHERE (from_user = '$from_user' AND to_user = '$user_id') OR (from_user = '$user_id' AND to_user = '$from_user') ORDER BY msg_date ASC, msg_time ASC LIMIT $i,$j;
+                        ;
+                        ";
+                        $query_top_run = mysqli_query($con, $query_top);
+                        $result = mysqli_fetch_assoc($query_top_run);
+                        $i=$i+1;
+                        $j=$j+1;
+                        if($result["to_user"] == $user_id)        
+                            {
+                                ?>
+                                        <div class="received--message" >
+                                        
+                                        <div class="name received--text"> 
+                                        <label class="entity-info time--info"><?=$result["msg_date"]; ?> <?=$result["msg_time"]; ?></label>
+                                        <?=$result["msg_text"]; ?> 
+                                        </div>
+                                    </div>
+                                    <?php  
+                                   
+
+                        } else if($result["from_user"] == $user_id) {
+                            ?>
+                                <div class="sent--message" >
+                                    
+                                    <div class="name received--text"> 
+                                    <label class="entity-info time--info"><?=$result["msg_date"]; ?> <?=$result["msg_time"]; ?></label>
+                                        <?=$result["msg_text"]; ?> 
+                                    </div>
+                                </div>
+                          <?php
                           
-                  ?>
-                          <div class="sent--message" >
-                             
-                          <div class="name received--text"> 
-                          <label class="entity-info time--info"><?=$row["msg_date"]; ?> <?=$row["msg_time"]; ?></label>
-                              <?=$row["msg_text"]; ?> 
-                          </div>
-                        </div>
-                      <?php  
-                      } 
-                      
-                  }
-                  else {
-                      echo "";
-                  }
-            ?>
+                                   
+
+                        } else {
+                        echo "";
+                        }
+
+                    }
+                
+                }
+                ?>
+
+
          </div>
          <div class="chat--field">
              <form action="inbox-functionality.php" method="post">
@@ -110,5 +115,25 @@
       <!-- last two divs are for the sidebar and content -->
       </div>
 </div>
+
+<!-- starts chat at the bottom -->
+<script>
+
+const messages = document.getElementById('messages');
+function getMessages() {
+	// Prior to getting your messages.
+  shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
+
+  if (!shouldScroll) {
+    scrollToBottom();
+  }
+}
+
+function scrollToBottom() {
+  messages.scrollTop = messages.scrollHeight;
+}
+
+scrollToBottom();
+</script>
 </body>
 </html>

@@ -46,7 +46,7 @@
      <div class="conversation--box">
          <div class="chats">
          <?php
-                // query statement to get marked entities in a course
+                // query statement to get user's messages in a course
                 $query = "SELECT * FROM PrivateMessage_tbl WHERE (from_user = '$from_user' AND to_user = '$user_id') OR (from_user = '$user_id' AND to_user = '$from_user') ORDER BY msg_date ASC, msg_time ASC;
                 ;
                 ";
@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
                                     <?php  
-                                    $msg_top_id = $result["msg_id"];
+                                   
 
                         } else if($result["from_user"] == $user_id) {
                             ?>
@@ -90,7 +90,7 @@
                                 </div>
                           <?php
                           
-                                    $msg_top_id = $result["msg_id"];
+                                   
 
                         } else {
                         echo "";

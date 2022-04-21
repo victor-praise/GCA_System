@@ -72,58 +72,7 @@
             
         ?>
          <div class="information--student"> 
-     <?php
-                // query statement to get marked entities in a course
-                $query = "SELECT * from GroupMarked_tbl g where g.course_id = 163781;
-                ";
-                $query_run = mysqli_query($con, $query);
-              
-                if(mysqli_num_rows($query_run) > 0)        
-                {
-                    while($row = mysqli_fetch_assoc($query_run))
-                    {  
-                        
-                ?>
-                        <div class="student" >
-                           
-                        <div class="name"> 
-                        <label class="entity-info">Entity name</label>
-                            <?=$row["entity_name"]; ?> 
-                        </div>
-                    
-                         <div class="email">
-                         <label class="entity-info">File name</label>
-                         <?=$row["file_name"]; ?>
-                        </div> 
-                         <div class="email deadline">
-                         <label class="entity-info">Dealine</label>
-                         <?=$row["deadline"]; ?>
-                        </div> 
-                         <div class="email submissions">
-                         <a href="entity_submissions.php?id=<?=$row["GME_id"]; ?>">View submissions</a>
-                        </div> 
-                        <div class="delete">
-                        <a href="edit_markedEntity.php?id=<?=$row["GME_id"]; ?>">
-                                <i class='fa-solid fa-pencil'></i>
-                            </a>
-                          <form action="updategroup_groupmember.php" method="post"> 
-                             
-                          <button class="delete--group-btn" name="entity_delete" value="<?=$row["GME_id"];?>" >
-                            <i class='fa-solid fa-trash-can'></i>
-                            </button>
-                          </form>  
-                       
-                      
-                      </div>
-                      </div>
-                    <?php  
-                    } 
-                    
-                }
-                else {
-                    echo "There are no groups added, please click button above to add groups";
-                }
-            ?>
+             There is no summary
         </div>
             </div>
       <!-- last two divs are for the sidebar and content -->
