@@ -51,12 +51,8 @@
                 ;
                 ";
                 $query_run = mysqli_query($con, $query);
-                //$query_temptable="CREATE VIEW P_ThisUser AS (SELECT msg_id, msg_text, from_user, to_user, msg_date, msg_time FROM PrivateMessage_tbl WHERE (from_user = '$from_user' AND to_user = '$user_id') OR (from_user = '$user_id' AND to_user = '$from_user') ORDER BY msg_date ASC, msg_time ASC LIMIT 0);
-                //;
-                //";
-                // $query_temptable_run = mysqli_query($con, $query_temptable);
 
-
+                // start and end of the limit parameter
                 $i=0;
                 $j=1;
                 if(mysqli_num_rows($query_run) > 0)        
@@ -82,8 +78,7 @@
                                     </div>
                                     <?php  
                                     $msg_top_id = $result["msg_id"];
-                                    //$query_top_delete = "DELETE FROM P_ThisUser WHERE (msg_id = '$msg_top_id')";
-                                    //$query_top_delete_run = mysqli_query($con, $query_top_delete);
+
                         } else if($result["from_user"] == $user_id) {
                             ?>
                                 <div class="sent--message" >
@@ -96,8 +91,7 @@
                           <?php
                           
                                     $msg_top_id = $result["msg_id"];
-                                    //$query_top_delete = "DELETE FROM P_ThisUser WHERE (msg_id = '$msg_top_id')";
-                                    //$query_top_delete_run = mysqli_query($con, $query_top_delete);
+
                         } else {
                         echo "";
                         }
