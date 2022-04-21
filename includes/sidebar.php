@@ -24,6 +24,11 @@
             Announcements
         </div>
         </a>
+        <a href="../admin/users.php">
+        <div class="sidebar--links">  
+            Users
+        </div>
+        </a>
        
        
         <?php elseif($_SESSION['role'] == 'ta') : ?>

@@ -73,5 +73,31 @@ session_start();
                 exit(0);
             }
     }
+// deletes users
+    if(isset($_POST['user_delete'])){
+        $user_id = trim($_POST["user_delete"]);
+        $query = "DELETE FROM Users_tbl WHERE user_id='$user_id'";
+        $query_run = mysqli_query($con,$query);
+        if($query_run){
+            unset($_SESSION['error']);
+            $_SESSION["success"] = "updated";
+            header("location: ../admin/users.php");
+            exit(0);
+        }
+        else{
+                unset($_SESSION['success']);
+                $_SESSION["error"]='add error';
+                header("location: ../admin/users.php");
+                exit(0);
+        }
+}
+// filters users
+    if(isset($_POST['filterusers'])){
+        $filter_option = trim($_POST["filteroption"]);
+        $_SESSION['filter'] = $filter_option;
+            unset($_SESSION['error']);
+            unset($_SESSION['success']);
+            header("location: ../admin/users.php");   
+}
 
 ?>

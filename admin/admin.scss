@@ -11,6 +11,9 @@
     padding: 10px;
     cursor: pointer;
 }
+.fa-filter{
+    font-size: 1rem;
+}
 .add--student{
     padding-right: 17px;
     margin-bottom: 25px;
@@ -299,4 +302,7 @@ i{
 }
 .announcement-container{
     padding: 3px;
+}
+.role--select{
+    text-transform: capitalize;
 }
