@@ -306,3 +306,6 @@ i{
 .role--select{
     text-transform: capitalize;
 }
+.email--input > input{
+    text-transform: none !important;
+}

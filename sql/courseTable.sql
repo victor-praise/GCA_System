@@ -45,7 +45,6 @@ PRIMARY KEY ( course_id )
    );
   select * from CourseSection_tbl;
 
-SELECT * from student_tbl t, users_tbl c where t.course_id = 572701 and t.user_id = c.user_id;
  CREATE TABLE Instructor_tbl(
 	Role_id int auto_increment,
 	user_id char(8),
@@ -62,7 +61,7 @@ SELECT * from student_tbl t, users_tbl c where t.course_id = 572701 and t.user_i
 	foreign key (user_id) references Users_tbl(user_id) on delete cascade,
 	foreign key (course_id) references CourseSection_tbl(course_id) on delete cascade
    );
- 
+ select * from Student_tbl;
     CREATE TABLE Ta_tbl(
 	Role_id int auto_increment,
 	user_id char(8),
@@ -110,6 +109,8 @@ CREATE TABLE RemovedGroupMember_tbl(
 	FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade,
 	FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade
 );
+
+-- inserts removed group member in new table
 DELIMITER //
 CREATE TRIGGER insert_removed_member
 AFTER DELETE
@@ -119,6 +120,15 @@ INSERT INTO RemovedGroupMember_tbl (group_id,user_id,dateLeft) VALUES (old.group
 END; //
 DELIMITER ;
 
+-- --removes student from group member table 
+DELIMITER //
+CREATE TRIGGER remove_deleted_student
+AFTER DELETE
+ON Student_tbl FOR EACH ROW
+BEGIN
+DELETE FROM GroupMember_tbl WHERE user_id=old.user_id;
+END; //
+DELIMITER ;
 CREATE TABLE GroupMarked_tbl(
    GME_id char(12) primary key,
    course_id char(12),

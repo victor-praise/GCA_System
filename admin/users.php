@@ -1,34 +1,30 @@
 <?php session_start(); 
         require_once "../connection.php";
         
-            // $course_id =  $_SESSION["courseid"];
-            $group_id = mt_rand(1000000,9999999);
-            $group_error = "";
-            $group_success = "";
-            $group_name = "";
-         
-        
-        
+           
+            $user_id = mt_rand(4040,8000);
+            $user_error = "";
+            $user_success = "";
+            unset($_SESSION['updateusererror']);
         // Processing form data when form is submitted
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
         // Checks if fields are empty
-              if(empty(trim($_POST["groupname"]))){
-                $group_error = "Group name cannot be empty.";
+              if(empty(trim($_POST["username"]))){
+                $user_error = "User name cannot be empty.";
             } 
             else{
                 // Prepare a select statement
-                $sql = "SELECT group_id FROM Group_tbl g WHERE g.group_id = ? OR g.group_name = ?";
+                $sql = "SELECT user_id FROM Users_tbl u WHERE u.user_name = ?";
                 // ensures course does not exists before creating
                 if($stmt = mysqli_prepare($con, $sql)){
                     // Bind variables to the prepared statement as parameters
                    
-                    mysqli_stmt_bind_param($stmt, "ss", $param_groupid,$param_groupname);
+                    mysqli_stmt_bind_param($stmt, "s",$param_username);
                     
                     // Set parameters
-                    $param_groupid = $group_id;
-                    $param_groupname = trim($_POST["groupname"]);
+                    $param_username = trim($_POST["username"]);
                     
                     // Attempt to execute the prepared statement
                     if(mysqli_stmt_execute($stmt)){
@@ -36,10 +32,8 @@
                         mysqli_stmt_store_result($stmt);
                         
                         if(mysqli_stmt_num_rows($stmt) == 1){
-                            $group_error = "This Group is already in the course.";
-                          
-                        } else{
-                          $group_name = trim($_POST["groupname"]);  
+                            $user_error = "This Username is already in the system.";
+     
                         }
                     } else{
                         echo "Oops! Something went wrong. Please try again later.";
@@ -51,26 +45,29 @@
        
               
             }
-            if(empty($group_error)){
-                $sql_group = "INSERT INTO Group_tbl (group_id,course_id,group_name) VALUES (?,?,?)";
+            if(empty($user_error)){
+                $password = trim($_POST["password"]);
+                $sql_user = "INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (?,?,?,?,?)";
           
                 //insert into student table
-                if($stmt = mysqli_prepare($con, $sql_group)){
+                if($stmt = mysqli_prepare($con, $sql_user)){
                     // Bind variables to the prepared statement as parameters
-                    mysqli_stmt_bind_param($stmt, "sss",$param_groupid,$param_courseid,$param_groupname);
+                    mysqli_stmt_bind_param($stmt, "sssss",$param_userid,$param_username,$param_useremail,$param_password,$param_role);
                     
                     // Set parameters
-                    $param_groupid = $group_id; 
-                    $param_courseid = $course_id;
-                    $param_groupname = trim($_POST["groupname"]);
+                    $param_userid = $user_id; 
+                    $param_username = trim($_POST["username"]);
+                    $param_useremail = trim($_POST["email"]);
+                    $param_password = password_hash($password, PASSWORD_DEFAULT);;
+                    $param_role = trim($_POST["userrole"]);
                  
                     
                     // Attempt to execute the prepared statement
                     if(mysqli_stmt_execute($stmt)){
-                      $group_success = "Group created";
-                      $group_error = "";
+                      $user_success = "User created";
+                      $user_error = "";
                     } else{
-                        echo "Oops! Something went wrong. Please try again later.";
+                        $user_error =  "Oops! Something went wrong. Please try again later.";
                     }
         
                     // Close statement
@@ -117,11 +114,11 @@
             unset($_SESSION['success']);
             unset($_SESSION['error']);
         }
-        if(!empty($group_error)){ 
-            echo '<div class="alert alert-danger">' . $group_error . '</div>';
+        if(!empty($user_error)){ 
+            echo '<div class="alert alert-danger">' . $user_error . '</div>';
         }  
-        elseif(!empty($group_success)){
-            echo '<div class="success">' . $group_success . '</div>';
+        elseif(!empty($user_success)){
+            echo '<div class="success">' . $user_success . '</div>';
         }  
         elseif(isset($_SESSION["error"])){
             echo '<div class="alert alert-danger"> Unable to delete </div>';
@@ -142,7 +139,7 @@
                         ";
                     }
                     else{
-                        $query = "SELECT * from Users_tbl where user_role = '$param';
+                        $query = "SELECT * from Users_tbl where user_role = '$param' ORDER BY user_name;
                         ";
                     }       
                 }
@@ -197,17 +194,35 @@
             ?>
         </div>
         
-        <div id="myModal" class="modal" >
+    <div id="myModal" class="modal" >
            <!-- Modal content -->
    <div class="modal-content">
    <span class="close">&times;</span>
    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"   class="courseForm">     
         <div class="form-group">
-            <label>Enter Group name</label>
-            <input type="text" name="groupname" class="form-control" value="<?php echo $group_name; ?>" required>    
+            <label>Enter User name</label>
+            <input type="text" name="username" 
+            onkeypress="return /[a-z]/i.test(event.key)"
+            class="form-control" placeholder="Jennifer Lopez" required >    
         </div> 
+        <div class="form-group email--input">
+            <label>Enter Email</label>
+            <input type="email" name="email" class="form-control" required placeholder="example@gmail.com" class="email--input">
+        </div>
+        <div class="form-group">
+        <label>Select Role</label>
+            <select name="userrole" class="student--select role--select" required>
+                        <option>instructor</option>
+                        <option>ta</option>
+                        <option>student</option>
+            </select> 
+        </div>
+        <div class="form-group">
+            <label>Enter Default Password</label>
+            <input type="password" name="password" class="form-control" autocomplete="new-password" required>
+        </div>
             <div class="btn__container">
-            <button class="submit--btn">Add group</button>
+            <button class="submit--btn">Create user</button>
             </div>
            
     </form>
