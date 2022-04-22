@@ -130,7 +130,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="wrapper">
-        <h2>GCA PORTAL</h2>
+        <h2>CGA PORTAL</h2>
         <h3>Login</h3>
         <p>Please fill in your credentials to login.</p>
 
