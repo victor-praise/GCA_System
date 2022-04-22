@@ -1,4 +1,4 @@
-<!-- php for editing course -->
+<!-- 40206992 -->
 <?php
 session_start(); 
     require_once "../connection.php";

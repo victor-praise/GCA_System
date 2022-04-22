@@ -1,4 +1,4 @@
-<!-- php for editing course -->
+
 <?php
 session_start(); 
     require_once "../connection.php";

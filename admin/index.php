@@ -1,3 +1,4 @@
+<!-- 40206992 -->
 <?php session_start(); 
 
 // Include config file
