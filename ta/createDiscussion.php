@@ -6,9 +6,9 @@ session_start();
     if(isset($_POST['create_discussion'])){
         echo 'inside';
         $discussionText = trim($_POST["discussionText"]);
-        $courseId = $_SESSION["courseid"];
         $GMEValue = trim($_POST["DDLGMEId"]);
-
+        echo $GMEValue;
+        $courseId = $_SESSION["courseid"];
         $sql = "INSERT INTO DiscussionPagesPost_tbl (post_id, post_text, GME_id, user_id, post_date, post_time, group_id, course_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $userId=$_SESSION["id"];
 
@@ -37,7 +37,7 @@ session_start();
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
                 $id=$_GET['id'];
-                header("location: instructor_course.php?id=$id");
+                header("location: ta_course.php");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }

@@ -15,11 +15,11 @@
             View Courses
         </div>
         </a>
-        <!-- <a href="../admin/discussion.php">
+        <a href="../admin/discussion.php">
         <div class="sidebar--links">  
             Discussions
         </div>
-        </a> -->
+        </a>
         <a href="../admin/announcement.php">
         <div class="sidebar--links">  
             Announcements

@@ -38,7 +38,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
 <?php include('../includes/header.php'); ?>
     <?php include('../includes/sidebar.php'); ?>
-    <div class="courses__list">
+    <div class="container">
+                <div class="subforum">
+                <div class="subforum-title" style="display: flex;align-items: center;">
+                        <h1>General Discussions</h1>
+                        <button class="create--btn" id="btn" style="margin-left: 55%;"><i class="fa-solid fa-plus"></i> Create Discussion</button>
+                    </div>
     <?php 
         if(!empty($delete_err)){
             echo '<div class="alert alert-danger">' . $delete_err . '</div>';
@@ -72,12 +77,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                 }
         ?>
-		<div class="create--course">
-         <button class="create--btn" id="btn"><i class="fa-solid fa-plus"></i> Create Discussion</button>
      </div>
     <?php
                 // query statement to get course information and instructor
-                $query = "SELECT * FROM DiscussionPagesPost_tbl";
+                $query = "SELECT p.*,(SELECT user_name from Users_tbl where user_id=p.user_id) as user_name FROM DiscussionPagesPost_tbl p";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
                 {
@@ -85,25 +88,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     {
                         
                 ?>
-                        <div class="discussions">
-                        <div>
-                            <div class='courseName'>
-							<p>Discussion <?=$row["post_id"]; ?></p>
-                            </div>
-                            <div class="discussionText">
-                                <p class="plainText"><?=$row["post_text"]; ?></p> 
-                            </div>
-                            
+                    <div class="subforum-row">
+                        <div class="subforum-description  subforum-column">
+                        <p>Discussion <?=$row["post_id"]; ?></p>
+                            <p><?=$row["post_text"]; ?></p>
                         </div>
-                      
-                        <div class="options">
-                    
-                            <a href="discussionDetails.php?id=<?=$row["post_id"]?>">
+                        <!-- <div class="subforum-stats  subforum-column center">
+                            <span>24 Posts | 12 Topics</span>
+                        </div> -->
+                        <div class="subforum-info  subforum-column">
+                            <b><a href="">Last post</a></b> by <?=$row["user_name"]; ?> 
+                            <br>on <small><?=$row["post_date"]; ?></small>
+                        </div>
+                        <div class="subforum-info  subforum-column">
+                        <a href="discussionDetails.php?id=<?=$row["post_id"]?>">
                                 <i class='fa-solid fa-pencil'></i>
                             </a>
-                            
-                        </div>
+                            </div>
                     </div>
+                    <hr class="subforum-divider">
                     <?php  
                     } 
                     
