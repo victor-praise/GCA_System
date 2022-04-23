@@ -102,7 +102,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 
                 // Attempt to execute the prepared statement
                 if(mysqli_stmt_execute($stmt)){
-                    // Redirect to login page
+                    // successful
                   
                    
                 } else{
@@ -154,6 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo '<div class="success">' . $course_success . '</div>';
         }      
         ?>
+        <!-- create course modal -->
      <div id="myModal" class="modal" >
    
         <!-- Modal content -->

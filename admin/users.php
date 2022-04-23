@@ -110,6 +110,7 @@
     </div>   
 
      </div>
+     <!-- error handling -->
      <?php 
         if(!empty($group_error) || !empty($group_success) ){
             unset($_SESSION['success']);
@@ -155,8 +156,10 @@
                 if(mysqli_num_rows($query_run) > 0)        
                 {
                     while($row = mysqli_fetch_assoc($query_run))
-                    {                    
+                    {        
+
                 ?>
+                            <!-- displays data -->
                         <div class="student" >
                         <div class="name">
                         <label class="entity-info">User name</label>

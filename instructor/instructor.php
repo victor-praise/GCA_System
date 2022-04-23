@@ -16,13 +16,13 @@
     
 </head>
 <body>
-   
+   <!-- instuctor welcome page -->
     <div class="course__container">
         <div class="course__message">
             Welcome instructor <?= $_SESSION['username'] ?> please select a course from the list below
         </div>
         <?php
-                // query statement to get course information based on instructor
+                // query statement to get courses an instructor is assigned to
                 $query = "SELECT * from Instructor_tbl t, CourseSection_tbl c where t.user_id = '$user_id' and t.course_id = c.course_id;
                 ";
                 $query_run = mysqli_query($con, $query);

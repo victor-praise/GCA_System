@@ -154,7 +154,7 @@
     <div class="information--student">
    
         <?php
-                // query statement to get course information and instructor
+                // query statement to get group information
                 $query = "SELECT * from GroupMember_tbl g, Users_tbl c where g.group_id = '$group_id' and g.user_id = c.user_id;
                 ";
                 $query_run = mysqli_query($con, $query);

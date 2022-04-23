@@ -30,10 +30,7 @@
       <link rel="stylesheet" href="../includes/styles.scss">
       <!-- <link rel="stylesheet" href="../admin/admin.scss"> -->
       <script src="https://kit.fontawesome.com/57c0ab8bd6.js" crossorigin="anonymous"></script>
-      <!-- makes toastr work -->
-      <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+  
    </head>
    <body>
       <?php include('../includes/header.php'); ?>

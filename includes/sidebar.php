@@ -1,4 +1,5 @@
 <!-- 40206992 -->
+<!-- sidebar -->
 <div class="side__container">
 <aside class="sidebar">
         <?php if($_SESSION['role'] == 'admin') : ?>
