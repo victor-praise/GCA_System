@@ -1,3 +1,4 @@
+<!-- 40195161 -->
 <?php session_start(); 
         require_once "../connection.php";
         // Processing form data when form is submitted
@@ -80,7 +81,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
      </div>
     <?php
                 // query statement to get course information and instructor
-                $query = "SELECT p.*,(SELECT user_name from Users_tbl where user_id=p.user_id) as user_name FROM DiscussionPagesPost_tbl p";
+                $query = "SELECT p.*,(SELECT user_name from Users_tbl where user_id=p.user_id) as user_name FROM DiscussionPagesPost_tbl p order by p.post_date desc";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
                 {

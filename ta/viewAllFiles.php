@@ -1,3 +1,4 @@
+<!-- 40195161 -->
 <?php session_start(); 
    require_once "../connection.php";
    // Processing form data when form is submitted
@@ -92,7 +93,7 @@
                                 
                         ?>
          
-               <div class="subforum-row" style="grid-template-columns: 20% 20% 20% 20% 20%;">
+               <div class="subforum-row" style="grid-template-columns: 25% 25% 25% 25%;">
                   <div class="subforum-info  subforum-column">
                   <a style="border-bottom: 1px solid;" name="downloadFile" href="groupfileControl.php?file_id=<?=$row['file_id'];?>&action=get"><?=$row["file_name"]; ?></a>
                   </div>
@@ -106,7 +107,7 @@
                   <div class="subforum-info  subforum-column">
                      <p><?=$row["entity_name"]; ?></p>
                   </div>
-                  <div class="subforum-info  subforum-column">
+                  <!-- <div class="subforum-info  subforum-column">
                   <?php
                   if($row["file_permission"]=='Full')
                   {
@@ -121,7 +122,7 @@
                   }
                ?>
 
-                  </div>
+                  </div> -->
                </div>
                <hr class="subforum-divider">
             <?php  

@@ -1,4 +1,4 @@
-<!-- 40206992 -->
+<!-- 40206992, 40195161 -->
 <?php session_start(); 
         require_once "../connection.php";
         if(isset($_GET['id'])){
@@ -110,7 +110,7 @@
                             <br>on <small><?=$row["post_date"]; ?></small>
                         </div>
                         <div class="subforum-info  subforum-column">
-                        <a href="discussionDetails.php?id=<?=$row["post_id"]?>">
+                        <a href="discussionDetails.php?id=<?=$row["post_id"]?>&Grp=">
                                 <i class='fa-solid fa-pencil'></i>
                             </a>
                             </div>

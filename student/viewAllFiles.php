@@ -1,3 +1,4 @@
+<!-- 40195161 -->
 <?php session_start(); 
    require_once "../connection.php";
    // Processing form data when form is submitted
@@ -111,7 +112,7 @@
                   if($row["file_permission"]=='Full')
                   {
                   ?>
-                  <button style="border:none" id="btn" name="<?=$row['file_id'];?>">
+                  <a style="border:none" href="fileUpdate.php?file_id=<?=$row['file_id'];?>&action=upd&id=<?=$_GET['id']?>&GMEId=<?=$_GET['GMEId']?>&Grp=<?=$_GET['Grp']?>">
                   <i class='fa-solid fa-pencil'></i>
                   </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <a name="deleteFile" href="groupfileControl.php?file_id=<?=$row['file_id'];?>&action=del&id=<?=$_GET['id']?>&GMEId=<?=$_GET['GMEId']?>&Grp=<?=$_GET['Grp']?>">

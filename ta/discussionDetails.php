@@ -1,3 +1,4 @@
+<!-- 40195161 -->
 <?php session_start(); 
    require_once "../connection.php";
    // Processing form data when form is submitted
@@ -123,9 +124,14 @@
                ?>
             <div class="discussions" style="display:block !important">
                <h4><a href="#">Replies:</a></h4>
+               <?php if($_GET["Grp"] != '')
+                  {?>
                <div class="back--link" style="float:right;padding-right:5%" > <a href="viewAllFiles.php?id=<?=$_GET['id']?>&GMEId=<?=$_GET['GMEId']?>&Grp=<?=$_GET['Grp']?>">
             View All Files
         </a></div>
+        <?php  
+                  }
+                  ?>
                <br>
                <?php
                   if(isset($_GET['id'])){
@@ -152,12 +158,12 @@
                   }
                   }
                   ?>
-               <form action="replyDiscussion.php?id=<?=$_GET['id'];?>&GMEId=<?=$_GET['GMEId'];?>&Grp=<?=$_GET['Grp'];?>" method="post" enctype="multipart/form-data">
+               <form action="replyDiscussion.php?id=<?=$_GET['id'];?>&GMEId=&Grp=" method="post" enctype="multipart/form-data">
                   <textarea type="text" style="width:55%" name="replyText" value=""></textarea>
-                  <div class="submit__button" style="float:right; padding-right: 38%">
+                  <div class="submit__button" style="float:right; padding-right: 25%">
                      <button class="edit--btn" name="reply">Post</button>
                   </div>
-                  <div class="formGroup form--term">
+                  <!-- <div class="formGroup form--term">
                   <div class="form--input">
                      <b>Select file to upload:</b>
                      <input style="width: 25%;" type="file" name="replyFile">
@@ -167,7 +173,7 @@
                         <option>Read</option>
                     </select>
                   </div>
-               </div>
+               </div> -->
                </form>
             </div>
          <!-- last two divs are for the sidebar and content -->
