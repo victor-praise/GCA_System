@@ -62,10 +62,29 @@
                         <!-- <div class="subforum-stats  subforum-column center">
                             <span>24 Posts | 12 Topics</span>
                         </div> -->
+                        <?php 
+                        $reply_post_id= $row["post_id"];
+                        $queryReply = "SELECT r.*,(SELECT user_name from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date desc limit 1";        
+                        $query_runReply = mysqli_query($con, $queryReply);
+                        if(mysqli_num_rows($query_runReply) > 0)        
+                {
+                        $rowReply = mysqli_fetch_assoc($query_runReply)
+                        ?>
                         <div class="subforum-info  subforum-column">
-                            <b><a href="">Last post</a></b> by <?=$row["user_name"]; ?> 
-                            <br>on <small><?=$row["post_date"]; ?></small>
+                            <b><a href="">Last post</a></b> by <?=$rowReply["user_name"]; ?> 
+                            <br>on <small><?=$rowReply["reply_date"]; ?></small>
                         </div>
+                        <?php  
+                    }
+                    else
+                    {
+                        ?>
+                        <div class="subforum-info  subforum-column">
+                            <b><a href="">No post</a></b>
+                        </div>
+                        <?php 
+                    }
+            ?>
                         <div class="subforum-info  subforum-column">
                         <a href="discussionDetails.php?id=<?=$row["post_id"]?>">
                                 <i class='fa-solid fa-pencil'></i>
@@ -107,10 +126,29 @@
                         <!-- <div class="subforum-stats  subforum-column center">
                             <span>24 Posts | 12 Topics</span>
                         </div> -->
+                        <?php 
+                        $reply_post_id= $row["post_id"];
+                        $queryReply = "SELECT r.*,(SELECT user_name from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date desc limit 1";        
+                        $query_runReply = mysqli_query($con, $queryReply);
+                        if(mysqli_num_rows($query_runReply) > 0)        
+                {
+                        $rowReply = mysqli_fetch_assoc($query_runReply)
+                        ?>
                         <div class="subforum-info  subforum-column">
-                        <b><a href="">Last post</a></b> by <?=$row["user_name"]; ?> 
-                            <br>on <small><?=$row["post_date"]; ?></small>
+                            <b><a href="">Last post</a></b> by <?=$rowReply["user_name"]; ?> 
+                            <br>on <small><?=$rowReply["reply_date"]; ?></small>
                         </div>
+                        <?php  
+                    }
+                    else
+                    {
+                        ?>
+                        <div class="subforum-info  subforum-column">
+                            <b><a href="">No post</a></b>
+                        </div>
+                        <?php 
+                    }
+            ?>
                         <div class="subforum-info  subforum-column">
                         <a href="discussionDetails.php?id=<?=$row["post_id"]?>">
                                 <i class='fa-solid fa-pencil'></i>
