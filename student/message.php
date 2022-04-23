@@ -119,11 +119,11 @@
 
 
          </div>
-         <div class="chat--field">
+         <div class="chat--field ">
              <form action="inbox-functionality.php" method="post">
                  <input type="hidden" name="fromuser" value="<?=$user_id; ?>" class="dont--show">
                  <input type="hidden" name="touser" value="<?=$from_user; ?>" class="dont--show">
-                <input type="text" placeholder="Enter reply" name="reply" class="reply--input">
+                <input type="text" placeholder="Enter reply" name="reply" class="reply--input no--transform">
                 <button class="create--btn" name="sendmessage">Reply</button>
              </form>
             
