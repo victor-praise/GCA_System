@@ -1,4 +1,4 @@
-<!-- 40206992 -->
+<!-- 4020699 -->
 <?php session_start(); 
         require_once "../connection.php";
         $user_id = $_SESSION['id'];
