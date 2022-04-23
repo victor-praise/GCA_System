@@ -44,13 +44,24 @@ require_once "../connection.php";
         }
         // deletes group member
         if(isset($_POST['groupmember_delete'])){
+            $course_id =  $_SESSION["courseid"];
             $group_id = trim($_POST["course_groupid"]);
             $user_id = trim($_POST["groupmember_delete"]);
             $query = "DELETE FROM GroupMember_tbl WHERE group_id='$group_id' AND user_id='$user_id'";
+            $queryRemovedGroupMember = "INSERT INTO RemovedGroupMember_tbl (group_id,course_id,user_id,dateLeft) VALUES ('$group_id','$course_id','$user_id',current_timestamp());";
             $query_run = mysqli_query($con,$query);
             if($query_run){
-                header("location: ../instructor/add_groupmember.php?id=".$group_id);
-                exit(0);
+                $query_addremovedmember = mysqli_query($con,$queryRemovedGroupMember);
+                if($query_addremovedmember){
+                    header("location: ../instructor/add_groupmember.php?id=".$group_id);
+                    exit(0);
+                } 
+                else{
+                    header("location: ../instructor/add_groupmember.php?id=".$group_id);
+                    echo 'unable to delete';
+                    exit(0);
+                }
+                
             }
             else{
                 header("location: ../instructor/add_groupmember.php?id=".$group_id);

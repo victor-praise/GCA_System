@@ -178,7 +178,7 @@
    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"   class="courseForm">     
         <div class="form-group">
             <label>Enter Group name</label>
-            <input type="text" name="groupname" class="form-control" value="<?php echo $group_name; ?>" required>    
+            <input type="text" name="groupname" class="form-control" value="<?php echo $group_name; ?>" maxlength="12" placeholder="Example: Titans (maximum 12 characters)" required>    
         </div> 
             <div class="btn__container">
             <button class="submit--btn">Add group</button>

@@ -55,7 +55,7 @@
         
      </div>
      
-        <a href="./entity_submissions.php?id=<?=$gme_id; ?>" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> Back</a>';
+        <a href="./entity_submissions.php?id=<?=$gme_id; ?>" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> Back</a>
        
     <div class="admin--welcome">
          <h2>
