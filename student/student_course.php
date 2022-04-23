@@ -33,7 +33,7 @@
                 $userId=$_SESSION["id"];
                 $courseId=$_SESSION["courseid"];
                 $query = "SELECT p.post_id,p.post_text,p.user_id,p.group_id,p.GME_id,(SELECT user_name from Users_tbl where user_id=p.user_id) as user_name,p.post_time,p.post_date from DiscussionPagesPost_tbl p inner join Group_tbl g on p.group_id=g.group_id
-                inner join GroupMember_tbl m on m.group_id=g.group_id where g.course_id='$courseId' and m.user_id='$userId' order by p.post_date desc";
+                inner join GroupMember_tbl m on m.group_id=g.group_id where g.course_id='$courseId' and m.user_id='$userId' order by p.post_date, p.post_time desc";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
                 {
@@ -64,7 +64,7 @@
                         </div> -->
                         <?php 
                         $reply_post_id= $row["post_id"];
-                        $queryReply = "SELECT r.*,(SELECT user_name from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date desc limit 1";        
+                        $queryReply = "SELECT r.*,(SELECT user_name from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date, r.reply_time desc limit 1";        
                         $query_runReply = mysqli_query($con, $queryReply);
                         if(mysqli_num_rows($query_runReply) > 0)        
                 {
@@ -111,7 +111,7 @@
                 $userId=$_SESSION["id"];
                 $courseId=$_SESSION["courseid"];
                 $query = "SELECT p.post_id,p.post_text,p.user_id,(SELECT user_name from Users_tbl where user_id=p.user_id) as user_name,p.post_time,p.post_date from DiscussionPagesPost_tbl p
-                where p.course_id='$courseId' and p.group_id is null order by p.post_date desc";
+                where p.course_id='$courseId' and p.group_id is null order by p.post_date, p.post_time desc";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
                 {
@@ -128,7 +128,7 @@
                         </div> -->
                         <?php 
                         $reply_post_id= $row["post_id"];
-                        $queryReply = "SELECT r.*,(SELECT user_name from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date desc limit 1";        
+                        $queryReply = "SELECT r.*,(SELECT user_name from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date, r.reply_time desc limit 1";        
                         $query_runReply = mysqli_query($con, $queryReply);
                         if(mysqli_num_rows($query_runReply) > 0)        
                 {
