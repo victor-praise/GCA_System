@@ -50,7 +50,7 @@
          <div class="information--student"> 
      <?php
                 // query statement to get marked entities in a course
-                $query = "SELECT * from Poll_tbl p where p.course_id = '$course_id';
+                $query = "SELECT * from Poll_tbl p where p.course_id = '$course_id' ORDER BY title;
                 ";
                 $query_run = mysqli_query($con, $query);
                 
