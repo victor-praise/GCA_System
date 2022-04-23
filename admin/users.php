@@ -48,17 +48,18 @@
             }
             if(empty($user_error)){
                 $password = trim($_POST["password"]);
-                $sql_user = "INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (?,?,?,?,?)";
+                $sql_user = "INSERT INTO Users_tbl (user_id,user_name,user_fullname,user_email,user_password,user_role) VALUES (?,?,?,?,?,?)";
           
                 //insert into student table
                 if($stmt = mysqli_prepare($con, $sql_user)){
                     // Bind variables to the prepared statement as parameters
-                    mysqli_stmt_bind_param($stmt, "sssss",$param_userid,$param_username,$param_useremail,$param_password,$param_role);
+                    mysqli_stmt_bind_param($stmt, "sssss",$param_userid,$param_username,$param_userfullname,$param_useremail,$param_password,$param_role);
                     
                     // Set parameters
                     $param_userid = $user_id; 
                     $param_username = trim($_POST["username"]);
                     $param_useremail = trim($_POST["email"]);
+                    $param_userfullname = trim($_POST["fullname"]);
                     $param_password = password_hash($password, PASSWORD_DEFAULT);;
                     $param_role = trim($_POST["userrole"]);
                  
@@ -202,13 +203,20 @@
            <!-- Modal content -->
    <div class="modal-content">
    <span class="close">&times;</span>
-   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"   class="courseForm">     
+   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"   class="courseForm"> 
+   <div class="form-group">
+            <label>Enter Full name</label>
+            <input type="text" name="fullname" 
+            onkeypress="return /[a-z ]/i.test(event.key)"
+            class="form-control" placeholder="Jennifer Lopez" required >    
+        </div>     
         <div class="form-group">
             <label>Enter User name</label>
             <input type="text" name="username" 
             onkeypress="return /[a-z ]/i.test(event.key)"
-            class="form-control" placeholder="Jennifer Lopez" required >    
+            class="form-control" placeholder="V_NWATU" required >    
         </div> 
+      
         <div class="form-group email--input">
             <label>Enter Email</label>
             <input type="email" name="email" class="form-control" required placeholder="example@gmail.com" class="email--input">

@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $user_id, $user_name, $user_email,$hashed_password,$user_role);
+                    mysqli_stmt_bind_result($stmt, $user_id, $user_fullname, $user_email,$hashed_password,$user_role);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $user_id;
-                            $_SESSION["username"] = $user_name;                            
+                            $_SESSION["username"] = $user_fullname;                            
                             $_SESSION["useremail"] = $user_email; 
                             $_SESSION["role"] = $user_role;                           
                                 //Redirect user to welcome page

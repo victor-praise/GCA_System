@@ -1,4 +1,4 @@
-<!-- 40206992 -->
+<!-- 40206992, fung sim LEUNG 40195538 -->
 <?php session_start(); 
         require_once "../connection.php";
       $user_id = $_SESSION['id'];

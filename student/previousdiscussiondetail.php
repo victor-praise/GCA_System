@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 <!-- 40206992 -->
+=======
+<!-- 40206992, rim EL OSTA 40083858 -->
+
+>>>>>>> c77073c4413aa520ce91db1f10fb794d4fa1949d
 <?php session_start(); 
    require_once "../connection.php";
    $dateleft = $_SESSION['dateleft'];
