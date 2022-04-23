@@ -30,7 +30,7 @@
                 $deadline = date("Y-m-d", strtotime($_POST["gmedeadline"]));
                  /* make file name in lower case */
                 $new_file_name = strtolower($file);
-                /* make file name in lower case */
+                // adds cga before uploading file
                 $appendix = str_replace(' ','-',$new_file_name);
                 $final_file= 'CGA_';
                 $final_file .= $appendix;

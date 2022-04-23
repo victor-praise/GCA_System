@@ -122,7 +122,7 @@ require_once "../connection.php";
             $deadline = 
              /* make file name in lower case */
             $new_file_name = strtolower($file);
-            /* make file name in lower case */
+          
             
             $appendix = str_replace(' ','-',$new_file_name);
             $final_file= 'CGA_';
