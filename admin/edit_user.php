@@ -18,10 +18,14 @@
 <body>
 <?php include('../includes/header.php'); ?>
     <?php include('../includes/sidebar.php'); ?>
-
-
+<?php 
+    if(isset($_SESSION["updateusersuccess"])){
+    echo '<div class="success"> '.$_SESSION["updateusersuccess"].' </div>';
+} 
+?>
+    
     <div class="course__edit">
- 
+    
         <div class="edit__header">
             Edit User
         </div>
@@ -47,9 +51,15 @@
                 <form action="edit.php" method="POST" class="edit__form">
                     <input type="hidden" name="user_id" value="<?=$user['user_id'];?>">
                     <div class="formGroup">
-                        <label for="">User Name</label>
+                        <label for="">Full Name</label>
                         <input type="text"
                         onkeypress="return /[a-z ]/i.test(event.key)"
+                        name="newfullname" value="<?=$user['user_fullname'];?>">
+                    </div>
+                    <div class="formGroup">
+                        <label for="">User Name</label>
+                        <input type="text"
+                        onkeypress="return /[a-z _]/i.test(event.key)"
                         name="newusername" value="<?=$user['user_name'];?>">
                     </div>
                     <div class="formGroup email--input">

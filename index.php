@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT user_id, user_name,user_email,user_password,user_role FROM Users_tbl WHERE user_name = ?";
+        $sql = "SELECT user_id, user_name,user_fullname,user_email,user_password,user_role FROM Users_tbl WHERE user_name = ?";
         
         if($stmt = mysqli_prepare($con, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $user_id, $user_fullname, $user_email,$hashed_password,$user_role);
+                    mysqli_stmt_bind_result($stmt, $user_id,$user_name, $user_fullname, $user_email,$hashed_password,$user_role);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session

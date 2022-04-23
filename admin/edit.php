@@ -139,6 +139,7 @@ if(isset($_POST['update_user'])){
         if(empty($error)){
             $sql = "UPDATE Users_tbl SET
              user_name = ?,
+             user_fullname = ?,
              user_email = ?,
              user_role = ? 
              WHERE user_id = '$user_id'";
@@ -146,16 +147,19 @@ if(isset($_POST['update_user'])){
             //updates user
             if($stmt = mysqli_prepare($con, $sql)){
                 // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "sss", $param_username,$param_useremail,$param_userrole);
+                mysqli_stmt_bind_param($stmt, "ssss", $param_username,$param_fullname,$param_useremail,$param_userrole);
 
                 $param_username = trim($_POST["newusername"]);
+                $param_fullname = trim($_POST["newfullname"]);
                 $param_useremail = trim($_POST["newemail"]);
                 $param_userrole = trim($_POST["newrole"]);
                         // Attempt to execute the prepared statement
                 if(mysqli_stmt_execute($stmt)){
                     unset($_SESSION['updateusererror']);
+                    $_SESSION["updateusersuccess"] = "User Updated";
                     header("location: ../admin/edit_user.php?id=".$user_id);      
                 } else{
+                    unset($_SESSION["updateusersuccess"]);
                     $_SESSION["updateusererror"]='Oops! Something went wrong. Please try again later.';
                     header("location: ../admin/edit_user.php?id=".$user_id);
                 }

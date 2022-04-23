@@ -7,6 +7,7 @@
             $user_error = "";
             $user_success = "";
             unset($_SESSION['updateusererror']);
+            unset($_SESSION["updateusersuccess"]);
         // Processing form data when form is submitted
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -53,7 +54,7 @@
                 //insert into student table
                 if($stmt = mysqli_prepare($con, $sql_user)){
                     // Bind variables to the prepared statement as parameters
-                    mysqli_stmt_bind_param($stmt, "sssss",$param_userid,$param_username,$param_userfullname,$param_useremail,$param_password,$param_role);
+                    mysqli_stmt_bind_param($stmt, "ssssss",$param_userid,$param_username,$param_userfullname,$param_useremail,$param_password,$param_role);
                     
                     // Set parameters
                     $param_userid = $user_id; 
@@ -166,6 +167,10 @@
                         <label class="entity-info">User name</label>
                              <?=$row["user_name"]; ?> 
                             </div>
+                        <div class="name">
+                        <label class="entity-info">Full name</label>
+                             <?=$row["user_fullname"]; ?> 
+                            </div>
                 
                          <div class="email">
                          <label class="entity-info">User email</label>
@@ -213,7 +218,7 @@
         <div class="form-group">
             <label>Enter User name</label>
             <input type="text" name="username" 
-            onkeypress="return /[a-z ]/i.test(event.key)"
+            onkeypress="return /[a-z _]/i.test(event.key)"
             class="form-control" placeholder="V_NWATU" required >    
         </div> 
       
