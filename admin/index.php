@@ -176,7 +176,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form--input">
                 <label>Enter Course number</label>
-                <input type="number" name="coursenumber"
+                <input type="number" name="coursenumber" 
+                onkeypress="return /[0-9]/i.test(event.key)"
                  class="form-control" 
                  value="<?php echo $course_number; ?>" placeholder="example: 5564" required>
             </div>
@@ -193,7 +194,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
                 <div class="form--input">
                     <label>Course Year</label>
-                    <input type="number" name="courseyear" value="<?php echo $course_year ?>" placeholder="Example: 2022" required>
+                    <input type="number" 
+                    onkeypress="return /[0-9]/i.test(event.key)"
+                    name="courseyear" value="<?php echo $course_year ?>" placeholder="Example: 2022" required>
                 </div>
             </div>
         <div class="form-group form--term">
