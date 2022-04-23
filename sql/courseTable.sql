@@ -108,7 +108,7 @@ CREATE TABLE RemovedGroupMember_tbl(
 	FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade,
 	FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade
 );
-select * from RemovedGroupMember_tbl;
+
 
 
 -- --removes student from group member table 
@@ -181,7 +181,6 @@ CREATE TABLE DiscussionPagesPost_tbl(
 FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id),
 FOREIGN KEY (GME_id) REFERENCES GroupMarked_tbl(GME_id)
    );
-   
 
 CREATE TABLE DiscussionReply_tbl(
    reply_id char(20) primary key,
@@ -220,7 +219,7 @@ CREATE TABLE File_tbl(
    FOREIGN KEY (GME_id) REFERENCES GroupMarked_tbl(GME_id)
    );
    
-select * from FileAuditHistory_tbl;
+
 CREATE TABLE FileAuditHistory_tbl(
    history_id char(20) primary key,
    file_id char(12),
@@ -232,14 +231,8 @@ CREATE TABLE FileAuditHistory_tbl(
    FOREIGN KEY (file_id) REFERENCES File_tbl(file_id)
    );
    
-   
-select * from PrivateMessage_tbl;
-SELECT DISTINCT * FROM PrivateMessage_tbl WHERE from_user = 4024 ORDER BY msg_id;
-SELECT DISTINCT from_user FROM PrivateMessage_tbl WHERE to_user = 4037 ORDER BY msg_id;
-SELECT DISTINCT * FROM PrivateMessage_tbl WHERE from_user = 4024 AND to_user = 4037 ORDER BY msg_date ASC, msg_time DESC;
-SELECT * FROM PrivateMessage_tbl WHERE from_user = 4037 AND to_user = 4024 ORDER BY msg_id DESC;
-
-
+   select * from FileAuditHistory_tbl;
+   SELECT f.*,u.* from FileAuditHistory_tbl f, Users_tbl where f.GME_id = 2491863 AND f.group_id = 4924555 AND f.user_id = u.user_id;
 CREATE TABLE PrivateMessage_tbl(
    msg_id char(20) primary key,
    msg_text varchar(255),
@@ -251,5 +244,3 @@ CREATE TABLE PrivateMessage_tbl(
    FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id),
    FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id)
    );
-select * from Users_tbl;
-select current_date();

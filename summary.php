@@ -8,25 +8,10 @@
           
             if(isset($_GET['id'])){
                 $gme_id = $_GET["id"];
-                $group_id = $_GET["groupid"];
-                $submission_id = "";
-                $query = "SELECT * FROM FinalSubmission_tbl WHERE GME_id = '$gme_id' AND group_id = '$group_id'";
-                $query_run = mysqli_query($con, $query);      
-                if(mysqli_num_rows($query_run) > 0)        
-                {
-                    while($row = mysqli_fetch_assoc($query_run))
-                    { 
-                        $submission_id = $row['submission_id'];
-                    }
-                   
-                }
-                else{
-
-                }
-               
+                $group_id = $_GET["groupid"];       
             }
             else{
-                $gme_error = "Unable to fetch data, contact admin";
+                $gme_error = "Unable to fetch summary, contact admin";
             }
         
 ?>
@@ -72,8 +57,74 @@
         }  
             
         ?>
+
          <div class="information--student"> 
-             There is no summary
+             <?php
+                // query statement to get marked entities in a course
+                $query = "SELECT f.*,u.* from FileAuditHistory_tbl f, Users_tbl u where f.GME_id = '$gme_id' AND f.group_id = '$group_id' AND f.user_id = u.user_id;
+                ";
+                $query_run = mysqli_query($con, $query);
+                
+                if(mysqli_num_rows($query_run) > 0)        
+                {
+                    while($row = mysqli_fetch_assoc($query_run))
+                    {  
+                        
+                ?>
+                        <div class="student" >
+                           
+                        <div class="name entity--name"> 
+                        <label class="entity-info">Student</label>
+                            <?=$row["user_name"]; ?> 
+                        </div>
+                    
+                         <div class="email entity--name">
+                             <?php 
+                                if($row['file_action'] == 'insert' && $row['update_file_name'] == null){
+                                    $action = 'Insert';
+                                } 
+                                elseif($row['file_action'] == 'insert' && $row['update_file_name']!=null){
+                                    $action = 'Update';
+                                }
+                                else{
+                                    $action = 'Delete';
+                                }
+                            ?>
+                         <label class="entity-info">Action</label>
+                         <?=$action ?>
+                        </div> 
+                         <div class="email entity--filename">
+                             <?php 
+                                if($action != 'Update'){
+                                    echo '<label class="entity-info">File name</label>';
+                                }
+                                else{
+                                    echo '<label class="entity-info">Replaced</label>';
+                                }
+                             ?>
+                         
+                         <?=$row["file_name"]; ?>
+                        </div> 
+                        <?php 
+                        if($action != 'Update'){
+                            echo '<div class="email entity--filename ">
+                            <label class="entity-info">With</label>
+                            
+                            '.$row['update_file_name'].'
+                            </div> ';
+                        }
+                        
+                        ?>
+                             
+                      </div>
+                    <?php  
+                    } 
+                    
+                }
+                else {
+                    echo "There are no entites added, please click button above to add entites";
+                }
+            ?>
         </div>
             </div>
       <!-- last two divs are for the sidebar and content -->
