@@ -128,7 +128,7 @@
    <div class="modal-content">
    <span class="close">&times;</span>
    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="courseForm">     
-        <div class="form-group">
+        <div class="form-group text-area">
             <label>Enter Announcement</label>
             <textarea name="announcement" id="answers" placeholder="Text here will be avilable for all users" rows="5" required></textarea>   
         </div> 

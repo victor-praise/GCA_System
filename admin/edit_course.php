@@ -48,7 +48,7 @@
                     <div class="formGroup">
                         <label for="">Course Name</label>
                         <input type="text" name="coursename" 
-                        onkeypress="return /[a-z]/i.test(event.key)"
+                        onkeypress="return /[a-z ]/i.test(event.key)"
                         value="<?=$user['course_name'];?>">
                     </div>
                     <div class="formGroup form--term">

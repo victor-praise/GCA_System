@@ -49,7 +49,7 @@
                     <div class="formGroup">
                         <label for="">User Name</label>
                         <input type="text"
-                        onkeypress="return /[a-z]/i.test(event.key)"
+                        onkeypress="return /[a-z ]/i.test(event.key)"
                         name="newusername" value="<?=$user['user_name'];?>">
                     </div>
                     <div class="formGroup email--input">
