@@ -70,7 +70,10 @@ if($_GET['action']=='del'){
             /* make file name in lower case */
             
             $updatedDate= date("Y/m/d");
-            $final_file=str_replace(' ','-',$new_file_name);
+            // adds cga before uploading file
+            $appendix = str_replace(' ','-',$new_file_name);
+            $final_file= 'CGA_';
+            $final_file .= $appendix;
             echo $final_file;
             // checks if file already exists and replaces file
             if(file_exists("../entityupload/$final_file")){
