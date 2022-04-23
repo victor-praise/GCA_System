@@ -29,8 +29,11 @@ require_once "../connection.php";
         
          // adds cga before uploading file
          $appendix = str_replace(' ','-',$new_file_name);
-         $final_file= 'CGA_';
+         $final_file= 'CGA--';
+         $final_file .= $group_id;
+         $final_file .= '_';
          $final_file .= $appendix; 
+         
        
     //   checks if it should update or insert file in table
           if($alreadySubmitted == 1){
