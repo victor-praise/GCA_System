@@ -8,6 +8,22 @@
              $gme_success = "";
              $gme_file = "";
             $gme_name = "";
+            $queryuser = "SELECT * FROM Users_tbl WHERE user_id='$from_user'";
+            $query_runuser = mysqli_query($con,$queryuser);
+           
+             if(mysqli_num_rows($query_runuser) > 0)        
+             {
+                 while($row = mysqli_fetch_assoc($query_runuser))
+                 {
+                     $userName = $row['user_name'];
+                  }
+            }
+            else{
+                // header("location: ../instructor/groups.php");
+                echo 'user does not exist';
+                
+                
+            }
             // unset($_SESSION['success']);
 ?>
 <!DOCTYPE html>
@@ -16,7 +32,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marked entities</title>
+    <title>Previous Groups</title>
     <link rel="stylesheet" href="../style.scss">
     <link rel="stylesheet" href="../includes/styles.scss">   
   <link rel="stylesheet" href="../admin/admin.scss">
@@ -33,7 +49,7 @@
      </div>
     <div class="admin--welcome">
          <h2>
-         Marked entites
+         Previous groups
          </h2>
          <div class="header--text">
          Here you can add,delete, edit already existing entities as well as view submissions made by groups.

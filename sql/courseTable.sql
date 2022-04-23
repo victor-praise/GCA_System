@@ -31,7 +31,7 @@ CREATE TABLE Users_tbl(
 -- select * from role_tbl;
 -- select * from Instructor_tbl;
  select * from Ta_tbl;
-
+select * from Users_tbl;
   INSERT INTO Student_tbl (user_id,course_id) VALUES (4031,163708);
 CREATE TABLE CourseSection_tbl(
    course_id char(12),
@@ -104,21 +104,14 @@ groupMember_id int auto_increment primary key,
 CREATE TABLE RemovedGroupMember_tbl(
 	removedMember_id int auto_increment primary key,
     group_id char(12),
+    course_id char(12),
 	user_id char(8),
     dateLeft datetime,
 	FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade,
 	FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade
 );
+select * from RemovedGroupMember_tbl;
 
--- inserts removed group member in new table
-DELIMITER //
-CREATE TRIGGER insert_removed_member
-AFTER DELETE
-ON GroupMember_tbl FOR EACH ROW
-BEGIN
-INSERT INTO RemovedGroupMember_tbl (group_id,user_id,dateLeft) VALUES (old.group_id,old.user_id,current_timestamp());
-END; //
-DELIMITER ;
 
 -- --removes student from group member table 
 DELIMITER //
@@ -154,12 +147,7 @@ CREATE TABLE FinalSubmission_tbl(
    FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade,
    FOREIGN KEY (GME_id) REFERENCES GroupMarked_tbl(GME_id) on delete cascade
    );
-   SELECT * FROM Group_tbl;
-   select * from GroupMarked_tbl;
-   select * from FinalSubmission_tbl;
-   SELECT c.*,r.* FROM FinalSubmission_tbl c JOIN Group_tbl r ON c.group_id = r.group_id AND c.GME_id = 9814182;
-INSERT INTO FinalSubmission_tbl (submission_id,group_id,GME_id,user_id,file_name,submission_date) VALUES (123456,9210249, 9814182,4024,'entity-submission1.pdf',current_timestamp());
-INSERT INTO FinalSubmission_tbl (submission_id,group_id,GME_id,user_id,file_name,submission_date) VALUES (1234567,4924555, 9814182,4026,'another-submission1.pdf',current_timestamp());
+ 
 
 CREATE TABLE Poll_tbl(
 	id char(12) NOT NULL,
@@ -169,7 +157,7 @@ CREATE TABLE Poll_tbl(
 	PRIMARY KEY (`id`),
 	FOREIGN Key (course_id) REFERENCES CourseSection_tbl(course_id) on delete cascade
    );
-   select * from Poll_tbl;
+ 
    CREATE TABLE PollAnswers_tbl(
 	id int NOT NULL AUTO_INCREMENT primary key,
     poll_id char(12) NOT NULL,
@@ -184,8 +172,7 @@ CREATE TABLE StudentVote_tbl(
     FOREIGN Key (poll_id) REFERENCES Poll_tbl(id) on delete cascade,
     FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade
    );
-   select * from PollAnswers_tbl where poll_id = 5343269 ORDER BY votes DESC;
-   select * from StudentVote_tbl;
+ 
 CREATE TABLE DiscussionPagesPost_tbl(
    post_id char(20) primary key,
    post_text varchar(255),

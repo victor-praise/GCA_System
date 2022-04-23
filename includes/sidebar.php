@@ -106,6 +106,11 @@
             Marked entities
         </div>
         </a>
+        <a href="../student/previousgroups.php">
+        <div class="sidebar--links">  
+            Previous groups
+        </div>
+        </a>
         <a href="../student/student_poll.php">
         <div class="sidebar--links">  
             Polls
