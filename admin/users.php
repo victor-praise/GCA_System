@@ -203,7 +203,7 @@
         <div class="form-group">
             <label>Enter User name</label>
             <input type="text" name="username" 
-            onkeypress="return /[a-z]/i.test(event.key)"
+            onkeypress="return /[a-z ]/i.test(event.key)"
             class="form-control" placeholder="Jennifer Lopez" required >    
         </div> 
         <div class="form-group email--input">
