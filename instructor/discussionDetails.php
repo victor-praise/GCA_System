@@ -175,7 +175,7 @@
                   }
                   ?>
                <form action="replyDiscussion.php?id=<?=$_GET['id'];?>&GMEId=<?=$_GET['GMEId'];?>&Grp=<?=$_GET['Grp'];?>" method="post" enctype="multipart/form-data">
-                  <textarea type="text" style="width:55%" name="replyText" value=""></textarea>
+                  <textarea type="text" style="width:55%" name="replyText" value="" required></textarea>
                   <div class="submit__button" style="float:right; padding-right: 25%">
                      <button class="edit--btn" name="reply">Post</button>
                   </div>
