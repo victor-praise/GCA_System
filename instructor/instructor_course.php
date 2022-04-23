@@ -143,11 +143,13 @@
                 <!-- gets instructors from user table -->   
                 <?php
                 // query statement to get course information and instructor
-                $query = "SELECT * from GroupMarked_tbl";
+                $entityCourseId=$_GET['id'];
+                $query = "SELECT * from GroupMarked_tbl where course_id='$entityCourseId'";
                 $query_run = mysqli_query($con, $query);
+                echo "<option class='instructor--names' value=''> None</option>";
                 if(mysqli_num_rows($query_run) > 0)        
                 {
-                    echo "<option class='instructor--names' value=''> None</option>";
+                    
                     while($row = mysqli_fetch_assoc($query_run))
                     {
                         echo "<option class='instructor--names' value='{$row['GME_id']}'> {$row['entity_name']}</option>";
