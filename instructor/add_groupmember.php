@@ -8,6 +8,7 @@
 
         if(isset($_GET['id'])){
         $_SESSION["groupid"] = $_GET['id'];
+        $course_id = $_SESSION["courseid"];
         }
         if(isset($_SESSION["groupid"])){
             $group_id = $_SESSION["groupid"];
@@ -161,8 +162,9 @@
                 {
                     while($row = mysqli_fetch_assoc($query_run))
                     {
-                        
+                      
                 ?>
+                
                 
                       <div class="student" >
                         <div class="name"> <?=$row["user_name"]; ?> </div>
@@ -220,7 +222,7 @@
                 <!-- gets students from user table -->   
                 <?php
                 // query statement to get student
-                $query = "SELECT * from Users_tbl WHERE user_role = 'student'";
+                $query = "SELECT u.*,s.* from Users_tbl u, Student_tbl s WHERE u.user_id = s.user_id AND s.course_id = '$course_id' ";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
                 {
