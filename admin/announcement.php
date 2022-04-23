@@ -40,8 +40,6 @@
                 
             }
         }
-        
-            // unset($_SESSION['success']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +72,7 @@
 
      </div>
      <?php 
-     
+    //  error handling
         if(!empty($announcement_error)){
             echo '<div class="alert alert-danger">' . $announcement_error . '</div>';
         }  
@@ -85,7 +83,7 @@
         ?>
          <div class="information--student"> 
      <?php
-                // query statement to get marked entities in a course
+                // query statement to get announcements
                 $query = "SELECT * from Announcement_tbl ORDER BY id DESC;
                 ";
                 $query_run = mysqli_query($con, $query);
@@ -122,6 +120,8 @@
                 }
             ?>
         </div>
+
+<!-- create announcement modal -->
         
         <div id="myModal" class="modal" >
            <!-- Modal content -->

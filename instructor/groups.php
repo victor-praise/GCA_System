@@ -21,7 +21,7 @@
             else{
                 // Prepare a select statement
                 $sql = "SELECT group_id FROM Group_tbl g WHERE g.group_id = ? OR g.group_name = ?";
-                // ensures course does not exists before creating
+                // ensures group does not exists before creating
                 if($stmt = mysqli_prepare($con, $sql)){
                     // Bind variables to the prepared statement as parameters
                    
@@ -55,7 +55,7 @@
             if(empty($group_error)){
                 $sql_group = "INSERT INTO Group_tbl (group_id,course_id,group_name) VALUES (?,?,?)";
           
-                //insert into student table
+                //insert into Group table
                 if($stmt = mysqli_prepare($con, $sql_group)){
                     // Bind variables to the prepared statement as parameters
                     mysqli_stmt_bind_param($stmt, "sss",$param_groupid,$param_courseid,$param_groupname);
@@ -112,7 +112,7 @@
 
      </div>
      <?php 
-     
+    //  error handling
         if(!empty($group_error)){
             echo '<div class="alert alert-danger">' . $group_error . '</div>';
         }  
@@ -123,7 +123,7 @@
         ?>
          <div class="information--student"> 
      <?php
-                // query statement to get course information based on instructor
+                // query statement to get group information
                 $query = "SELECT * from Group_tbl g where g.course_id = '$course_id';
                 ";
                 $query_run = mysqli_query($con, $query);
@@ -171,6 +171,7 @@
             ?>
         </div>
         
+        <!-- add group modal -->
         <div id="myModal" class="modal" >
            <!-- Modal content -->
    <div class="modal-content">

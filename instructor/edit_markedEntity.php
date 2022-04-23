@@ -33,11 +33,9 @@
         <div class="edit__header">
             Edit Entity
         </div>
-        <!-- get particular course data from database using id -->
+      
         <?php 
-        // ensures data exists
-            
-         
+     
            
             // queries database to get particular marked entity
             $query = "SELECT * from GroupMarked_tbl g where g.GME_id = '$entity_id' AND g.course_id='$course_id';
@@ -48,7 +46,7 @@
                  foreach($query_run as $entity){
                     ?>
                        
-                    
+                    <!-- display data -->
                 <form action="updategroup_groupmember.php" method="post"  enctype="multipart/form-data" class="edit__form">
                     <input type="hidden" name="entity_id" value="<?=$entity['GME_id'];?>">
                     <div class="formGroup">

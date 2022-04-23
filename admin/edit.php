@@ -2,7 +2,7 @@
 <?php
 session_start(); 
     require_once "../connection.php";
-
+// updates course
     if(isset($_POST['update_course'])){
         $course_id = trim($_POST["course_id"]);
 
@@ -58,7 +58,7 @@ session_start();
                     mysqli_stmt_close($stmt);
         }
     }
-
+// deletes announcement
     if(isset($_POST['announcement_delete'])){
             $id = trim($_POST["announcement_delete"]);
             $query = "DELETE FROM Announcement_tbl WHERE id='$id'";

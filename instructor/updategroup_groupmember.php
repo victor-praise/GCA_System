@@ -122,9 +122,11 @@ require_once "../connection.php";
             $deadline = 
              /* make file name in lower case */
             $new_file_name = strtolower($file);
-            /* make file name in lower case */
+          
             
-            $final_file=str_replace(' ','-',$new_file_name);
+            $appendix = str_replace(' ','-',$new_file_name);
+            $final_file= 'CGA_';
+            $final_file .= $appendix;
 
             // checks if file already exists and replaces file
             if(file_exists("../entityupload/$final_file")){

@@ -42,7 +42,7 @@
                  foreach($query_run as $user){
                     ?>
                        
-                    
+                    <!-- edit form -->
                 <form action="edit.php" method="POST" class="edit__form">
                     <input type="hidden" name="course_id" value="<?=$user['course_id'];?>">
                     <div class="formGroup">
@@ -112,10 +112,12 @@
                         </div>
                         
                     </div>
+                    <!-- view ta's and students -->
                     <div class="ta__students">
                         <a href="../student/students.php?id=<?=$course_id?>">View Students</a>
                         <a href="../ta/ta.php?id=<?=$course_id?>">View Ta's</a>
                     </div>
+                    <!-- edit or cancel -->
                     <div class="submit__button">
                         <button class="edit--btn" name="update_course">Edit</button>
                         <a href="../admin/courses.php" class="cancel--link">
