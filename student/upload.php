@@ -27,7 +27,10 @@ require_once "../connection.php";
         $new_file_name = strtolower($file);
         /* make file name in lower case */
         
-        $final_file=str_replace(' ','-',$new_file_name);  
+         // adds cga before uploading file
+         $appendix = str_replace(' ','-',$new_file_name);
+         $final_file= 'CGA_';
+         $final_file .= $appendix; 
        
     //   checks if it should update or insert file in table
           if($alreadySubmitted == 1){
