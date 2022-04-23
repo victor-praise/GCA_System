@@ -31,8 +31,10 @@
                  /* make file name in lower case */
                 $new_file_name = strtolower($file);
                 /* make file name in lower case */
-                
-                $final_file= str_replace(' ','-',$new_file_name);
+                $appendix = str_replace(' ','-',$new_file_name);
+                $final_file= 'CGA_';
+                $final_file .= $appendix;
+
 
                 // Prepare a select statement
                 $sql = "SELECT GME_id FROM GroupMarked_tbl g WHERE g.course_id = ? AND g.entity_name = ?";
