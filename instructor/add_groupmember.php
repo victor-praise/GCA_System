@@ -5,10 +5,10 @@
         $add_student = "";
         $add_success="";
       
-
+        $course_id = $_SESSION["courseid"];
         if(isset($_GET['id'])){
         $_SESSION["groupid"] = $_GET['id'];
-        $course_id = $_SESSION["courseid"];
+        
         }
         if(isset($_SESSION["groupid"])){
             $group_id = $_SESSION["groupid"];
@@ -162,11 +162,12 @@
                 {
                     while($row = mysqli_fetch_assoc($query_run))
                     {
-                      
+                    
                 ?>
                 
                 
                       <div class="student" >
+                          
                         <div class="name"> <?=$row["user_name"]; ?> </div>
                         <div class="email"><?=$row["user_email"]; ?></div>
                         <!-- group leader -->
