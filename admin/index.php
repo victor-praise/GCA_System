@@ -164,7 +164,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="form-group">
             <label>Enter Course name</label>
             <input type="text" name="coursename" class="form-control"
-            onkeypress="return /[a-z]/i.test(event.key)"
+            onkeypress="return /[a-z ]/i.test(event.key)"
            placeholder="Example: Database Design" required>
         </div>
         <div class="form-group form--term">
