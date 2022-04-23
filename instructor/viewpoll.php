@@ -6,7 +6,7 @@
              if(isset($_GET['id'])){ 
                  $poll_id = $_GET['id'];
                  $total_votes = 0;
-                 $query = "SELECT * from PollAnswers_tbl p where p.poll_id = '$poll_id' ORDER BY votes DESC;
+                 $query = "SELECT * from PollAnswers_tbl p where p.poll_id = '$poll_id';
                  ";
                  $query_run = mysqli_query($con, $query);
                  
@@ -47,14 +47,14 @@
         <div class="information--student view__poll"> 
             <?=$total_votes?> student(s) have voted
      <?php
-                // query statement to get marked entities in a course
-                $query = "SELECT * from PollAnswers_tbl p where p.poll_id = '$poll_id' ORDER BY votes DESC;
+                // query statement to get poll votes
+                $querypoll = "SELECT * from PollAnswers_tbl p where p.poll_id = '$poll_id';
                 ";
-                $query_run = mysqli_query($con, $query);
+                $query_runpoll = mysqli_query($con, $querypoll);
                 
                 if(mysqli_num_rows($query_run) > 0)        
                 {
-                    while($row = mysqli_fetch_assoc($query_run))
+                    while($row = mysqli_fetch_assoc($query_runpoll))
                     {  
                        
                 ?>
@@ -63,10 +63,24 @@
                         <div class="poll-title">
                         <?=$row["title"]; ?> (<?=$row["votes"]; ?>) Votes
                         </div>
-
-                        <div class="result-bar" style= "width:<?=@round(($row['votes']/$total_votes)*100)?>%">
-                <?=@round(($row['votes']/$total_votes)*100)?>%
-            </div>
+                            <?php 
+                                if($total_votes <= 0){
+                                    ?>
+                                            <div class="result-bar" style= "width:0%">
+                                                0% 
+                                            </div>
+                                    <?php
+                                }
+                                else{
+                                    ?>
+                                             <div class="result-bar" style= "width:<?=@round(($row['votes']/$total_votes)*100)?>%">
+                                    <?=@round(($row['votes']/$total_votes)*100)?>% 
+                                        </div>
+                                    <?php
+                                   
+                                }
+                            ?>
+                   
                 </div>
                        
                     <?php  
@@ -74,7 +88,7 @@
                     
                 }
                 else {
-                    echo "No polls have been created, please click button above to add poll";
+                    echo "No student has voted, poll will be updated once a student votes";
                 }
             ?>
         </div>
