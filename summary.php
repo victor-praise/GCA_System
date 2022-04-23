@@ -106,7 +106,7 @@
                          <?=$row["file_name"]; ?>
                         </div> 
                         <?php 
-                        if($action != 'Update'){
+                        if($action == 'Update'){
                             echo '<div class="email entity--filename ">
                             <label class="entity-info">With</label>
                             
