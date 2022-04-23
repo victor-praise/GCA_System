@@ -134,7 +134,7 @@
                   if(isset($_GET['id'])){
                       $post_id = $_GET['id'];
                               // query statement to get course information and instructor
-                              $query = "SELECT r.*,u.* FROM DiscussionReply_tbl r inner join Users_tbl u on u.user_id = r.user_id where post_id='$post_id'";
+                              $query = "SELECT r.*,u.* FROM DiscussionReply_tbl r inner join Users_tbl u on u.user_id = r.user_id where post_id='$post_id' order by reply_date desc";
                               $query_run = mysqli_query($con, $query);
                               if(mysqli_num_rows($query_run) > 0)        
                               {
