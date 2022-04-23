@@ -42,7 +42,7 @@
    
    <?php
            // query statement to get message
-           $query = "SELECT DISTINCT to_user FROM PrivateMessage_tbl WHERE from_user = '$user_id' ORDER BY msg_date;
+           $query = "SELECT DISTINCT to_user FROM PrivateMessage_tbl WHERE from_user = '$user_id' ORDER BY msg_date ASC, msg_time ASC;
            ;
            ";
            $query_run = mysqli_query($con, $query);
@@ -57,7 +57,7 @@
                             $fromUser = $row['to_user'];
                             
 
-                            $query_message = "SELECT DISTINCT * FROM PrivateMessage_tbl WHERE to_user = '$fromUser' ORDER BY msg_date ASC, msg_time DESC LIMIT 1";
+                            $query_message = "SELECT DISTINCT * FROM PrivateMessage_tbl WHERE to_user = '$fromUser' ORDER BY msg_date DESC, msg_time DESC LIMIT 1";
                             $query_runmessage = mysqli_query($con, $query_message);
                             
                             if(mysqli_num_rows($query_runmessage) > 0)        
