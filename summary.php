@@ -45,7 +45,7 @@
        
     <div class="admin--welcome">
          <h2>
-         Summary
+         Discussion Board Activity Summary
          </h2>
      </div>
      <?php 
@@ -109,6 +109,14 @@
                         <?php 
                         if($action == 'Update'){
                             echo '<div class="email entity--filename ">
+                            <label class="entity-info">With</label>
+                            
+                            '.$row['update_file_name'].'
+                            </div> ';
+                        }
+                        else{
+                            // used to key styling consistent
+                            echo '<div class="email entity--filename visibility ">
                             <label class="entity-info">With</label>
                             
                             '.$row['update_file_name'].'
