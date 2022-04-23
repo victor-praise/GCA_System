@@ -30,14 +30,14 @@ session_start();
             $param_user_id=$userId;
             $param_post_date=date("Y/m/d");
             $param_post_time=null;
-            $param_group_id=null;
+            $param_group_id=$_SESSION["tmpGroupId"];
             $param_course_id=$courseId;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
                 $id=$_GET['id'];
-                header("location: instructor_course.php?id=$id");
+                header("location: student_course.php");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }

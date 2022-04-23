@@ -111,7 +111,7 @@
                   if($row["file_permission"]=='Full')
                   {
                   ?>
-                  <a style="border:none" href="fileUpdate.php?file_id=<?=$row['file_id'];?>&action=del&id=<?=$_GET['id']?>&GMEId=<?=$_GET['GMEId']?>&Grp=<?=$_GET['Grp']?>">
+                  <button style="border:none" id="btn" name="<?=$row['file_id'];?>">
                   <i class='fa-solid fa-pencil'></i>
                   </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <a name="deleteFile" href="groupfileControl.php?file_id=<?=$row['file_id'];?>&action=del&id=<?=$_GET['id']?>&GMEId=<?=$_GET['GMEId']?>&Grp=<?=$_GET['Grp']?>">
