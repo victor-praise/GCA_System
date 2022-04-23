@@ -7,6 +7,7 @@ CREATE TABLE Users_tbl(
     user_role VARCHAR(20) NOT NULL,
    PRIMARY KEY ( user_id )
    );
+   select * from Users_tbl;
        INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4023, 'victor praise','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','admin');
 
    INSERT INTO Users_tbl (user_id,user_name,user_email,user_password,user_role) VALUES (4024, 'david igwe','vpraise27@gmail.com','$2y$10$aiHSsEs9CNG0LTY7hk1sueMDneXSzYVu6KZRK40NwckuP3IOJK4ii','student');
@@ -44,7 +45,6 @@ PRIMARY KEY ( course_id )
    );
   select * from CourseSection_tbl;
 
-SELECT * from student_tbl t, users_tbl c where t.course_id = 572701 and t.user_id = c.user_id;
  CREATE TABLE Instructor_tbl(
 	Role_id int auto_increment,
 	user_id char(8),
@@ -61,7 +61,7 @@ SELECT * from student_tbl t, users_tbl c where t.course_id = 572701 and t.user_i
 	foreign key (user_id) references Users_tbl(user_id) on delete cascade,
 	foreign key (course_id) references CourseSection_tbl(course_id) on delete cascade
    );
- 
+ select * from Student_tbl;
     CREATE TABLE Ta_tbl(
 	Role_id int auto_increment,
 	user_id char(8),
@@ -94,12 +94,12 @@ groupMember_id int auto_increment primary key,
    group_id char(12),
    user_id char(8),
    dateJoined datetime,
-  
+
    FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade,
    FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade
    );
    
-   SELECT c.*,r.* FROM Group_tbl c JOIN GroupMember_tbl r ON c.group_id = r.group_id AND r.user_id = 4024;
+   SELECT c.*,r.*,u.* FROM Group_tbl c JOIN GroupMember_tbl r ON c.group_id = r.group_id JOIN Users_tbl u ON u.user_id = 4024;
 
 CREATE TABLE RemovedGroupMember_tbl(
 	removedMember_id int auto_increment primary key,
@@ -109,6 +109,8 @@ CREATE TABLE RemovedGroupMember_tbl(
 	FOREIGN KEY (user_id) REFERENCES Users_tbl(user_id) on delete cascade,
 	FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade
 );
+
+-- inserts removed group member in new table
 DELIMITER //
 CREATE TRIGGER insert_removed_member
 AFTER DELETE
@@ -118,6 +120,15 @@ INSERT INTO RemovedGroupMember_tbl (group_id,user_id,dateLeft) VALUES (old.group
 END; //
 DELIMITER ;
 
+-- --removes student from group member table 
+DELIMITER //
+CREATE TRIGGER remove_deleted_student
+AFTER DELETE
+ON Student_tbl FOR EACH ROW
+BEGIN
+DELETE FROM GroupMember_tbl WHERE user_id=old.user_id;
+END; //
+DELIMITER ;
 CREATE TABLE GroupMarked_tbl(
    GME_id char(12) primary key,
    course_id char(12),
@@ -224,7 +235,7 @@ CREATE TABLE File_tbl(
    FOREIGN KEY (GME_id) REFERENCES GroupMarked_tbl(GME_id)
    );
    
-
+select * from FileAuditHistory_tbl;
 CREATE TABLE FileAuditHistory_tbl(
    history_id char(20) primary key,
    file_id char(12),
@@ -238,8 +249,11 @@ CREATE TABLE FileAuditHistory_tbl(
    
    
 select * from PrivateMessage_tbl;
-SELECT DISTINCT from_user FROM PrivateMessage_tbl WHERE to_user = 4024 ORDER BY msg_date;
-SELECT * FROM PrivateMessage_tbl WHERE from_user = 4035 AND to_user = 4024 ORDER BY msg_id DESC;
+SELECT DISTINCT * FROM PrivateMessage_tbl WHERE from_user = 4024 ORDER BY msg_id;
+SELECT DISTINCT from_user FROM PrivateMessage_tbl WHERE to_user = 4037 ORDER BY msg_id;
+SELECT DISTINCT * FROM PrivateMessage_tbl WHERE from_user = 4024 AND to_user = 4037 ORDER BY msg_date ASC, msg_time DESC;
+SELECT * FROM PrivateMessage_tbl WHERE from_user = 4037 AND to_user = 4024 ORDER BY msg_id DESC;
+
 
 CREATE TABLE PrivateMessage_tbl(
    msg_id char(20) primary key,

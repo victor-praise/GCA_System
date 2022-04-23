@@ -119,10 +119,10 @@
 }
 .chats{
 width: 100%;
-overflow-y: scroll;
+overflow-y: auto;
 }
 .chats::-webkit-scrollbar {
-    width: 0.18em;
+    width: 0.6em;
   }
   
   .chats::-webkit-scrollbar-track {

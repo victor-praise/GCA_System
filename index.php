@@ -1,3 +1,4 @@
+<!-- 40206992 -->
 <?php
 // Initialize the session
 //session_start() creates a session or resumes the current one based on a session identifier passed via a GET or POST request, or passed via a cookie.
@@ -129,7 +130,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="wrapper">
-        <h2>GCA PORTAL</h2>
+        <h2>CGA PORTAL</h2>
         <h3>Login</h3>
         <p>Please fill in your credentials to login.</p>
 

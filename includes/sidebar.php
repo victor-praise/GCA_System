@@ -1,3 +1,4 @@
+<!-- 40206992 -->
 <div class="side__container">
 <aside class="sidebar">
         <?php if($_SESSION['role'] == 'admin') : ?>
@@ -14,14 +15,19 @@
             View Courses
         </div>
         </a>
-        <a href="../admin/discussion.php">
+        <!-- <a href="../admin/discussion.php">
         <div class="sidebar--links">  
             Discussions
         </div>
-        </a>
+        </a> -->
         <a href="../admin/announcement.php">
         <div class="sidebar--links">  
             Announcements
+        </div>
+        </a>
+        <a href="../admin/users.php">
+        <div class="sidebar--links">  
+            Users
         </div>
         </a>
        

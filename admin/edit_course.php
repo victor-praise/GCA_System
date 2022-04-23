@@ -1,3 +1,4 @@
+<!-- 40206992 -->
 <?php session_start(); 
         require_once "../connection.php";
 ?>
@@ -46,12 +47,16 @@
                     <input type="hidden" name="course_id" value="<?=$user['course_id'];?>">
                     <div class="formGroup">
                         <label for="">Course Name</label>
-                        <input type="text" name="coursename" value="<?=$user['course_name'];?>">
+                        <input type="text" name="coursename" 
+                        onkeypress="return /[a-z]/i.test(event.key)"
+                        value="<?=$user['course_name'];?>">
                     </div>
                     <div class="formGroup form--term">
                         <div class="form--input">
                         <label for="">Course Subject</label>
-                        <input type="text" placeholder="Enter instructor name" name="coursesubject" value="<?=$user['course_subject'];?>">
+                        <input type="text" maxlength="4" 
+                        onkeypress="return /[a-z]/i.test(event.key)"
+                        placeholder="Enter instructor name" name="coursesubject" value="<?=$user['course_subject'];?>">
                         </div>
                         <div class="form--input">
                         <label for="">Course Number</label>
@@ -101,7 +106,9 @@
                     </div>
                         <div class="form--input">
                         <label for="">Course Section</label>
-                        <input type="text" placeholder="Enter Course Section" name="coursesection" value="<?=$user['course_section'];?>">
+                        <input type="text" placeholder="Enter Course Section" 
+                        onkeypress="return /[a-z]/i.test(event.key)"
+                        name="coursesection" value="<?=$user['course_section'];?>">
                         </div>
                         
                     </div>

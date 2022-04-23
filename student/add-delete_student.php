@@ -79,6 +79,7 @@ session_start();
             }
     
        }
+    //    deletes student
        if(isset($_POST['student_delete'])){
         $student_id = trim($_POST["student_delete"]);
         $studentCourse_id = trim($_POST["course_studentid"]);

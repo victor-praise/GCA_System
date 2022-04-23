@@ -1,3 +1,4 @@
+<!-- 40206992 -->
 <?php session_start(); 
 
 // Include config file
@@ -161,21 +162,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
    
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"  class="courseForm">
         <div class="form-group">
-            <label>Enter course name</label>
-            <input type="text" name="coursename" class="form-control" value="<?php echo $coursename; ?>" required>
+            <label>Enter Course name</label>
+            <input type="text" name="coursename" class="form-control"
+            onkeypress="return /[a-z]/i.test(event.key)"
+           placeholder="Example: Database Design" required>
         </div>
         <div class="form-group form--term">
             <div class="form--input">
-                <label>Enter course subject</label>
-                <input type="text" name="coursesubject" class="form-control" value="<?php echo $course_subject; ?>" required>
+                <label>Enter Course subject</label>
+                <input type="text" name="coursesubject" class="form-control" value="<?php echo $course_subject; ?>" 
+                onkeypress="return /[a-z]/i.test(event.key)"
+                maxlength="4" placeholder="example: COMP" required>
             </div>
             <div class="form--input">
-                <label>Enter course number</label>
-                <input type="number" name="coursenumber" class="form-control" value="<?php echo $course_number; ?>" required>
+                <label>Enter Course number</label>
+                <input type="number" name="coursenumber"
+                 class="form-control" 
+                 value="<?php echo $course_number; ?>" placeholder="example: 5564" required>
             </div>
                 
-                
-                <!-- <span class="invalid-feedback"><?php echo $username_err; ?></span> -->
             </div> 
             <div class="form-group form--term">
                 <div class="form--input">
@@ -188,13 +193,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
                 <div class="form--input">
                     <label>Course Year</label>
-                    <input type="number" name="courseyear" value="<?php echo $course_year ?>" required>
+                    <input type="number" name="courseyear" value="<?php echo $course_year ?>" placeholder="Example: 2022" required>
                 </div>
             </div>
         <div class="form-group form--term">
                 <div class="form--input">
                     <label>Course Section</label>
-                    <input type="text" name="coursesection" value="<?php echo $course_section ?>" required>
+                    <input type="text" name="coursesection" 
+                    onkeypress="return /[a-z]/i.test(event.key)"
+                    value="<?php echo $course_section ?>" placeholder="Example: DDI" required>
                 </div>
                 <div class="form--input">
                 <label>Select Instructor</label>
@@ -234,7 +241,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!-- modal script -->
 <script>
-   
+
 // Get the modal
 var modal = document.getElementById("myModal");
 

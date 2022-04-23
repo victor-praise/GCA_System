@@ -1,19 +1,10 @@
+<!-- 40206992 -->
 <?php session_start(); 
         require_once "../connection.php";
         if(isset($_GET['id'])){   
             $entity_id = $_GET['id'];
             $course_id =  $_SESSION["courseid"];
             $_SESSION["message"] = "no action";
-
-            // if($_SERVER["REQUEST_METHOD"] == "POST"){
-            //     header("location: updategroup_groupmember.php?id=".$entity_id);
-            //     if(empty($_FILES["newfile"]["name"])){
-            //         header("location: updategroup_groupmember.php?id=".$entity_id);
-            //     }
-            //     else{
-            //         echo 'works differently';
-            //     }
-            // }
         }
    
       
