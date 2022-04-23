@@ -2,29 +2,36 @@
 <?php session_start(); 
         require_once "../connection.php";
         
+             $user_id =  $_SESSION["id"];
              $course_id =  $_SESSION["courseid"];
-             $gme_id = mt_rand(1000000,9999999);
              $gme_error = "";
              $gme_success = "";
-             $gme_file = "";
-            $gme_name = "";
-            $queryuser = "SELECT * FROM Users_tbl WHERE user_id='$from_user'";
+             $groupName = "";
+          
+            $queryuser = "SELECT 
+            *
+            FROM
+            Group_tbl
+            WHERE
+            group_id IN (SELECT 
+            group_id
+                FROM
+                GroupMember_tbl
+                WHERE
+                    user_id = '$user_id');";
             $query_runuser = mysqli_query($con,$queryuser);
            
              if(mysqli_num_rows($query_runuser) > 0)        
              {
                  while($row = mysqli_fetch_assoc($query_runuser))
                  {
-                     $userName = $row['user_name'];
+                     $groupName = $row['group_name'];
                   }
             }
             else{
-                // header("location: ../instructor/groups.php");
-                echo 'user does not exist';
-                
-                
+                $gme_error = "You are currently not in any group"; 
             }
-            // unset($_SESSION['success']);
+          
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,16 +50,12 @@
 <body>
 <?php include('../includes/header.php'); ?>
     <?php include('../includes/sidebar.php'); ?>
-
-    <div class="create--course">
-         <button class="create--btn" id="btn"><i class="fa-solid fa-plus"></i> Add marked entity</button>
-     </div>
     <div class="admin--welcome">
          <h2>
          Previous groups
          </h2>
          <div class="header--text">
-         Here you can add,delete, edit already existing entities as well as view submissions made by groups.
+         You are currently in group <?= $groupName?>, but you can still access the discussions of your previous groups up till when you left.
     </div>   
 
      </div>
@@ -68,56 +71,65 @@
         ?>
          <div class="information--student"> 
      <?php
-                // query statement to get marked entities in a course
-                $query = "SELECT * from GroupMarked_tbl g where g.course_id = '$course_id';
+                // query statement to get all groups a student has been in
+                $query = "SELECT 
+                *
+                FROM
+                RemovedGroupMember_tbl
+                    WHERE
+                        user_id = '$user_id' AND course_id='$course_id';
                 ";
                 $query_run = mysqli_query($con, $query);
-                
-                if(mysqli_num_rows($query_run) > 0)        
-                {
-                    while($row = mysqli_fetch_assoc($query_run))
-                    {  
-                        
-                ?>
-                        <div class="student" >
-                           
-                        <div class="name entity--name"> 
-                        <label class="entity-info">Entity name</label>
-                            <?=$row["entity_name"]; ?> 
-                        </div>
-                    
-                         <div class="email entity--filename">
-                         <label class="entity-info">File name</label>
-                         <?=$row["file_name"]; ?>
-                        </div> 
-                         <div class="email deadline">
-                         <label class="entity-info">Dealine</label>
-                         <?=$row["deadline"]; ?>
-                        </div> 
-                         <div class="email submissions">
-                         <a href="../entity_submissions.php?id=<?=$row["GME_id"]; ?>">View submissions</a>
-                        </div> 
-                        <div class="delete">
-                        <a href="edit_markedEntity.php?id=<?=$row["GME_id"]; ?>">
-                                <i class='fa-solid fa-pencil'></i>
-                            </a>
-                          <form action="updategroup_groupmember.php" method="post"> 
-                             
-                          <button class="delete--group-btn" name="entity_delete" value="<?=$row["GME_id"];?>" >
-                            <i class='fa-solid fa-trash-can'></i>
-                            </button>
-                          </form>  
-                       
+                if(mysqli_num_rows($query_run) > 0){
+
+                    while($row = mysqli_fetch_assoc($query_run)){
+                        $particularGroup = $row['group_id'];
+                        $queryGroup = "SELECT 
+                        *
+                        FROM
+                        Group_tbl
+                        WHERE group_id = '$particularGroup'";
+                        $queryGroupRun = mysqli_query($con, $queryGroup);
+                        if(mysqli_num_rows($queryGroupRun) > 0)        
+                        {
+                            while($group = mysqli_fetch_assoc($queryGroupRun))
+                            {  
+                                if($group["group_name"] != $groupName){
+                                    $_SESSION['dateleft'] = $row["dateLeft"];
+                                    ?>
+                                    <div class="student" >
+                                       
+                                    <div class="name entity--name"> 
+                                    <label class="entity-info">Group name</label>
+                                        <?=$group["group_name"]; ?> 
+                                    </div>
+                                
+                                     <div class="email entity--filename">
+                                     <label class="entity-info">Date left</label>
+                                     <?=$row["dateLeft"]; ?>
+                                    </div> 
+                                    
+                                    <div class="delete">
+                                    <a href="previousgroupdiscussion.php?id=<?=$row["group_id"]; ?>">
+                                    <i class="fa-solid fa-eye"></i>
+                                        </a>                      
+                                  </div>
+                                  </div>
+                                <?php 
+                                }
                       
-                      </div>
-                      </div>
-                    <?php  
-                    } 
-                    
+                            } 
+                            
+                        }
+                        else {
+                            echo "You have not been removed from any group";
+                        }
+
+                    }
                 }
-                else {
-                    echo "There are no entites added, please click button above to add entites";
-                }
+                else{
+                    echo "You have not been removed from any group"; 
+                }                
             ?>
         </div>
         

@@ -87,8 +87,7 @@ CREATE TABLE Group_tbl(
    FOREIGN Key (course_id) REFERENCES CourseSection_tbl(course_id) on delete cascade
    );
    
-   select * from group_tbl;
-   DELETE FROM Group_tbl WHERE group_id=3477789;
+
 CREATE TABLE GroupMember_tbl(
 groupMember_id int auto_increment primary key,
    group_id char(12),
@@ -99,7 +98,6 @@ groupMember_id int auto_increment primary key,
    FOREIGN KEY (group_id) REFERENCES Group_tbl(group_id) on delete cascade
    );
    
-   SELECT c.*,r.*,u.* FROM Group_tbl c JOIN GroupMember_tbl r ON c.group_id = r.group_id JOIN Users_tbl u ON u.user_id = 4024;
 
 CREATE TABLE RemovedGroupMember_tbl(
 	removedMember_id int auto_increment primary key,

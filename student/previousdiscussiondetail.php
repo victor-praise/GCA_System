@@ -1,5 +1,6 @@
 <?php session_start(); 
    require_once "../connection.php";
+   $dateleft = $_SESSION['dateleft'];
 
    ?>
 <!DOCTYPE html>
@@ -13,7 +14,6 @@
       <link rel="stylesheet" href="../includes/styles.scss">
       <!-- <link rel="stylesheet" href="../admin/admin.scss"> -->
       <script src="https://kit.fontawesome.com/57c0ab8bd6.js" crossorigin="anonymous"></script>
-   
    </head>
    <body>
       <?php include('../includes/header.php'); ?>
@@ -28,6 +28,7 @@
          <?php
             if(isset($_GET['id'])){
                 $post_id = $_GET['id'];
+                $group_id = $_GET['group_id'];
                         // query statement to get course information and instructor
                         $query = "SELECT p.*,(Select group_name from Group_tbl where group_id=p.group_id) as GroupName,(Select entity_name from GroupMarked_tbl where GME_id=p.GME_id) as entity_name,u.* FROM DiscussionPagesPost_tbl p inner join Users_tbl u on u.user_id = p.user_id where post_id='$post_id'";
                         $query_run = mysqli_query($con, $query);
@@ -38,7 +39,7 @@
                             $_SESSION["discussionGrpID"]=$row["group_id"];
                                 
                         ?>
-         <a href="student_course.php" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> Back</a>
+         <a href="previousgroupdiscussion.php?id=<?=$group_id ?>" class="back--link"><i class="fa-solid fa-arrow-left-long"></i> Back</a>
          <div class="container">
             <div class="subforum">
                <div class="subforum-title">
@@ -67,10 +68,7 @@
                   <!-- <div class="subforum-stats  subforum-column center">
                      <span>24 Posts | 12 Topics</span>
                      </div> -->
-                  <div class="subforum-info  subforum-column">
-                     <b><a href="">Last post</a></b> by <?=$row["user_name"]; ?> 
-                     <br>on <small><?=$row["post_date"]; ?></small>
-                  </div>
+                 
                </div>
             </div>
             <?php  
@@ -79,15 +77,13 @@
                ?>
             <div class="discussions" style="display:block !important">
                <h4><a href="#">Replies:</a></h4>
-               <div class="back--link" style="float:right;padding-right:5%" > <a href="viewAllFiles.php?id=<?=$_GET['id']?>&GMEId=<?=$_SESSION["discussionGMEID"]?>&Grp=<?=$_SESSION["discussionGrpID"]?>">
-            View All Files
-        </a></div>
+               <div class="back--link" style="float:right;padding-right:5%" > </div>
                <br>
                <?php
                   if(isset($_GET['id'])){
                       $post_id = $_GET['id'];
                               // query statement to get course information and instructor
-                              $query = "SELECT r.*,u.* FROM DiscussionReply_tbl r inner join Users_tbl u on u.user_id = r.user_id where post_id='$post_id'";
+                              $query = "SELECT r.*,u.* FROM DiscussionReply_tbl r inner join Users_tbl u on u.user_id = r.user_id where post_id='$post_id' AND reply_date <= '$dateleft'";
                               $query_run = mysqli_query($con, $query);
                               if(mysqli_num_rows($query_run) > 0)        
                               {
@@ -108,23 +104,6 @@
                   }
                   }
                   ?>
-               <form action="replyDiscussion.php?id=<?=$_GET['id'];?>&GMEId=<?=$_SESSION["discussionGMEID"]?>&Grp=<?=$_SESSION["discussionGrpID"]?>" method="post" enctype="multipart/form-data">
-                  <textarea type="text" style="width:55%" name="replyText" value=""></textarea>
-                  <div class="submit__button" style="float:right; padding-right: 38%">
-                     <button class="edit--btn" name="reply">Post</button>
-                  </div>
-                  <div class="formGroup form--term">
-                  <div class="form--input">
-                     <b>Select file to upload:</b>
-                     <input style="width: 25%;" type="file" name="replyFile">
-                     <label>File Permission</label>
-                    <select name="filePermission" value="1">
-                        <option>Full</option>
-                        <option>Read</option>
-                    </select>
-                  </div>
-               </div>
-               </form>
             </div>
          <!-- last two divs are for the sidebar and content -->
       </div>

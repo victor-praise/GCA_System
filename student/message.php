@@ -14,7 +14,7 @@
                 while($row = mysqli_fetch_assoc($query_runuser))
                 {
                     $userName = $row['user_name'];
-                 }
+                }
            }
            else{
                // header("location: ../instructor/groups.php");

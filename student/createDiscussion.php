@@ -1,10 +1,10 @@
-<!-- php for editing course -->
+<!-- php for creating group discussion -->
 <?php
 session_start(); 
     require_once "../connection.php";
 
     if(isset($_POST['create_discussion'])){
-        echo 'inside';
+     
         $discussionText = trim($_POST["discussionText"]);
         $courseId = $_SESSION["courseid"];
         $GMEValue = trim($_POST["DDLGMEId"]);

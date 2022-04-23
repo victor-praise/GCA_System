@@ -54,6 +54,7 @@
                      $row4 = mysqli_fetch_assoc($query_run4);
                 ?>
                     <div class="subforum-row">
+                        
                         <div class="subforum-description  subforum-column">
                         <h4><a href="#"><?=$row4["entity_name"]; ?></a></h4>
                             <p><?=$row["post_text"]; ?></p>
