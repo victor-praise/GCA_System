@@ -68,7 +68,7 @@
                            
                                 <!-- <input type="hidden" name="groupid" value="<?=$row["group_id"]; ?>">
                                 <button name="viewsummary" value="<?=$row["GME_id"]; ?>" class="view--btn">y</button> -->
-                                <a href="./summary.php?id=<?=$row["GME_id"]; ?>&groupid=<?=$row["group_id"]; ?>">View summary</a>
+                                <a href="./summary.php?id=<?=$row["GME_id"]; ?>&groupid=<?=$row["group_id"]; ?>&submit=<?=$row['submission_id'] ?>">View summary</a>
                                
                         <!-- <a href="downloadfile.php?file_id=<?=$entity['GME_id'];?>"><i class="fa-solid fa-download"></i> Download file</a
                         > -->

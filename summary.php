@@ -5,10 +5,11 @@
           
              $gme_error = "";
              $gme_success = "";
-          
+            
             if(isset($_GET['id'])){
                 $gme_id = $_GET["id"];
-                $group_id = $_GET["groupid"];       
+                $group_id = $_GET["groupid"];  
+                $submission_id = $_GET["submit"];     
             }
             else{
                 $gme_error = "Unable to fetch summary, contact admin";
@@ -122,7 +123,7 @@
                     
                 }
                 else {
-                    echo "There are no entites added, please click button above to add entites";
+                    echo "Submission has no summary";
                 }
             ?>
         </div>
