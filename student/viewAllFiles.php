@@ -82,8 +82,9 @@
          <?php
             if(isset($_GET['id'])){
                 $group_id = $_GET['Grp'];
+                $gme_id = $_GET['GMEId'];
                         // query statement to get course information and instructor
-                        $query = "SELECT f.file_id,f.file_name,f.file_permission,f.file_date,g.entity_name, (SELECT user_name from Users_tbl where user_id=f.user_id) as user_name FROM File_tbl f inner join GroupMarked_tbl g on g.GME_id =f.GME_id where f.group_id='$group_id' order by file_id desc";
+                        $query = "SELECT f.file_id,f.file_name,f.file_permission,f.file_date,g.entity_name, (SELECT user_name from Users_tbl where user_id=f.user_id) as user_name FROM File_tbl f inner join GroupMarked_tbl g on g.GME_id =f.GME_id where f.group_id='$group_id' and f.GME_id='$gme_id' order by file_id desc";
                         //$query = "SELECT * from File_tbl where group_id='4924555'";
                         $query_run = mysqli_query($con, $query);
                         if(mysqli_num_rows($query_run) > 0)        
