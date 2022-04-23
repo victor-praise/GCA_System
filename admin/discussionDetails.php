@@ -87,7 +87,7 @@
          <div class="container">
             <div class="subforum">
                <div class="subforum-title">
-                  <h1>Anouncement <?=$row["post_id"]; ?></h1>
+                  <h1>Discussion <?=$row["post_id"]; ?></h1>
                </div>
                <div class="subforum-row">
                   <div class="subforum-description  subforum-column">
