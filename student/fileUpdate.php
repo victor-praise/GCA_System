@@ -96,7 +96,7 @@
                ?>
                <br><br>
             <div class="discussions" style="display:block !important">
-               <form action="groupfileControl.php?uId=<?=$_SESSION['id'];?>&file_id=<?=$_GET['file_id'];?>&action=upd&GMEId=<?=$_GET['GMEId'];?>&Grp=<?=$_GET['Grp'];?>" method="post" enctype="multipart/form-data">                  
+               <form action="groupfileControl.php?id=<?=$_GET['id'];?>&uId=<?=$_SESSION['id'];?>&file_id=<?=$_GET['file_id'];?>&action=upd&GMEId=<?=$_GET['GMEId'];?>&Grp=<?=$_GET['Grp'];?>" method="post" enctype="multipart/form-data">                  
                   <div class="formGroup form--term">
                   <div class="form--input">
                      <b>Select file to upload:</b>

@@ -32,7 +32,7 @@
                 // query statement to get course information and instructor
                 $userId=$_SESSION["id"];
                 $courseId=$_SESSION["courseid"];
-                $query = "SELECT distinct * from DiscussionPagesPost_tbl where gme_id IS NOT NULL and group_id IS NOT NULL and course_id='$courseId' order by post_date, post_time desc";
+                $query = "SELECT distinct * from DiscussionPagesPost_tbl p Inner join Group_tbl g on p.group_id =g.group_id where p.gme_id IS NOT NULL and p.group_id IS NOT NULL and g.course_id='$courseId' order by post_date, post_time desc";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
                 {
@@ -108,8 +108,8 @@
                 // query statement to get course information and instructor
                 $userId=$_SESSION["id"];
                 $courseId=$_SESSION["courseid"];
-                $query = "SELECT p.post_id,p.post_text,p.user_id,(SELECT user_fullname from Users_tbl where user_id=p.user_id) as user_name,p.post_time,p.post_date from DiscussionPagesPost_tbl p
-               where p.course_id='$courseId' and p.group_id IS NULL order by p.post_date, p.post_time desc";
+                $query = "SELECT p.post_id,p.post_text,p.user_id,(SELECT user_fullname from Users_tbl where user_id=p.user_id) as user_name,p.post_time,p.post_date from DiscussionPagesPost_tbl p Inner join Group_tbl g on p.group_id =g.group_id
+               where g.course_id='$courseId' and p.group_id IS NULL order by p.post_date, p.post_time desc";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
                 {

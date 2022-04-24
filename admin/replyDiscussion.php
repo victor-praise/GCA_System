@@ -41,7 +41,11 @@ session_start();
                 $new_file_name = strtolower($file);
                 /* make file name in lower case */
                 
-                $final_file=str_replace(' ','-',$new_file_name);
+                $appendix = str_replace(' ','-',$new_file_name);
+         $final_file= 'CGA--';
+         $final_file .= $_GET['id'];
+         $final_file .= '_';
+         $final_file .= $appendix; 
     
                 // checks if file already exists and replaces file
                 if(file_exists("../entityupload/$final_file")){

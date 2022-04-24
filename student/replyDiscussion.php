@@ -44,8 +44,10 @@ session_start();
                 
                 // adds cga before uploading file
                 $appendix = str_replace(' ','-',$new_file_name);
-                $final_file= 'CGA_';
-                $final_file .= $appendix;
+         $final_file= 'CGA--';
+         $final_file .= $_GET['id'];
+         $final_file .= '_';
+         $final_file .= $appendix; 
     
                 // checks if file already exists and replaces file
                 if(file_exists("../entityupload/$final_file")){
