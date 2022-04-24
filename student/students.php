@@ -125,7 +125,7 @@
                     while($row = mysqli_fetch_assoc($query_run))
                     {
                         echo "<option class='instructor--names' value='{$row['user_id']}'> 
-                          {$row['user_fullname']}
+                          {$row['user_fullname']}   <span class='space'>({$row['user_name']})</span> 
                         
                         </option>";
                     }

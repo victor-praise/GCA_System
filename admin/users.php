@@ -204,7 +204,7 @@
             ?>
         </div>
         
-    <div id="myModal" class="modal" >
+    <div id="myModal" class="modal user-modal" >
            <!-- Modal content -->
    <div class="modal-content">
    <span class="close">&times;</span>

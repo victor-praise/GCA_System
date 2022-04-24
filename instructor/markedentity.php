@@ -38,7 +38,7 @@
 
                 // Prepare a select statement
                 $sql = "SELECT GME_id FROM GroupMarked_tbl g WHERE g.course_id = ? AND g.entity_name = ?";
-                // ensures course does not exists before creating
+                // ensures entity does not exists before creating
                 if($stmt = mysqli_prepare($con, $sql)){
                     // Bind variables to the prepared statement as parameters
                    
@@ -146,7 +146,7 @@
          <div class="information--student"> 
      <?php
                 // query statement to get marked entities in a course
-                $query = "SELECT * from GroupMarked_tbl g where g.course_id = '$course_id';
+                $query = "SELECT * from GroupMarked_tbl g where g.course_id = '$course_id' ORDER BY deadline ASC;
                 ";
                 $query_run = mysqli_query($con, $query);
                 
