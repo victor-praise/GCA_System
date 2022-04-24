@@ -1,5 +1,0 @@
-<!-- 40206992 -->
-<br />
-<b>Warning</b>:  filesize(): stat failed for uploads/db22j-a1-encr.pdf in <b>C:\Apache24\htdocs\student\download-solution.php</b> on line <b>22</b><br />
-<br />
-<b>Warning</b>:  readfile(uploads/db22j-a1-encr.pdf): Failed to open stream: No such file or directory in <b>C:\Apache24\htdocs\student\download-solution.php</b> on line <b>23</b><br />
