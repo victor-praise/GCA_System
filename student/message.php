@@ -13,7 +13,7 @@
             {
                 while($row = mysqli_fetch_assoc($query_runuser))
                 {
-                    $userName = $row['user_name'];
+                    $userName = $row['user_fullname'];
                 }
            }
            else{

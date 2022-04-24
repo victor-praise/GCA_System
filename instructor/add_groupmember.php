@@ -169,7 +169,7 @@
                 
                       <div class="student" >
                           
-                        <div class="name"> <?=$row["user_name"]; ?> </div>
+                        <div class="name"> <?=$row["user_fullname"]; ?> </div>
                         <div class="email"><?=$row["user_email"]; ?></div>
                         <!-- group leader -->
                         <?php     
@@ -230,7 +230,7 @@
                 {
                     while($row = mysqli_fetch_assoc($query_run))
                     {
-                        echo "<option class='instructor--names' value='{$row['user_id']}'> {$row['user_name']}</option>";
+                        echo "<option class='instructor--names' value='{$row['user_id']}'> {$row['user_fullname']}</option>";
                     }
                 }
                 ?>
@@ -271,7 +271,7 @@
                 {
                     while($row = mysqli_fetch_assoc($query_run))
                     {
-                        echo "<option class='instructor--names' value='{$row['user_id']}'> {$row['user_name']}</option>";
+                        echo "<option class='instructor--names' value='{$row['user_id']}'> {$row['user_fullname']}</option>";
                     }
                 }
                 ?>

@@ -153,7 +153,7 @@
                  <select name="touser" class="student--select" required>
                  <!-- gets group members in particular group -->
                 <?php
-                // query statement to get course information and instructor
+                // query statement to get Group members
                 $query = "SELECT G1.group_id FROM GroupMember_tbl AS G1 WHERE G1.user_id = '$user_id'";          
                 $group_id_query = mysqli_query($con, "SELECT G1.group_id FROM GroupMember_tbl AS G1 WHERE G1.user_id = '$user_id'")
                 or die(mysqli_error($con));
@@ -162,11 +162,11 @@
                 $member_id = mysqli_query($con, "SELECT G2.user_id FROM GroupMember_tbl AS G2 WHERE (G2.user_id <> '$user_id' AND G2.group_id IN (SELECT G1.group_id FROM GroupMember_tbl AS G1 WHERE G1.user_id = '$user_id')) ")
                 or die(mysqli_error($con));
                 
-                $member_name = mysqli_query($con, "SELECT Users_tbl.user_name FROM Users_tbl WHERE Users_tbl.user_id IN (SELECT G2.user_id FROM GroupMember_tbl AS G2 WHERE (G2.user_id <> '$user_id' AND G2.group_id IN (SELECT G1.group_id FROM GroupMember_tbl AS G1 WHERE G1.user_id = '$user_id'))) ")
+                $member_name = mysqli_query($con, "SELECT Users_tbl.user_fullname FROM Users_tbl WHERE Users_tbl.user_id IN (SELECT G2.user_id FROM GroupMember_tbl AS G2 WHERE (G2.user_id <> '$user_id' AND G2.group_id IN (SELECT G1.group_id FROM GroupMember_tbl AS G1 WHERE G1.user_id = '$user_id'))) ")
                 or die(mysqli_error($con));
 
                 while ($row = mysqli_fetch_array($member_name) and $row2=mysqli_fetch_array($member_id)) {
-                  echo "<option value='" . $row2['user_id'] ."'>" . $row['user_name']."</option>";
+                  echo "<option value='" . $row2['user_id'] ."'>" . $row['user_fullname']."</option>";
                 }
                 
                 ?>

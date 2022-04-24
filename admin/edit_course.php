@@ -80,7 +80,7 @@
                     <div class="formGroup form--term">
                         <div class="form--input">
                         <label for="">Instructor</label>
-                        <select name="instructor" value="<?=$user['user_name'];?>" class="select--instructor" required>
+                        <select name="instructor" value="<?=$user['user_fullname'];?>" class="select--instructor" required>
                 <!-- gets instructors from user table -->   
                     <?php
                 // query statement to get course information and instructor
@@ -92,10 +92,10 @@
                         {
 
                             if($row['user_name'] == $user['user_name']){
-                                echo "<option class='instructor--names' selected value='{$row['user_id']}'> {$row['user_name']}</option>";
+                                echo "<option class='instructor--names' selected value='{$row['user_id']}'> {$row['user_fullname']}</option>";
                             }
                             else{
-                                echo "<option class='instructor--names' value='{$row['user_id']}'> {$row['user_name']}</option>";
+                                echo "<option class='instructor--names' value='{$row['user_id']}'> {$row['user_fullname']}</option>";
                             }
                          
                         }

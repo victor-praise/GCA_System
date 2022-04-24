@@ -91,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             </div>
                             <div class="courseInstructors">
                                 <p>Instructor</p>     
-                                <?=$row["user_name"]; ?> 
+                                <?=$row["user_fullname"]; ?> 
                             </div>
                             
                         </div>

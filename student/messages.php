@@ -72,7 +72,7 @@
                                         echo '
                                         <div class="email user--name">
                                         <label class="entity-info">From</label>
-                                        '.$userrow['user_name'].'
+                                        '.$userrow['user_fullname'].'
                                         </div>            
                                         '; 
                                    

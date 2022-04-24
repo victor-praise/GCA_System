@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="../style.scss">
     <link rel="stylesheet" href="../includes/styles.scss">
     <link rel="stylesheet" href="../admin/admin.scss">
+    <link rel="stylesheet" href="../instructor/instructor.scss">
     <script src="https://kit.fontawesome.com/57c0ab8bd6.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -73,8 +74,14 @@
                 ?>
                 
                       <div class="student" >
-                        <div class="name"> <?=$row["user_name"]; ?> </div>
-                        <div class="email"><?=$row["user_email"]; ?></div>
+                        <div class="name"> 
+                        <label class="entity-info">Full name</label>
+                          <?=$row["user_fullname"]; ?> 
+                        </div>
+                        <div class="email">
+                        <label class="entity-info">Email</label>
+                          <?=$row["user_email"]; ?>
+                        </div>
                         <div class="delete">
                           <form action="add-delete_student.php" method="post">
                           <input type="hidden" name="course_studentid" value="<?=$course_id;?>">  
@@ -117,7 +124,7 @@
                 {
                     while($row = mysqli_fetch_assoc($query_run))
                     {
-                        echo "<option class='instructor--names' value='{$row['user_id']}'> {$row['user_name']}</option>";
+                        echo "<option class='instructor--names' value='{$row['user_id']}'> {$row['user_fullname']}</option>";
                     }
                 }
                 ?>

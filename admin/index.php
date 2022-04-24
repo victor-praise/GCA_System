@@ -219,7 +219,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 {
                     while($row = mysqli_fetch_assoc($query_run))
                     {
-                        echo "<option class='instructor--names' value='{$row['user_id']}'> {$row['user_name']}</option>";
+                        echo "<option class='instructor--names' value='{$row['user_id']}'> {$row['user_fullname']}</option>";
                     }
                 }
                 ?>
