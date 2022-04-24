@@ -134,7 +134,7 @@
                         <div class="delete">
                         <!-- submit button only available for group leader -->
                         <?php 
-                            $query_groupLeader = "SELECT * FROM Group_tbl g, GroupMember_tbl gm where g.leader_user_id = gm.user_id AND g.group_id = gm.group_id";
+                            $query_groupLeader = "SELECT * FROM Group_tbl g, GroupMember_tbl gm where g.leader_user_id = gm.user_id AND g.group_id = gm.group_id AND g.course_id = '$course_id'";
                             $query_runLeader = mysqli_query($con, $query_groupLeader);
                             if(mysqli_num_rows($query_runLeader) > 0) {
                                 while($leaderrow = mysqli_fetch_assoc($query_runLeader))
