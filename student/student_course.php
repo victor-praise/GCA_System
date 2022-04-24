@@ -32,7 +32,11 @@
                 // query statement to get course information and instructor
                 $userId=$_SESSION["id"];
                 $courseId=$_SESSION["courseid"];
-                $query = "SELECT p.post_id,p.post_text,p.user_id,p.group_id,p.GME_id,(SELECT user_name from Users_tbl where user_id=p.user_id) as user_name,p.post_time,p.post_date from DiscussionPagesPost_tbl p inner join Group_tbl g on p.group_id=g.group_id
+                $groupQuery= "SELECT * from GroupMember_tbl where user_id='$userId'";
+                $groupquery_run = mysqli_query($con, $groupQuery);
+                $groupRow = mysqli_fetch_assoc($groupquery_run);
+                $_SESSION["tmpGroupId"]=$groupRow["group_id"];
+                $query = "SELECT p.post_id,p.post_text,p.user_id,p.group_id,p.GME_id,(SELECT user_fullname from Users_tbl where user_id=p.user_id) as user_name,p.post_time,p.post_date from DiscussionPagesPost_tbl p inner join Group_tbl g on p.group_id=g.group_id
                 inner join GroupMember_tbl m on m.group_id=g.group_id where g.course_id='$courseId' and m.user_id='$userId' order by p.post_date, p.post_time desc";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
@@ -41,7 +45,6 @@
                     {
                         $tmpUserId=$row["user_id"];
                      $tmpGroupId=$row["group_id"];
-                     $_SESSION["tmpGroupId"]=$tmpGroupId;
                      $tmpGMEId=$row["GME_id"];
                      $query2 = "SELECT * from Users_tbl where user_id= '$tmpUserId'";
                      $query_run2 = mysqli_query($con, $query2);
@@ -64,7 +67,7 @@
                         </div> -->
                         <?php 
                         $reply_post_id= $row["post_id"];
-                        $queryReply = "SELECT r.*,(SELECT user_name from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date, r.reply_time desc limit 1";        
+                        $queryReply = "SELECT r.*,(SELECT user_fullname from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date, r.reply_time desc limit 1";        
                         $query_runReply = mysqli_query($con, $queryReply);
                         if(mysqli_num_rows($query_runReply) > 0)        
                 {
@@ -110,7 +113,7 @@
                 // query statement to get course information and instructor
                 $userId=$_SESSION["id"];
                 $courseId=$_SESSION["courseid"];
-                $query = "SELECT p.post_id,p.post_text,p.user_id,(SELECT user_name from Users_tbl where user_id=p.user_id) as user_name,p.post_time,p.post_date from DiscussionPagesPost_tbl p
+                $query = "SELECT p.post_id,p.post_text,p.user_id,(SELECT user_fullname from Users_tbl where user_id=p.user_id) as user_name,p.post_time,p.post_date from DiscussionPagesPost_tbl p
                 where p.course_id='$courseId' and p.group_id is null order by p.post_date, p.post_time desc";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0)        
@@ -128,7 +131,7 @@
                         </div> -->
                         <?php 
                         $reply_post_id= $row["post_id"];
-                        $queryReply = "SELECT r.*,(SELECT user_name from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date, r.reply_time desc limit 1";        
+                        $queryReply = "SELECT r.*,(SELECT user_fullname from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date, r.reply_time desc limit 1";        
                         $query_runReply = mysqli_query($con, $queryReply);
                         if(mysqli_num_rows($query_runReply) > 0)        
                 {
@@ -174,7 +177,7 @@
       <!-- Modal content -->
       <div class="modal-content">
          <span class="close">&times;</span>
-         <form action="createDiscussion.php?id=<?=$_SESSION["courseid"]?>&Grp=<?=$_SESSION["tmpGroupId"]?>" method="post"  class="courseForm">
+         <form action="createDiscussion.php?id=<?=$_GET['id']?>&Grp=<?=$_SESSION["tmpGroupId"]?>" method="post"  class="courseForm">
             <div class="form-group">
                <label>Enter discussion text</label>
                <textarea type="text" rows="10" cols="110" class="form-control" name="discussionText" value="" required></textarea>

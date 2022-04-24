@@ -70,7 +70,7 @@
                      </div> -->
                      <?php 
                         $reply_post_id= $row["post_id"];
-                        $query1 = "SELECT r.*,(SELECT user_name from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date desc, r.reply_time desc limit 1";        
+                        $query1 = "SELECT r.*,(SELECT user_fullname from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date desc, r.reply_time desc limit 1";        
                         $query_run1 = mysqli_query($con, $query1);
                         if(mysqli_num_rows($query_run1) > 0)        
                 {

@@ -61,7 +61,7 @@
                   </div> -->
                   <?php 
                         $reply_post_id= $row["post_id"];
-                        $query1 = "SELECT r.*,(SELECT user_name from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date, r.reply_time desc limit 1";        
+                        $query1 = "SELECT r.*,(SELECT user_fullname from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date, r.reply_time desc limit 1";        
                         $query_run1 = mysqli_query($con, $query1);
                         if(mysqli_num_rows($query_run1) > 0)        
                 {
@@ -106,7 +106,7 @@
                // query statement to get course information and instructor
                $userId=$_SESSION["id"];
                $courseId=$_SESSION["courseid"];
-               $query = "SELECT p.post_id,p.post_text,p.user_id,(SELECT user_name from Users_tbl where user_id=p.user_id) as user_name,p.post_time,p.post_date from DiscussionPagesPost_tbl p
+               $query = "SELECT p.post_id,p.post_text,p.user_id,(SELECT user_fullname from Users_tbl where user_id=p.user_id) as user_name,p.post_time,p.post_date from DiscussionPagesPost_tbl p
                where p.course_id='$courseId' and p.group_id IS NULL order by p.post_date, p.post_time desc";
                $query_run = mysqli_query($con, $query);
                if(mysqli_num_rows($query_run) > 0)        
@@ -124,7 +124,7 @@
                   </div> -->
                   <?php 
                         $reply_post_id= $row["post_id"];
-                        $query1 = "SELECT r.*,(SELECT user_name from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date, r.reply_time desc limit 1";        
+                        $query1 = "SELECT r.*,(SELECT user_fullname from Users_tbl where user_id=r.user_id) as user_name FROM DiscussionReply_tbl r where r.post_id='$reply_post_id' order by r.reply_date, r.reply_time desc limit 1";        
                         $query_run1 = mysqli_query($con, $query1);
                         if(mysqli_num_rows($query_run1) > 0)        
                 {
