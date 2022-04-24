@@ -71,8 +71,8 @@
      <?php
             if($inagroup){
                          // query statement to get marked entities in a course
-                $query = "SELECT * from GroupMarked_tbl g where g.course_id = '$course_id';
-                ";
+                $query = "SELECT * from GroupMarked_tbl g where g.course_id = '$course_id'
+                ORDER BY deadline ASC;";
                 $query_run = mysqli_query($con, $query);
                 
                 if(mysqli_num_rows($query_run) > 0)        
