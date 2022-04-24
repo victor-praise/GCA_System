@@ -7,18 +7,30 @@
              $submit_success = "";
              $deadlinepassed = false;
              $alreadysubmitted = 0;
+             $errpr = "fff";
             if(isset($_GET['gme_id'])){
                 $gme_id = $_GET['gme_id'];
                 $group_id = $_SESSION["group_id"];
-                $currentdate = date("Y-m-d");
+                $currentdate = date("Y-m-d",strtotime("-1 day"));
                 // checks if deadline has passed
-                $query = "SELECT * FROM GroupMarked_tbl WHERE GME_id='$gme_id' AND course_id = '$course_id' AND deadline <= '$currentdate'";
+                $query = "SELECT * FROM GroupMarked_tbl WHERE GME_id='$gme_id' AND course_id = '$course_id'";
+                
                 $query_run = mysqli_query($con,$query);
                 if(mysqli_num_rows($query_run) > 0) {
-                    $deadlinepassed = true;
+                    while($row = mysqli_fetch_assoc($query_run))
+                    { 
+                        if(strtotime($currentdate)  >  strtotime($row['deadline'])){
+                          
+                            $deadlinepassed = true;
+                        }
+                        else{
+                         
+                            $deadlinepassed = false;
+                        }
+                    }       
                 }
                 else{
-                    $deadlinepassed = false;
+                    echo '';
                 }
                 // checks if file has been submitted
                 $query_submission = "SELECT * from FinalSubmission_tbl where GME_id = '$gme_id' AND group_id = '$group_id'";
@@ -58,6 +70,7 @@
     <?php include('../includes/sidebar.php'); ?>
 
     <?php 
+      
         if($deadlinepassed){
             echo '<div class="deadline--passed">
                     Entity deadline has passed and there can be no more submissions
@@ -97,7 +110,9 @@
         ?>
       
          <div class="information--student"> 
+
      <?php
+     echo $currentdate;
                 // query statement to get marked entities in a course
                 $query = "SELECT * from GroupMarked_tbl g where g.GME_id = '$gme_id' AND g.course_id='$course_id';
                 ";
