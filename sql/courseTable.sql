@@ -62,7 +62,8 @@ CREATE TABLE Announcement_tbl(
   KEY `course_id` (`course_id`),
   CONSTRAINT `Group_tbl_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `CourseSection_tbl` (`course_id`) ON DELETE CASCADE
 );
-
+select * from Users_tbl;
+select * from Group_tbl;
    CREATE TABLE `GroupMember_tbl` (
   `groupMember_id` int NOT NULL AUTO_INCREMENT,
   `group_id` char(12) DEFAULT NULL,
@@ -164,8 +165,8 @@ CREATE TABLE StudentVote_tbl(
   PRIMARY KEY (`post_id`),
   KEY `user_id` (`user_id`),
   KEY `GME_id` (`GME_id`),
-  CONSTRAINT `DiscussionPagesPost_tbl_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users_tbl` (`user_id`),
-  CONSTRAINT `DiscussionPagesPost_tbl_ibfk_2` FOREIGN KEY (`GME_id`) REFERENCES `GroupMarked_tbl` (`GME_id`)
+  CONSTRAINT `DiscussionPagesPost_tbl_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users_tbl` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `DiscussionPagesPost_tbl_ibfk_2` FOREIGN KEY (`GME_id`) REFERENCES `GroupMarked_tbl` (`GME_id`) ON DELETE CASCADE
 );
    
 CREATE TABLE `DiscussionReply_tbl` (
@@ -178,8 +179,8 @@ CREATE TABLE `DiscussionReply_tbl` (
   PRIMARY KEY (`reply_id`),
   KEY `user_id` (`user_id`),
   KEY `post_id` (`post_id`),
-  CONSTRAINT `DiscussionReply_tbl_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users_tbl` (`user_id`),
-  CONSTRAINT `DiscussionReply_tbl_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `DiscussionPagesPost_tbl` (`post_id`)
+  CONSTRAINT `DiscussionReply_tbl_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users_tbl` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `DiscussionReply_tbl_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `DiscussionPagesPost_tbl` (`post_id`) ON DELETE CASCADE
 );
 
    
@@ -195,8 +196,8 @@ CREATE TABLE `File_tbl` (
   PRIMARY KEY (`file_id`),
   KEY `user_id` (`user_id`),
   KEY `GME_id` (`GME_id`),
-  CONSTRAINT `File_tbl_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users_tbl` (`user_id`),
-  CONSTRAINT `File_tbl_ibfk_2` FOREIGN KEY (`GME_id`) REFERENCES `GroupMarked_tbl` (`GME_id`)
+  CONSTRAINT `File_tbl_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users_tbl` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `File_tbl_ibfk_2` FOREIGN KEY (`GME_id`) REFERENCES `GroupMarked_tbl` (`GME_id`) ON DELETE CASCADE
 );
 
 
@@ -268,6 +269,6 @@ CREATE TABLE `PrivateMessage_tbl` (
   PRIMARY KEY (`msg_id`),
   KEY `from_user` (`from_user`),
   KEY `to_user` (`to_user`),
-  CONSTRAINT `PrivateMessage_tbl_ibfk_1` FOREIGN KEY (`from_user`) REFERENCES `Users_tbl` (`user_id`),
-  CONSTRAINT `PrivateMessage_tbl_ibfk_2` FOREIGN KEY (`to_user`) REFERENCES `Users_tbl` (`user_id`)
+  CONSTRAINT `PrivateMessage_tbl_ibfk_1` FOREIGN KEY (`from_user`) REFERENCES `Users_tbl` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `PrivateMessage_tbl_ibfk_2` FOREIGN KEY (`to_user`) REFERENCES `Users_tbl` (`user_id`) ON DELETE CASCADE
 );
