@@ -78,7 +78,6 @@ CREATE TABLE Announcement_tbl(
    CREATE TABLE `RemovedGroupMember_tbl` (
   `removedMember_id` int NOT NULL AUTO_INCREMENT,
   `group_id` char(12) DEFAULT NULL,
-  `course_id` char(12) DEFAULT NULL,
   `user_id` char(8) DEFAULT NULL,
   `dateLeft` datetime DEFAULT NULL,
   PRIMARY KEY (`removedMember_id`),

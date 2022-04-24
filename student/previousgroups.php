@@ -72,12 +72,8 @@
          <div class="information--student"> 
      <?php
                 // query statement to get all groups a student has been in
-                $query = "SELECT 
-                *
-                FROM
-                RemovedGroupMember_tbl
-                    WHERE
-                        user_id = '$user_id' AND course_id='$course_id';
+                $query = "SELECT r.*,g.* FROM RemovedGroupMember_tbl r,Group_tbl g WHERE
+                        r.user_id = '$user_id' AND r.group_id = g.group_id AND g.course_id='$course_id';
                 ";
                 $query_run = mysqli_query($con, $query);
                 if(mysqli_num_rows($query_run) > 0){
